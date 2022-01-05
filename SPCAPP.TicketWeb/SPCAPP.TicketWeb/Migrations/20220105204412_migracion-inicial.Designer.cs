@@ -10,8 +10,8 @@ using SPCAPP.TicketWeb.Data;
 namespace SPCAPP.TicketWeb.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220105200431_MigracionInicial")]
-    partial class MigracionInicial
+    [Migration("20220105204412_migracion-inicial")]
+    partial class migracioninicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
