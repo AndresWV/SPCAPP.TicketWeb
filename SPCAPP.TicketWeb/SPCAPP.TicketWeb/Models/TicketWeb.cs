@@ -11,8 +11,12 @@ namespace SPCAPP.TicketWeb.Models
         [Key]
         public int Id { get; set; }
 
+        [Required(ErrorMessage = "La Fecha es un campo obligatorio")]
+        [DataType(DataType.Date)]
         public DateTime Fecha{ get; set; }
 
+        [Required(ErrorMessage = "La Hora es un campo obligatorio")]
+        [DataType(DataType.Time)]
         public DateTime Hora { get; set; }
 
         [Required(ErrorMessage = "El Folio es un campo obligatorio")]
