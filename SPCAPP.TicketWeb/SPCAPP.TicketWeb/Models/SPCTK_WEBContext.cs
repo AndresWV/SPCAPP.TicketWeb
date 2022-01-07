@@ -17,7 +17,7 @@ namespace SPCAPP.TicketWeb.Models
         {
         }
 
-        public virtual DbSet<Ticket> Tickets { get; set; }
+        public virtual DbSet<TicketWeb> Tickets { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -30,7 +30,7 @@ namespace SPCAPP.TicketWeb.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Ticket>(entity =>
+            modelBuilder.Entity<TicketWeb>(entity =>
             {
                 entity.ToTable("Ticket");
 
