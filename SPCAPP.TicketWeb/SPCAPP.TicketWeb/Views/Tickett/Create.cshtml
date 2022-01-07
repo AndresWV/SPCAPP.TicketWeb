@@ -192,7 +192,7 @@
             source: '@Url.Action("GetNombresClientes", "Tickett")',
             minlength: 2,
             position: { my: "left bottom", at: "left bottom" },
-            delay: 100,
+            delay: 300,
             open: function () {
                 $("ul.ui-menu").width($(this).innerWidth());
             },
@@ -200,6 +200,13 @@
                 "ui-autocomplete": "highlig"
             }
         });
+    </script>
+    <script>
+        function validar() {
+            if ($('#clt').val() != "") {
+                var lista = @URL.Action
+            }
+        };
     </script>
 }
 
