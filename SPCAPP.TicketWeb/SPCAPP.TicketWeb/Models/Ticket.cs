@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace SPCAPP.TicketWeb.Models
 {
-    public partial class Ticket
+    public partial class TicketWeb
     {
         public int Id { get; set; }
         public DateTime Fecha { get; set; }

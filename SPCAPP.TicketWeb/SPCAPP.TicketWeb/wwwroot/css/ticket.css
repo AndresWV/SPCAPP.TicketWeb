@@ -1,0 +1,41 @@
+
+.h3Ticket{
+    text-align: center;
+    font-family: 'Merriweather', serif;
+}
+.codigoFecha{
+    margin-top: 3%;
+}
+.fechaHora{
+    margin-left: 10%;
+}
+
+.datee{
+    padding:10px;
+    font-family: FontAwesome, "Open Sans", Verdana, sans-serif;
+    font-style: normal;
+    border-radius: 0 !important;
+    text-align: center;
+}
+  
+.form-control {
+    border-radius: 0 !important;
+    font-size: 12x;
+}
+
+.clickable { cursor: pointer; }
+
+.centerContainer{
+    margin-top: 5%;
+}
+.codigoStyle{
+    margin-right: 10%;
+}
+.section2Style{
+    margin-top: 3% !important; 
+    border: 1px solid black;
+}
+.textareaStyle{
+    max-height: 200px;
+    height: 90%;
+}

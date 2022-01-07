@@ -10,8 +10,8 @@ using SPCAPP.TicketWeb.Data;
 namespace SPCAPP.TicketWeb.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220105204412_migracion-inicial")]
-    partial class migracioninicial
+    [Migration("20220107135507_Tickett")]
+    partial class Tickett
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,7 +21,7 @@ namespace SPCAPP.TicketWeb.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.0");
 
-            modelBuilder.Entity("SPCAPP.TicketWeb.Models.Ticket", b =>
+            modelBuilder.Entity("SPCAPP.TicketWeb.Models.Tickett", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -29,10 +29,6 @@ namespace SPCAPP.TicketWeb.Migrations
                         .UseIdentityColumn();
 
                     b.Property<string>("Alias")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("AreaEmpresa")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("AreaTrabajo")
@@ -47,24 +43,15 @@ namespace SPCAPP.TicketWeb.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Codigo")
-                        .HasColumnType("int");
-
                     b.Property<string>("Contacto")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("DescripcionProblema")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("EmailEmpresa")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
+                    b.Property<string>("Emailempresa")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Estado")
                         .IsRequired()
@@ -72,6 +59,10 @@ namespace SPCAPP.TicketWeb.Migrations
 
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Folio")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Hora")
                         .HasColumnType("datetime2");
@@ -81,15 +72,19 @@ namespace SPCAPP.TicketWeb.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Proyecto")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Telefono_1")
+                    b.Property<string>("ResumenTicket")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Telefono1")
                         .HasColumnType("int");
 
-                    b.Property<int>("Telefono_2")
+                    b.Property<int>("Telefono2")
                         .HasColumnType("int");
 
-                    b.Property<int>("Telefono_3")
+                    b.Property<int>("Telefono3")
                         .HasColumnType("int");
 
                     b.Property<string>("TipoSoporte")
@@ -98,7 +93,7 @@ namespace SPCAPP.TicketWeb.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Ticket");
+                    b.ToTable("Tickett");
                 });
 #pragma warning restore 612, 618
         }

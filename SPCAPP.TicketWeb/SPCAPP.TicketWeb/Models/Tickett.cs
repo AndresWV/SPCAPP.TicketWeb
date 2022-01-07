@@ -6,13 +6,17 @@ using System.Threading.Tasks;
 
 namespace SPCAPP.TicketWeb.Models
 {
-    public class TicketWeb
+    public class Tickett
     {
         [Key]
         public int Id { get; set; }
 
-        public DateTime Fecha{ get; set; }
+        [Required(ErrorMessage = "La Fecha es un campo obligatorio")]
+        [DataType(DataType.Date)]
+        public DateTime Fecha { get; set; }
 
+        [Required(ErrorMessage = "La Hora es un campo obligatorio")]
+        [DataType(DataType.Time)]
         public DateTime Hora { get; set; }
 
         [Required(ErrorMessage = "El Folio es un campo obligatorio")]
