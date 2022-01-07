@@ -51,11 +51,11 @@
             <div class="w-100"></div>
             <div class="row">
                 <div class="col-3 form-outline folio" style="margin-top: 3%;margin-left: 13%;">
-                    <input type="text" asp-for="Cliente" class="form-control" />
+                    <input type="text" id="clt" asp-for="Cliente" class="form-control" />
                     <label class="form-label" asp-for="Cliente">CLIENTE</label>
                 </div>
                 <div class="col form-outline" style="margin-top: 3%;margin-left: 1%; margin-right: 11%;">
-                    <input type="text" asp-for="Alias" class="form-control" />
+                    <input type="text" id="ali" asp-for="Alias" class="form-control" />
                     <label class="form-label" asp-for="Alias">ALIAS</label>
                 </div>
             </div>
@@ -176,21 +176,30 @@
 
             <div w-100></div>
             <div class="row mt-1 mb-5">
-                <div class="col" style="margin-left: 36%;">
-                    <button type="button" class="btn btn-primary btn-lg">ADJUNTOS</button>
+                <div class="col" style="margin-left: 45%;">
+                    <button type="submit" class="btn btn-primary btn-lg">Crear Ticket</button>
                 </div>
-                <div class="col">
-                    <div class="form-group">
-                        <input type="submit" value="Crear Ticket" class="btn btn-primary" />
-                    </div>
-                </div>
+                
             </div>
         </div>
     </form>
 </div>
 <!--Incoorporar validacion del lado del cliente-->
-@section Scripts{
-    @{
-        <partial name="_ValidationScriptsPartial" />
-    }
+@section scripts{ 
+
+    <script>
+        $("#clt").autocomplete({
+            source: '@Url.Action("GetNombresClientes", "Tickett")',
+            minlength: 2,
+            position: { my: "left bottom", at: "left bottom" },
+            delay: 100,
+            open: function () {
+                $("ul.ui-menu").width($(this).innerWidth());
+            },
+            classes: {
+                "ui-autocomplete": "highlig"
+            }
+        });
+    </script>
 }
+

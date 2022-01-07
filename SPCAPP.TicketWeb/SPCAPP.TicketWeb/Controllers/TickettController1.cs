@@ -12,7 +12,7 @@ namespace SPCAPP.TicketWeb.Controllers
     {
         //conexion con la base de datos
         private readonly ApplicationDbContext _context;
-
+        public SPCTKContext bd = new SPCTKContext();
         public TickettController(ApplicationDbContext context)
         {
             _context = context;
@@ -117,6 +117,47 @@ namespace SPCAPP.TicketWeb.Controllers
             //Cuando se cree un ticket volver al index
             return RedirectToAction("Index");
 
+        }
+        /*********************************************DATOS PARA PRECARGAR CON AUTOCOMPLETADO**************************************************************************/
+        public IActionResult GetNombresClientes(string term)
+        {
+            //Con la comparacion deja que ingrese minusculas o mayusculas
+            var result = (from U in bd.ViewAuxis.ToList() where U.NomAux.Contains(term, System.StringComparison.CurrentCultureIgnoreCase) select new { value = U.NomAux });
+            return Json(result);
+        }
+
+        public IActionResult GetAlias(string term)
+        {
+            var result = (from U in bd.ViewAuxis.ToList() where U.NoFaux.Contains(term, System.StringComparison.CurrentCultureIgnoreCase) select new { value = U.NoFaux });
+            return Json(result);
+        }
+
+        public IActionResult GetTel1(string term)
+        {
+            var result = (from U in bd.ViewAuxis.ToList() where U.FonAux1.Contains(term, System.StringComparison.CurrentCultureIgnoreCase) select new { value = U.FonAux1 });
+            return Json(result);
+        }
+
+        public IActionResult GetTel2(string term)
+        {
+            var result = (from U in bd.ViewAuxis.ToList() where U.FonAux2.Contains(term, System.StringComparison.CurrentCultureIgnoreCase) select new { value = U.FonAux2 });
+            return Json(result);
+        }
+
+        public IActionResult GetTel3(string term)
+        {
+            var result = (from U in bd.ViewAuxis.ToList() where U.FonAux3.Contains(term, System.StringComparison.CurrentCultureIgnoreCase) select new { value = U.FonAux3 });
+            return Json(result);
+        }
+        public IActionResult GetEmail(string term)
+        {
+            var result = (from U in bd.ViewAuxis.ToList() where U.Email.Contains(term, System.StringComparison.CurrentCultureIgnoreCase) select new { value = U.Email });
+            return Json(result);
+        }
+        public IActionResult GetEmailEmpresa(string term)
+        {
+            var result = (from U in bd.ViewAuxis.ToList() where U.EMailDte.Contains(term, System.StringComparison.CurrentCultureIgnoreCase) select new { value = U.EMailDte });
+            return Json(result);
         }
     }
 }
