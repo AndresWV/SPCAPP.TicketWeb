@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SPCAPP.TicketWeb.Data;
+using SPCAPP.TicketWeb.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,7 @@ namespace SPCAPP.TicketWeb
         {
             //Configuracion de cadena de conexion
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+           // services.AddDbContext<SPCTKContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection2")));
             services.AddControllersWithViews();
         }
 

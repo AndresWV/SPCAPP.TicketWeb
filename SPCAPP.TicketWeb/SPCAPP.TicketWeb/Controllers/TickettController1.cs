@@ -12,10 +12,13 @@ namespace SPCAPP.TicketWeb.Controllers
     {
         //conexion con la base de datos
         private readonly ApplicationDbContext _context;
+        private readonly SPCTKContext _bd;
         public SPCTKContext bd = new SPCTKContext();
         public TickettController(ApplicationDbContext context)
         {
             _context = context;
+           // _bd = bd;
+
         }
         //http get index
         public IActionResult Index()
@@ -126,22 +129,11 @@ namespace SPCAPP.TicketWeb.Controllers
             return Json(result);
         }
 
-        public IActionResult GetAlias(string term)
+        public ViewAuxi GetAlias(string term)
         {
-            var alias = (from U in bd.ViewAuxis.ToList() where U.NoFaux.Contains(term, System.StringComparison.CurrentCultureIgnoreCase) select new { value = U.NoFaux });
-            var tel1 = (from U in bd.ViewAuxis.ToList() where U.FonAux1.Contains(term, System.StringComparison.CurrentCultureIgnoreCase) select new { value = U.FonAux1 });
-            var tel2 = (from U in bd.ViewAuxis.ToList() where U.FonAux2.Contains(term, System.StringComparison.CurrentCultureIgnoreCase) select new { value = U.FonAux2 });
-            var tel3 = (from U in bd.ViewAuxis.ToList() where U.FonAux3.Contains(term, System.StringComparison.CurrentCultureIgnoreCase) select new { value = U.FonAux3 });
-            var email = (from U in bd.ViewAuxis.ToList() where U.Email.Contains(term, System.StringComparison.CurrentCultureIgnoreCase) select new { value = U.Email });
-            var emailEmpr = (from U in bd.ViewAuxis.ToList() where U.EMailDte.Contains(term, System.StringComparison.CurrentCultureIgnoreCase) select new { value = U.EMailDte });
-            List<dynamic> result = new List<dynamic>();
-            result.Add(alias);
-            result.Add(tel1);
-            result.Add(tel2);
-            result.Add(tel3);
-            result.Add(email);
-            result.Add(emailEmpr);
-            return Json(result);
+            var clienteData = bd.ViewAuxis.Where( x => x.NomAux == term ).FirstOrDefault();
+            return clienteData;
         }
     }
+    
 }
