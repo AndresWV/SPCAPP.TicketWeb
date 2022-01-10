@@ -51,7 +51,7 @@
             <div class="w-100"></div>
             <div class="row">
                 <div class="col-3 form-outline folio" style="margin-top: 3%;margin-left: 13%;">
-                    <input type="text" id="clt" asp-for="Cliente" class="form-control" />
+                    <input type="text" id="clt"  asp-for="Cliente" class="form-control" />
                     <label class="form-label" asp-for="Cliente">CLIENTE</label>
                 </div>
                 <div class="col form-outline" style="margin-top: 3%;margin-left: 1%; margin-right: 11%;">
@@ -198,15 +198,20 @@
             },
             classes: {
                 "ui-autocomplete": "highlig"
+            },
+            select: function (data) {
+                $('#clt').on('change', function () {
+                    console.log(this.value);
+                }).change();
+                $('#clt').on('autocompleteselect', function (e, ui) {
+                });
+                $.get("/Tickett/GetAlias", function (data) {
+                    $(".result").html(data);
+                    console.log(data)
+                });
             }
         });
     </script>
-    <script>
-        function validar() {
-            if ($('#clt').val() != "") {
-                var lista = @URL.Action
-            }
-        };
-    </script>
+  
 }
 
