@@ -67,12 +67,9 @@
                     <input type="email" asp-for="Emailempresa" id="emailEm" class="form-control" readonly/>
                     <label class="form-label" asp-for="Emailempresa">EMAIL EMPRESA</label>
                 </div>
-                <div class="col" style="margin-top: 3%;margin-right: 10%;">
-                    <select class="form-select" asp-for="Contacto" aria-label="Default select example">
-                        <option selected>CONTACTO</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                <div onLoad="myOnLoad()" class="col" style="margin-top: 3%;margin-right: 10%;">
+                    <select id="cont" class="form-select" asp-for="Contacto" aria-label="Default select example" >
+                        CONTACTO
                     </select>
                 </div>
             </div>
@@ -215,7 +212,6 @@
                 
                 $.get("/Tickett/GetAlias", {term:ui.item.value} ,function (data) {
                     $(".result").html(data);
-                    console.log(data);
                     //cambiar código
                     $("#cod").val("" + data.codAux);
                     $('#cod').focus();
@@ -240,10 +236,21 @@
                     //cambiar email empresa
                     $("#email").val("" + data.email);
                     $('#email').focus();
+                    //cargar select
+                    $.get("/Tickett/GetContactos", { term: data.codAux }, function (data2) {
+                        for (var i = 0; i < data2.length; i++) {
+                            var option = document.createElement("option"); //Creas el elemento opción
+                            $(option).html(data2[i].value.nomCon); //Escribes en él el nombre de la provincia
+                            $(option).appendTo("#cont"); //Lo metes en el select con id provincias
+                        }
+                    });
                 });
+                
             }
         });
     </script>
+   
+    
   
 }
 
