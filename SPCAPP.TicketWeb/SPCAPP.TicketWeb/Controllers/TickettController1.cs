@@ -129,11 +129,10 @@ namespace SPCAPP.TicketWeb.Controllers
             return Json(result);
         }
 
-        public IActionResult GetAlias(string term)
+        public ViewAuxi GetAlias(string term)
         {
-
-            var clienteData = (from U in bd.ViewAuxis.ToList() where U.NomAux.Contains(term, System.StringComparison.CurrentCultureIgnoreCase) select new { value = U.NoFaux,U.EMailDte,U.Email, U.FonAux1, U.FonAux2, U.FonAux3});
-            return Json(clienteData);
+            var clienteData = bd.ViewAuxis.Where( x => x.NomAux == term ).FirstOrDefault();
+            return clienteData;
         }
     }
     

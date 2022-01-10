@@ -55,8 +55,8 @@
                     <label class="form-label" asp-for="Cliente">CLIENTE</label>
                 </div>
                 <div class="col form-outline" style="margin-top: 3%;margin-left: 1%; margin-right: 11%;">
-                    <input type="text" id="ali" asp-for="Alias" class="form-control" />
-                    <label class="form-label" asp-for="Alias">ALIAS</label>
+                    <input type="text" id="ali" asp-for="Alias" class="form-control"  />
+                    <label class="form-label" id="aliLabel" asp-for="Alias">ALIAS</label>
                 </div>
             </div>
 
@@ -203,7 +203,8 @@
                 
                 $.get("/Tickett/GetAlias", {term:ui.item.value} ,function (data) {
                     $(".result").html(data);
-                    console.log(data)
+                    $('#ali').focus();
+                    $("#ali").val("" + data.noFaux);
                 });
             }
         });
