@@ -199,13 +199,9 @@
             classes: {
                 "ui-autocomplete": "highlig"
             },
-            select: function (data) {
-                $('#clt').on('change', function () {
-                    console.log(this.value);
-                }).change();
-                $('#clt').on('autocompleteselect', function (e, ui) {
-                });
-                $.get("/Tickett/GetAlias", function (data) {
+            select: function (event, ui) {
+                
+                $.get("/Tickett/GetAlias", {term:ui.item.value} ,function (data) {
                     $(".result").html(data);
                     console.log(data)
                 });

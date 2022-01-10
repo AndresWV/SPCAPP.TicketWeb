@@ -131,9 +131,9 @@ namespace SPCAPP.TicketWeb.Controllers
 
         public IActionResult GetAlias(string term)
         {
-            Console.WriteLine(term);
-            //var clienteData = (from U in bd.ViewAuxis.ToList() where U.NomAux.Contains(term, System.StringComparison.CurrentCultureIgnoreCase) select new { value = U.NoFaux,U.EMailDte,U.Email, U.FonAux1, U.FonAux2, U.FonAux3});
-            return Json(term);
+
+            var clienteData = (from U in bd.ViewAuxis.ToList() where U.NomAux.Contains(term, System.StringComparison.CurrentCultureIgnoreCase) select new { value = U.NoFaux,U.EMailDte,U.Email, U.FonAux1, U.FonAux2, U.FonAux3});
+            return Json(clienteData);
         }
     }
     
