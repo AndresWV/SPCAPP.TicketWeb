@@ -146,11 +146,11 @@ namespace SPCAPP.TicketWeb.Controllers
             var contactoData = bd.Contactos.Where(x => x.NomCon == term).FirstOrDefault();
             return contactoData;
         }
+        //Traer todos los tecnicos
         public IActionResult GetTecnico()
         {
-            //Con la comparacion deja que ingrese minusculas o mayusculas
-            var result = (from U in bd.Tecnicos.ToList() select new { value = U });
-            return Json(result);
+            var contactoData = bd.Tecnicos;
+            return Json(contactoData);
         }
     }
     

@@ -250,6 +250,13 @@
 
             }
         });
+        $.get("/Tickett/GetTecnico", function (dataAsignados) {
+            for (var i = 0; i < dataAsignados.length; i++) {
+                var option = document.createElement("option"); //Creas el elemento opción
+                $(option).html(dataAsignados[i].value.tecnicoNom); //Escribes en él el nombre de la provincia
+                $(option).appendTo("#asignadoo"); //Lo metes en el select con id provincias
+            }
+        });
     </script>
 }
 
