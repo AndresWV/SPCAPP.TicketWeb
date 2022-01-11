@@ -13,8 +13,8 @@
         <div class="row">
             <div class="col-6">
                 <div class="codigoStyle form-outline">
-                    <input class="form-control" id="cod" asp-for="Id" type="number" readonly />
-                    <label class="form-label" asp-for="Id">CÓDIGO</label>
+                    <input class="form-control" id="cod" asp-for="Codigo" type="number" readonly />
+                    <label class="form-label" asp-for="Codigo">CÓDIGO</label>
                 </div>
             </div>
             <div class="col-3">
@@ -133,7 +133,7 @@
                     </select>
                 </div>
                 <div class="col" style="margin-top: 3%;margin-right: 10%;">
-                    <select class="form-select" aria-label="Default select example" asp-for="Proyecto" style="visibility:hidden;">
+                    <select class="form-select" aria-label="Default select example" asp-for="Proyecto">
                         <option selected>PROYECTO</option>
                         <option value="1">One</option>
                         <option value="2">Two</option>
@@ -250,13 +250,29 @@
                     $("#cont").change(function () {
                         $.get("/Tickett/GetContacto", { term: $(this).val() }, function (dataContacto) {
                             //telefono1
-                            $("#telefono1").val("" + dataContacto.fonCon);
+                            if (dataContacto.fonCon != null) {
+                                $("#telefono1").val("" +dataContacto.fonCon);
+                                
+                            } else {
+                                $("#telefono1").val("" +0);
+                            }
                             $('#telefono1').focus();
                             //telefono2
-                            $("#telefono2").val("" + dataContacto.fonCon2);
+                            if (dataContacto.fonCon2 != null) {
+                                
+                                $("#telefono2").val("" +dataContacto.fonCon2);
+
+                            }else {
+                                $("#telefono2").val("" +0);
+                            }
                             $('#telefono2').focus();
                             //telefono3
-                            $("#telefono3").val("" + dataContacto.fonCon3);
+                            if (dataContacto.fonCon3 != null) {
+                                $("#telefono3").val("" +dataContacto.fonCon3);
+
+                            } else {
+                                $("#telefono3").val(""+0);
+                            }
                             $('#telefono3').focus();
                             //cambiar email empresa
                             $("#email").val("" + dataContacto.email);
