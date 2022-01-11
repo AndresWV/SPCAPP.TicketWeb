@@ -152,6 +152,24 @@ namespace SPCAPP.TicketWeb.Controllers
             var contactoData = bd.Tecnicos;
             return Json(contactoData);
         }
+        //Traer todos los medios de contacto de la tabla medios
+       public IActionResult GetMContacto()
+        {
+            var medio = bd.Medios;
+            return Json(medio);
+        }
+        //Traer todos los tipos de soporte de la tabla TipoSoporte
+        public IActionResult GetTSoporte()
+        {
+            var soporte = bd.TipoSoportes;
+            return Json(soporte);
+        }
+        //Traer todas las areas de trabajo de la TKGrupos
+        public IActionResult GetTKgrupos()
+        {
+            var areas = bd.TkGrupos;
+            return Json(areas);
+        }
     }
     
 }
