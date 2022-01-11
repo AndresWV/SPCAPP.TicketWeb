@@ -12,10 +12,13 @@ namespace SPCAPP.TicketWeb.Controllers
     {
         //conexion con la base de datos
         private readonly ApplicationDbContext _context;
-
+        private readonly SPCTKContext _bd;
+        public SPCTKContext bd = new SPCTKContext();
         public TickettController(ApplicationDbContext context)
         {
             _context = context;
+           // _bd = bd;
+
         }
         //http get index
         public IActionResult Index()
@@ -118,5 +121,37 @@ namespace SPCAPP.TicketWeb.Controllers
             return RedirectToAction("Index");
 
         }
+        /*********************************************DATOS PARA PRECARGAR CON AUTOCOMPLETADO**************************************************************************/
+        public IActionResult GetNombresClientes(string term)
+        {
+            //Con la comparacion deja que ingrese minusculas o mayusculas
+            var result = (from U in bd.ViewAuxis.ToList() where U.NomAux.Contains(term, System.StringComparison.CurrentCultureIgnoreCase) select new { value = U.NomAux });
+            return Json(result);
+        }
+        //Devuelve el primer objeto con la data de la empresa
+        public ViewAuxi GetAlias(string term)
+        {
+            var clienteData = bd.ViewAuxis.Where( x => x.NomAux == term ).FirstOrDefault();
+            return clienteData;
+        }
+        //Busqueda por el codigo obtenid en viewAuxi (empresa)
+        public IActionResult GetContactos(string term)
+        {
+            var contactoData = bd.Contactos.Where(x => x.CodAuc == term);
+            return Json(contactoData);
+        }
+        //Busqueda por nombre del contacto
+        public Contacto GetContacto(string term)
+        {
+            var contactoData = bd.Contactos.Where(x => x.NomCon == term).FirstOrDefault();
+            return contactoData;
+        }
+        //Traer todos los tecnicos
+        public IActionResult GetTecnico()
+        {
+            var contactoData = bd.Tecnicos;
+            return Json(contactoData);
+        }
     }
+    
 }
