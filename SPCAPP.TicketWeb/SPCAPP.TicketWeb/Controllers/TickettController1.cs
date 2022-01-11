@@ -138,7 +138,13 @@ namespace SPCAPP.TicketWeb.Controllers
         public IActionResult GetContactos(string term)
         {
             //Con la comparacion deja que ingrese minusculas o mayusculas
-            var result = (from U in bd.Contactos.ToList() where U.CodAuc.Contains(term, System.StringComparison.CurrentCultureIgnoreCase) select new { value = U});
+            var contactoData = bd.Contactos.Where(x => x.CodAuc == term);
+            return Json(contactoData);
+        }
+        public IActionResult GetTecnico()
+        {
+            //Con la comparacion deja que ingrese minusculas o mayusculas
+            var result = (from U in bd.Tecnicos.ToList() select new { value = U });
             return Json(result);
         }
     }
