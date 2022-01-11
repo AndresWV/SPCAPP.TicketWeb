@@ -128,18 +128,23 @@ namespace SPCAPP.TicketWeb.Controllers
             var result = (from U in bd.ViewAuxis.ToList() where U.NomAux.Contains(term, System.StringComparison.CurrentCultureIgnoreCase) select new { value = U.NomAux });
             return Json(result);
         }
-
+        //Devuelve el primer objeto con la data de la empresa
         public ViewAuxi GetAlias(string term)
         {
             var clienteData = bd.ViewAuxis.Where( x => x.NomAux == term ).FirstOrDefault();
             return clienteData;
         }
-
+        //Busqueda por el codigo obtenid en viewAuxi (empresa)
         public IActionResult GetContactos(string term)
         {
-            //Con la comparacion deja que ingrese minusculas o mayusculas
             var contactoData = bd.Contactos.Where(x => x.CodAuc == term);
             return Json(contactoData);
+        }
+        //Busqueda por nombre del contacto
+        public Contacto GetContacto(string term)
+        {
+            var contactoData = bd.Contactos.Where(x => x.NomCon == term).FirstOrDefault();
+            return contactoData;
         }
         public IActionResult GetTecnico()
         {
