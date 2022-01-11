@@ -16,12 +16,12 @@
             </button>
         </div>
     }
-    <div class="row">
-        <div class="col-sm-6">
-            <h3>Lista de Ticket</h3>
+    <div class="row mb-4">
+        <div class="col-sm-7">
+            <h3 class="text-right">TICKET GENERADOS</h3>
         </div>
-        <div class="col-sm-6">
-            <a class="btn btn-success d-block" asp-action="Create" asp-controller="Tickett">Crear Ticket</a>
+        <div class="col-sm-4">
+            <a class="btn btn-success float-lg-right" asp-action="Create" asp-controller="Tickett">Crear Ticket</a>
         </div>
     </div>
     <div class="row">
@@ -30,13 +30,14 @@
             <table class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        <td>@Html.DisplayNameFor(m => m.Id)</td>
-                        <td>@Html.DisplayNameFor(m => m.Folio)</td>
                         <td>@Html.DisplayNameFor(m => m.Fecha)</td>
-                        <td>@Html.DisplayNameFor(m => m.Hora)</td>
                         <td>@Html.DisplayNameFor(m => m.Estado)</td>
                         <td>@Html.DisplayNameFor(m => m.Cliente)</td>
+
+                        <!--<td>CÓDIGO</td>
+                        <td>@Html.DisplayNameFor(m => m.Folio)</td>
                         <td>@Html.DisplayNameFor(m => m.Alias)</td>
+                        <td>@Html.DisplayNameFor(m => m.Hora)</td>
                         <td>@Html.DisplayNameFor(m => m.Emailempresa)</td>
                         <td>@Html.DisplayNameFor(m => m.Contacto)</td>
                         <td>@Html.DisplayNameFor(m => m.Telefono1)</td>
@@ -46,40 +47,47 @@
                         <td>@Html.DisplayNameFor(m => m.ModoContacto)</td>
                         <td>@Html.DisplayNameFor(m => m.AreaTrabajo)</td>
                         <td>@Html.DisplayNameFor(m => m.TipoSoporte)</td>
+                         <td>@Html.DisplayNameFor(m => m.ResumenTicket)</td>-->
+
                         <td>@Html.DisplayNameFor(m => m.Asignado)</td>
                         <td>@Html.DisplayNameFor(m => m.Proyecto)</td>
-                        <td>@Html.DisplayNameFor(m => m.ResumenTicket)</td>
-                        <td>Acciones</td>
+
+                        <td>ACCIONES</td>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <td>@item.Id</td>
-                            <td>@item.Folio</td>
-                            <td>@item.Fecha</td>
-                            <td>@item.Hora</td>
-                            <td>@item.Estado</td>
-                            <td>@item.Cliente</td>
-                            <td>@item.Alias</td>
-                            <td>@item.Emailempresa</td>
-                            <td>@item.Contacto</td>
-                            <td>@item.Telefono1</td>
-                            <td>@item.Telefono2</td>
-                            <td>@item.Telefono3</td>
-                            <td>@item.Email</td>
-                            <td>@item.ModoContacto</td>
-                            <td>@item.AreaTrabajo</td>
-                            <td>@item.TipoSoporte</td>
-                            <td>@item.Asignado</td>
-                            <td>@item.Proyecto</td>
-                            <td>@item.ResumenTicket</td>
-                            <td>
-                                <a asp-controller="Tickett" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Editar</a>
-                                <a asp-controller="Tickett" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Eliminar</a>
-                            </td>
-                        </tr>
+                    <tr>
+
+                        <td>@item.Fecha.DayOfYear/@item.Fecha.Month/@item.Fecha.Year</td>
+                        <td>@item.Estado</td>
+                        <td>@item.Cliente</td>
+
+                        <!--<td>@item.Id</td>
+                        <td>@item.Folio</td>
+                        <td>@item.Alias</td>
+                        <td>@item.Hora</td>
+                        <td>@item.Emailempresa</td>
+                        <td>@item.Contacto</td>
+                        <td>@item.Telefono1</td>
+                        <td>@item.Telefono2</td>
+                        <td>@item.Telefono3</td>
+                        <td>@item.Email</td>
+                        <td>@item.ModoContacto</td>
+                        <td>@item.AreaTrabajo</td>
+                        <td>@item.TipoSoporte</td>
+                        <td>@item.ResumenTicket</td>-->
+
+                        <td>@item.Asignado</td>
+                        <td>@item.Proyecto</td>
+
+                        <td>
+                            <a asp-controller="Tickett" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-success">VER</a>
+                            <a asp-controller="Tickett" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">EDITAR</a>
+                            <a asp-controller="Tickett" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">ELIMINAR</a>
+                        </td>
+                    </tr>
                     }
                 </tbody>
             </table>
