@@ -83,7 +83,7 @@
                         <td>@item.Proyecto</td>
 
                         <td>
-                            
+                            <a asp-controller="Tickett" asp-action="" asp-route-id="@item.Id" class="btn btn-success">VER TICKET</a>
                             <a asp-controller="Tickett" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">EDITAR</a>
                             <a asp-controller="Tickett" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">ELIMINAR</a>
                         </td>
