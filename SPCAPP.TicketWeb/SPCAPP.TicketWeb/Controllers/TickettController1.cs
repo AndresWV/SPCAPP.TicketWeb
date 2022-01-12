@@ -126,7 +126,8 @@ namespace SPCAPP.TicketWeb.Controllers
         public IActionResult GetNombresClientes(string term)
         {
             //Con la comparacion deja que ingrese minusculas o mayusculas
-            var result = (from U in bd.ViewAuxis.ToList() where U.NomAux.Contains(term, System.StringComparison.CurrentCultureIgnoreCase) select new { value = U.NomAux });
+            //var result = (from U in bd.ViewAuxis.ToList() where U.NomAux.Contains(term, System.StringComparison.CurrentCultureIgnoreCase) select new { value = U.NomAux });
+            var result = bd.ViewAuxis.ToList().Where(clientee => clientee.NomAux.Contains(term, System.StringComparison.CurrentCultureIgnoreCase)).Select(clientee => clientee.NomAux);
             return Json(result);
         }
         //Devuelve el primer objeto con la data de la empresa
