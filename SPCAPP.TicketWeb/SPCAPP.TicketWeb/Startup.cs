@@ -26,10 +26,15 @@ namespace SPCAPP.TicketWeb
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<ApplicationDbContext>(
+               options => options.UseSqlServer(
+                   Configuration.GetConnectionString("DefaultConnection"),
+                   providerOptions => providerOptions.EnableRetryOnFailure()));
             //Configuracion de cadena de conexion
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
            // services.AddDbContext<SPCTKContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection2")));
             services.AddControllersWithViews();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -59,5 +64,6 @@ namespace SPCAPP.TicketWeb
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
+
     }
 }
