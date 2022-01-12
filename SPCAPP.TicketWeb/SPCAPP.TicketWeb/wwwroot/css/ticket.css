@@ -20,7 +20,7 @@
   
 .form-control {
     border-radius: 0 !important;
-    font-size: 12x;
+    font-size: 12px;
 }
 
 .clickable { cursor: pointer; }
@@ -56,4 +56,10 @@
 .navLi{
     font-size: 40px !important;
     font-family: 'Times New Roman', Times, serif !important;
+}
+.table-striped {
+    background-color: #A7B1E8;
+}
+.colorB {
+    background-color: #A7B1E8 !important;
 }

@@ -21,18 +21,18 @@
             <h3 class="text-right">TICKET GENERADOS</h3>
         </div>
         <div class="col-sm-4">
-            <a class="btn btn-success float-lg-right" asp-action="Create" asp-controller="Tickett">Crear Ticket</a>
+            <a class="btn float-lg-right colorB" asp-action="Create" asp-controller="Tickett">Crear Ticket</a>
         </div>
     </div>
     <div class="row">
         @if (Model.Count() > 0)
         {
-            <table class="table table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <td>@Html.DisplayNameFor(m => m.Fecha)</td>
-                        <td>@Html.DisplayNameFor(m => m.Estado)</td>
-                        <td>@Html.DisplayNameFor(m => m.Cliente)</td>
+            <table id="dtBasicExample" class="table table-bordered table-hover">
+                <thead class="table-striped">
+                    <tr class="table-striped text-white">
+                        <td class="text-uppercase">@Html.DisplayNameFor(m => m.Fecha)</td>
+                        <td class="text-uppercase">@Html.DisplayNameFor(m => m.Estado)</td>
+                        <td class="text-uppercase">@Html.DisplayNameFor(m => m.Cliente)</td>
 
                         <!--<td>CÓDIGO</td>
                         <td>@Html.DisplayNameFor(m => m.Folio)</td>
@@ -49,8 +49,8 @@
                         <td>@Html.DisplayNameFor(m => m.TipoSoporte)</td>
                          <td>@Html.DisplayNameFor(m => m.ResumenTicket)</td>-->
 
-                        <td>@Html.DisplayNameFor(m => m.Asignado)</td>
-                        <td>@Html.DisplayNameFor(m => m.Proyecto)</td>
+                        <td class="text-uppercase">@Html.DisplayNameFor(m => m.Asignado)</td>
+                        <td class="text-uppercase">@Html.DisplayNameFor(m => m.Proyecto)</td>
 
                         <td>ACCIONES</td>
                     </tr>
@@ -61,8 +61,8 @@
                     <tr>
 
                         <td>@item.Fecha</td>
-                        <td>@item.Estado</td>
-                        <td>@item.Cliente</td>
+                        <td class="text-uppercase">@item.Estado</td>
+                        <td class="text-uppercase">@item.Cliente</td>
 
                         <!--<td>@item.Codigo</td>
                         <td>@item.Folio</td>
@@ -79,13 +79,13 @@
                         <td>@item.TipoSoporte</td>
                         <td>@item.ResumenTicket</td>-->
 
-                        <td>@item.Asignado</td>
-                        <td>@item.Proyecto</td>
+                        <td class="text-uppercase">@item.Asignado</td>
+                        <td class="text-uppercase">@item.Proyecto</td>
 
                         <td>
-                            <a asp-controller="Tickett" asp-action="" asp-route-id="@item.Id" class="btn btn-success">VER TICKET</a>
-                            <a asp-controller="Tickett" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">EDITAR</a>
-                            <a asp-controller="Tickett" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">ELIMINAR</a>
+                            <a asp-controller="Tickett" asp-action="" asp-route-id="@item.Id" class="btn btn-success"><i class="fas fa-search-plus"></i></a>
+                            <a asp-controller="Tickett" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                            <a asp-controller="Tickett" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
                         </td>
                     </tr>
                     }
