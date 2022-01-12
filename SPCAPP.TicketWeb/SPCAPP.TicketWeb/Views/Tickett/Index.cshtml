@@ -29,7 +29,7 @@
         {
             <table id="dtBasicExample" class="table table-bordered table-hover table-sm">
                 <thead class="table-striped">
-                    <tr class="table-striped text-white">
+                    <tr class="table-striped text-white small">
                         <td class="text-uppercase">@Html.DisplayNameFor(m => m.Fecha)</td>
                         <td class="text-uppercase">@Html.DisplayNameFor(m => m.Estado)</td>
                         <td class="text-uppercase">@Html.DisplayNameFor(m => m.Cliente)</td>
@@ -58,7 +58,7 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-                    <tr>
+                    <tr class="small">
 
                         <td>@item.Fecha</td>
                         <td class="text-uppercase">@item.Estado</td>
