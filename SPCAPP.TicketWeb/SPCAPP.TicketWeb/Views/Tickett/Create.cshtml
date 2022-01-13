@@ -13,8 +13,8 @@
         <div class="row">
             <div class="col-6">
                 <div class="codigoStyle form-outline">
-                    <input class="form-control" id="cod" asp-for="Id" type="number" readonly />
-                    <label class="form-label" asp-for="Id">CÓDIGO</label>
+                    <input class="form-control" id="cod" asp-for="Codigo" type="number" readonly />
+                    <label class="form-label" asp-for="Codigo">CÓDIGO</label>
                 </div>
             </div>
             <div class="col-3">
@@ -42,9 +42,9 @@
                 <div class="col" style="margin-right: 10%;">
                     <select class="form-select" asp-for="Estado" aria-label="Default select example">
                         <option selected>ESTADO</option>
-                        <option value="1">Pendiente</option>
-                        <option value="2">Terminado</option>
-                        <option value="3">Nulo</option>
+                        <option value="Pendiente">PENDIENTE</option>
+                        <option value="Terminado">TERMINADO</option>
+                        <option value="Nulo">NULO</option>
                     </select>
                 </div>
             </div>
@@ -98,13 +98,8 @@
                     <label class="form-label" asp-for="Email">EMAIL</label>
                 </div>
                 <div class="col" style="margin-top: 3%;margin-right: 10%;">
-                    <select class="form-select" asp-for="ModoContacto" aria-label="Default select example">
+                    <select class="form-select" asp-for="ModoContacto" id="medioo" aria-label="Default select example">
                         <option selected>MODO CONTACTO</option>
-                        <option value="1">CORREO ELECTRONICO</option>
-                        <option value="2">PAGINA WEB</option>
-                        <option value="3">PRECENCIAL</option>
-                        <option value="4">REDES SOCIALES</option>
-                        <option value="5">TELEFONO</option>
                     </select>
                 </div>
             </div>
@@ -118,28 +113,13 @@
 
             <div class="row mt-5">
                 <div class="col form-outline folio" style="margin-left: 13%;">
-                    <select class="form-select" asp-for="AreaTrabajo" aria-label="Default select example">
+                    <select class="form-select" asp-for="AreaTrabajo" id="atrabj" aria-label="Default select example">
                         <option selected>ÁREA DE TRABAJO</option>
-                        <option value="1">DESARROLLO</option>
-                        <option value="2">PROYECTO</option>
-                        <option value="3">SOFTLAND</option>
-                        <option value="4">SOLUTIONS</option>
                     </select>
                 </div>
                 <div class="col" style="margin-right: 10%;">
-                    <select class="form-select" asp-for="TipoSoporte" aria-label="Default select example">
+                    <select class="form-select" asp-for="TipoSoporte" id="supp" aria-label="Default select example">
                         <option selected>TIPO DE SOPORTE</option>
-                        <option value="1">ASESORIA</option>
-                        <option value="2">CONSULTA</option>
-                        <option value="3">COSTOS SOFTLAND</option>
-                        <option value="4">DESARROLLO</option>
-                        <option value="5">ENTRENAMIENTO</option>
-                        <option value="6">POSTVENTA</option>
-                        <option value="7">PROYECTO SPC</option>
-                        <option value="8">SERVICIO TALLER</option>
-                        <option value="9">SERVICIO TECNICO</option>
-                        <option value="10">SOPORTE DESARROLLO</option>
-                        <option value="11">VISTA DE NEGOCIO</option>
                     </select>
                 </div>
             </div>
@@ -153,7 +133,7 @@
                     </select>
                 </div>
                 <div class="col" style="margin-top: 3%;margin-right: 10%;">
-                    <select class="form-select" aria-label="Default select example" asp-for="Proyecto" style="visibility:hidden;">
+                    <select class="form-select" aria-label="Default select example" asp-for="Proyecto">
                         <option selected>PROYECTO</option>
                         <option value="1">One</option>
                         <option value="2">Two</option>
@@ -196,6 +176,40 @@
 @section scripts{
 
     <script>
+        //Traer datos select modo contacto
+        $.get("/Tickett/GetMContacto", function (dataMedios) {
+            for (var i = 0; i < dataMedios.length; i++) {
+                var option = document.createElement("option"); //Creas el elemento opción
+                $(option).html(dataMedios[i].medio1); //Escribes en él el nombre de la provincia
+                $(option).appendTo("#medioo"); //Lo metes en el select con id provincias
+            }
+        });
+        //Traer los tipo de soporte
+        $.get("/Tickett/GetTSoporte", function (dataSoporte) {
+            for (var i = 0; i < dataSoporte.length; i++) {
+                var option = document.createElement("option"); //Creas el elemento opción
+                $(option).html(dataSoporte[i].tipoDes); //Escribes en él el nombre de la provincia
+                $(option).appendTo("#supp"); //Lo metes en el select con id provincias
+            }
+        });
+        //Traer los tecnicos
+        $.get("/Tickett/GetTecnico", function (dataAsignados) {
+            for (var i = 0; i < dataAsignados.length; i++) {
+                var option = document.createElement("option"); //Creas el elemento opción
+                $(option).html(dataAsignados[i].tecnicoNom); //Escribes en él el nombre de la provincia
+                $(option).appendTo("#asignadoo"); //Lo metes en el select con id provincias
+            }
+        });
+        //Traer areas de trabajo
+        $.get("/Tickett/GetTKgrupos", function (dataTrabajo) {
+
+            for (var i = 0; i < dataTrabajo.length; i++) {
+                var option = document.createElement("option"); //Creas el elemento opción
+                $(option).html(dataTrabajo[i].desGrupo); //Escribes en él el nombre de la provincia
+                $(option).appendTo("#atrabj"); //Lo metes en el select con id provincias
+            }
+        });
+        //Metodo para controlar el autocompletado del text input CLIENTE
         $("#clt").autocomplete({
             source: '@Url.Action("GetNombresClientes", "Tickett")',
             minlength: 2,
@@ -207,6 +221,7 @@
             classes: {
                 "ui-autocomplete": "highlig"
             },
+            //Cuando seleccione un elemento del menu desplegable...
             select: function (event, ui) {
                 //tomar datos en base al cliente seleccionado por el autocompletado
                 $.get("/Tickett/GetAlias", {term:ui.item.value} ,function (data) {
@@ -235,13 +250,29 @@
                     $("#cont").change(function () {
                         $.get("/Tickett/GetContacto", { term: $(this).val() }, function (dataContacto) {
                             //telefono1
-                            $("#telefono1").val("" + dataContacto.fonCon);
+                            if (dataContacto.fonCon != null) {
+                                $("#telefono1").val("" +dataContacto.fonCon);
+                                
+                            } else {
+                                $("#telefono1").val("" +0);
+                            }
                             $('#telefono1').focus();
                             //telefono2
-                            $("#telefono2").val("" + dataContacto.fonCon2);
+                            if (dataContacto.fonCon2 != null) {
+                                
+                                $("#telefono2").val("" +dataContacto.fonCon2);
+
+                            }else {
+                                $("#telefono2").val("" +0);
+                            }
                             $('#telefono2').focus();
                             //telefono3
-                            $("#telefono3").val("" + dataContacto.fonCon3);
+                            if (dataContacto.fonCon3 != null) {
+                                $("#telefono3").val("" +dataContacto.fonCon3);
+
+                            } else {
+                                $("#telefono3").val(""+0);
+                            }
                             $('#telefono3').focus();
                             //cambiar email empresa
                             $("#email").val("" + dataContacto.email);
@@ -252,13 +283,7 @@
 
             }
         });
-        $.get("/Tickett/GetTecnico", function (dataAsignados) {
-            for (var i = 0; i < dataAsignados.length; i++) {
-                var option = document.createElement("option"); //Creas el elemento opción
-                $(option).html(dataAsignados[i].value.tecnicoNom); //Escribes en él el nombre de la provincia
-                $(option).appendTo("#asignadoo"); //Lo metes en el select con id provincias
-            }
-        });
+        
     </script>
 }
 

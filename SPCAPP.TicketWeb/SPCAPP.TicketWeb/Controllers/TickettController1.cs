@@ -41,6 +41,7 @@ namespace SPCAPP.TicketWeb.Controllers
             if (ModelState.IsValid)
             {
                 _context.Tickett.Add(ticket);
+              
                 _context.SaveChanges();
                 //Mensaje para cuandos se cree el ticket
                 TempData["mensaje"] = "El ticket se ha creado correctamente";
@@ -125,7 +126,8 @@ namespace SPCAPP.TicketWeb.Controllers
         public IActionResult GetNombresClientes(string term)
         {
             //Con la comparacion deja que ingrese minusculas o mayusculas
-            var result = (from U in bd.ViewAuxis.ToList() where U.NomAux.Contains(term, System.StringComparison.CurrentCultureIgnoreCase) select new { value = U.NomAux });
+            //var result = (from U in bd.ViewAuxis.ToList() where U.NomAux.Contains(term, System.StringComparison.CurrentCultureIgnoreCase) select new { value = U.NomAux });
+            var result = bd.ViewAuxis.ToList().Where(clientee => clientee.NomAux.Contains(term, System.StringComparison.CurrentCultureIgnoreCase)).Select(clientee => clientee.NomAux);
             return Json(result);
         }
         //Devuelve el primer objeto con la data de la empresa
@@ -151,6 +153,24 @@ namespace SPCAPP.TicketWeb.Controllers
         {
             var contactoData = bd.Tecnicos;
             return Json(contactoData);
+        }
+        //Traer todos los medios de contacto de la tabla medios
+       public IActionResult GetMContacto()
+        {
+            var medio = bd.Medios;
+            return Json(medio);
+        }
+        //Traer todos los tipos de soporte de la tabla TipoSoporte
+        public IActionResult GetTSoporte()
+        {
+            var soporte = bd.TipoSoportes;
+            return Json(soporte);
+        }
+        //Traer todas las areas de trabajo de la TKGrupos
+        public IActionResult GetTKgrupos()
+        {
+            var areas = bd.TkGrupos;
+            return Json(areas);
         }
     }
     
