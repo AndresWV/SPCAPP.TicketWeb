@@ -1,0 +1,34 @@
+﻿
+.cerrar,
+.titulo {
+    float: right;
+    font-style: italic;
+    font-weight: bold;
+    font-family: url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@1,200&display=swap');
+}
+
+.hr2 {
+    float: right;
+}
+.form1 {
+    border: 1px solid black;
+    padding: 3%;
+    padding-left: 9%;
+}
+
+.date {
+    padding: 4%;
+    padding-bottom: 1%;
+}
+
+.modalColor {
+    background-color: #B9FF33;
+}
+
+.buttCreate {
+    color: black;
+    font-weight: bold;
+}
+.highlig {
+    z-index: 99999;
+}
