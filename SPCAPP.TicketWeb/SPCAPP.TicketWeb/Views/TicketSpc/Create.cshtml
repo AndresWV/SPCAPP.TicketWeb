@@ -1,9 +1,8 @@
 ﻿@model SPCAPP.TicketWeb.Models.TicketSpc
 
 <div>
-
-    <form method="post" asp-action="Edit">
-        <div class="modal fade" id="modalEdit" data-mdb-backdrop="static" data-mdb-keyboard="false" tabindex="-1"
+    <form method="post" asp-action="Create">
+        <div class="modal fade" id="staticBackdrop" data-mdb-backdrop="static" data-mdb-keyboard="false" tabindex="-1"
              aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
@@ -149,8 +148,16 @@
                     </div>
 
                     <div class="modal-footer modalColor">
+                        <div class="row w-100">
+                            <p class="text-center">
+                                <label>
+                                    <input type="checkbox" class="filled-in" checked="checked" />
+                                    <span>AGREGAR A CALENDARIO</span>
+                                </label>
+                            </p>
+                        </div>
                         <div class="col text-center">
-                            <button type="submit" class="btn btn-lg buttCreate" style="background: white;">Editar Ticket</button>
+                            <button type="submit" class="btn btn-lg buttCreate" style="background: white;">Crear Ticket</button>
                         </div>
                     </div>
                 </div>
@@ -158,3 +165,6 @@
         </div>
     </form>
 </div>
+@section Scripts{
+    <script type="text/javascript" src="~/js/modal.js"></script>
+}

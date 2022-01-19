@@ -20,7 +20,7 @@
             <h3 class="text-right">TICKET GENERADOS</h3>
         </div>
         <div class="col-sm-4">
-            @Html.Partial("ModalTickettCreate", new TicketSpc())
+            @Html.Partial("Create", new TicketSpc())
             <!--<a class="btn float-lg-right colorB" asp-action="Create" asp-controller="TicketSpc">Crear Ticket</a>-->
             <a class="btn float-lg-right colorB" data-mdb-toggle="modal" data-mdb-target="#staticBackdrop" asp-controller="TicketSpc">Crear Ticket</a>
         </div>
@@ -55,8 +55,8 @@
 
                             <td>
                                 @*@Html.Partial("ModalTickettEdit", new TicketSpc())
-                                <a asp-controller="TicketSpc" asp-action="" asp-route-id="@item.Id" class="btn coloAction" data-mdb-toggle="modal" data-mdb-target="#modalView"><i class="fas fa-search-plus"></i></a>
-                                @Html.Partial("ModalTickettEdit", new TicketSpc())*@
+                                    <a asp-controller="TicketSpc" asp-action="" asp-route-id="@item.Id" class="btn coloAction" data-mdb-toggle="modal" data-mdb-target="#modalView"><i class="fas fa-search-plus"></i></a>
+                                    @Html.Partial("ModalTickettEdit", new TicketSpc())*@
                                 <a class="btn coloAction" onclick="funcionModal(@item.Id)"><i class="fas fa-search-plus"></i></a>
                                 <a asp-controller="TicketSpc" asp-action="Edit" asp-route-id="@item.Id" class="btn coloAction" data-mdb-toggle="modal" data-mdb-target="#modalEdit"><i class="fas fa-edit"></i></a>
                                 <a asp-controller="TicketSpc" asp-action="Delete" asp-route-id="@item.Id" class="btn coloAction"><i class="fas fa-trash-alt"></i></a>
@@ -71,7 +71,7 @@
             <p>No existen registros</p>
         }
 
-         <div id="load">
+        <div id="load">
             <center><img src="https://novacer.spcapp.cl/loading.gif" /></center>
         </div>
     </div>
@@ -83,5 +83,5 @@
             alert(id)
         }
     </script>
-    
+
 }

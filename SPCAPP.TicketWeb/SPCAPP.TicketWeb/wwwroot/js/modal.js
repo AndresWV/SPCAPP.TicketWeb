@@ -2,7 +2,7 @@
 $(document).ready(function () {
    
     $("#clt").autocomplete({
-    source: '/TickettSpc/GetNombresClientes',
+        source: '/TicketSpc/GetNombresClientes',
     minlength: 4,
     position: { my: "left bottom", at: "left bottom" },
     delay: 300,
@@ -16,7 +16,7 @@ $(document).ready(function () {
     //Cuando seleccione un elemento del menu desplegable...
     select: function (event, ui) {
         //tomar datos en base al cliente seleccionado por el autocompletado
-        $.get("/TickettSpc/GetAlias", { term: ui.item.value }, function (data) {
+        $.get("/TicketSpc/GetAlias", { term: ui.item.value }, function (data) {
             $(".result").html(data);
             //cambiar código
             $("#cod").val("" + data.codAux);
@@ -31,7 +31,7 @@ $(document).ready(function () {
             $("#emailEm").val("" + data.eMailDte);
             $('#emailEm').focus();
             //cargar contactos para el select contacto
-            $.get("/TickettSpc/GetContactos", { term: data.codAux }, function (data2) {
+            $.get("/TicketSpc/GetContactos", { term: data.codAux }, function (data2) {
                 for (var i = 0; i < data2.length; i++) {
                     var option = document.createElement("option"); //Creas el elemento opción
                     $(option).html(data2[i].nomCon); //Escribes en él el nombre de la provincia
@@ -40,7 +40,7 @@ $(document).ready(function () {
             });
             //cargar datos en base al contacto seleccionado
             $("#cont").change(function () {
-                $.get("/TickettSpc/GetContacto", { term: $(this).val() }, function (dataContacto) {
+                $.get("/TicketSpc/GetContacto", { term: $(this).val() }, function (dataContacto) {
                     //telefono1
                     if (dataContacto.fonCon != null) {
                         $("#telefono1").val("" + dataContacto.fonCon);
@@ -77,7 +77,7 @@ $(document).ready(function () {
 });
 });
 //Traer datos select modo contacto
-$.get("/TickettSpc/GetMContacto", function (dataMedios) {
+$.get("/TicketSpc/GetMContacto", function (dataMedios) {
     for (var i = 0; i < dataMedios.length; i++) {
         var option = document.createElement("option"); //Creas el elemento opción
         $(option).html(dataMedios[i].medio1); //Escribes en él el nombre de la provincia
@@ -85,7 +85,7 @@ $.get("/TickettSpc/GetMContacto", function (dataMedios) {
     }
 });
 //Traer los tipo de soporte
-$.get("/TickettSpc/GetTSoporte", function (dataSoporte) {
+$.get("/TicketSpc/GetTSoporte", function (dataSoporte) {
     for (var i = 0; i < dataSoporte.length; i++) {
         var option = document.createElement("option"); //Creas el elemento opción
         $(option).html(dataSoporte[i].tipoDes); //Escribes en él el nombre de la provincia
@@ -93,7 +93,7 @@ $.get("/TickettSpc/GetTSoporte", function (dataSoporte) {
     }
 });
 //Traer los tecnicos
-$.get("/TickettSpc/GetTecnico", function (dataAsignados) {
+$.get("/TicketSpc/GetTecnico", function (dataAsignados) {
     for (var i = 0; i < dataAsignados.length; i++) {
         var option = document.createElement("option"); //Creas el elemento opción
         $(option).html(dataAsignados[i].tecnicoNom); //Escribes en él el nombre de la provincia
@@ -101,7 +101,7 @@ $.get("/TickettSpc/GetTecnico", function (dataAsignados) {
     }
 });
 //Traer areas de trabajo
-$.get("/TickettSpc/GetTKgrupos", function (dataTrabajo) {
+$.get("/TicketSpc/GetTKgrupos", function (dataTrabajo) {
 
     for (var i = 0; i < dataTrabajo.length; i++) {
         var option = document.createElement("option"); //Creas el elemento opción

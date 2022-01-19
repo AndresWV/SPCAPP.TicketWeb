@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace SPCAPP.TicketWeb.Controllers
 {
-    public class TickettController : Controller
+    public class TicketSpcController : Controller
     {
         //conexion con la base de datos
         private readonly ApplicationDbContext _context;
         private readonly SPCTKContext _bd;
         public SPCTKContext bd = new SPCTKContext();
-        public TickettController(ApplicationDbContext context)
+        public TicketSpcController(ApplicationDbContext context)
         {
             _context = context;
            // _bd = bd;
@@ -23,7 +23,7 @@ namespace SPCAPP.TicketWeb.Controllers
         //http get index
         public IActionResult Index()
         {
-            IEnumerable<Tickett> listaTicket = _context.Tickett;
+            IEnumerable<TicketSpc> listaTicket = _context.TicketSpc;
             return View(listaTicket);
         }
 
@@ -35,12 +35,12 @@ namespace SPCAPP.TicketWeb.Controllers
         //http post create, el validate se encarga de limitar solicitudes en caso de uso de bot
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Tickett ticket)
+        public IActionResult Create(TicketSpc ticket)
         {
             //valida que cumpla con todo las restricciones de la tabla ticket establecidas por las Data
             if (ModelState.IsValid)
             {
-                _context.Tickett.Add(ticket);
+                _context.TicketSpc.Add(ticket);
               
                 _context.SaveChanges();
                 //Mensaje para cuandos se cree el ticket
@@ -60,7 +60,7 @@ namespace SPCAPP.TicketWeb.Controllers
             }
 
             //obtener ticket
-            var ticket = _context.Tickett.Find(id);
+            var ticket = _context.TicketSpc.Find(id);
             //verificar que el ticket existe
             if (ticket == null)
             {
@@ -71,12 +71,12 @@ namespace SPCAPP.TicketWeb.Controllers
         //http post edit, el validate se encarga de limitar solicitudes en caso de uso de bot
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(Tickett ticket)
+        public IActionResult Edit(TicketSpc ticket)
         {
             //valida que cumpla con todo las restricciones de la tabla ticket establecidas por las Data
             if (ModelState.IsValid)
             {
-                _context.Tickett.Update(ticket);
+                _context.TicketSpc.Update(ticket);
                 _context.SaveChanges();
                 //Mensaje para cuandos se cree el ticket
                 TempData["mensaje"] = "El ticket se ha actualizado correctamente";
@@ -95,7 +95,7 @@ namespace SPCAPP.TicketWeb.Controllers
             }
 
             //obtener ticket
-            var ticket = _context.Tickett.Find(id);
+            var ticket = _context.TicketSpc.Find(id);
             //verificar que el ticket existe
             if (ticket == null)
             {
@@ -108,13 +108,13 @@ namespace SPCAPP.TicketWeb.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeleteTicket(int? id)
         {
-            var ticket = _context.Tickett.Find(id);
+            var ticket = _context.TicketSpc.Find(id);
             if (ticket == null)
             {
                 return NotFound();
             }
 
-            _context.Tickett.Remove(ticket);
+            _context.TicketSpc.Remove(ticket);
             _context.SaveChanges();
             //Mensaje para cuandos se cree el ticket
             TempData["mensaje"] = "El ticket se ha eliminado correctamente";
