@@ -1,4 +1,4 @@
-﻿@model SPCAPP.TicketWeb.Models.Tickett
+﻿@model SPCAPP.TicketWeb.Models.TicketSpc
 
 <div>
 
@@ -23,8 +23,8 @@
                         <div class="row date">
                             <div class="col-3">
                                 <div class="form-outline">
-                                    <input class="form-control" id="cod" asp-for="Codigo" type="number" readonly />
-                                    <label class="form-label" asp-for="Codigo">CÓDIGO</label>
+                                    <input class="form-control" id="cod" asp-for="CodAux" type="number" readonly />
+                                    <label class="form-label" asp-for="CodAux">CÓDIGO</label>
                                 </div>
                             </div>
                             <!--Fecha y hora-->
@@ -32,7 +32,7 @@
                                 <!--Fecha-->
                                 <div class="col-5 hr2">
                                     <div class="md-form hrIn">
-                                        <input type="time" class="form-control clickable input-md" asp-for="Hora" placeholder="HORA   &#xf107;">
+                                        <input type="time" class="form-control clickable input-md" asp-for="HrsInicio" placeholder="HORA   &#xf107;">
                                     </div>
                                 </div>
                                 <!--Hora-->
@@ -48,8 +48,8 @@
                             <div class="row">
                                 <div class="col-6">
                                     <div class="form-outline">
-                                        <input class="form-control" id="folio" asp-for="Folio" readonly />
-                                        <label class="form-label" asp-for="Folio">FOLIO</label>
+                                        <input class="form-control" id="folio" asp-for="Id" readonly />
+                                        <label class="form-label" asp-for="Id">FOLIO</label>
                                     </div>
                                 </div>
                                 <div class="col-6">
@@ -64,22 +64,22 @@
                             <div class="row mt-2">
                                 <div class="col-6">
                                     <div class="form-outline folio">
-                                        <input type="text" id="clt" asp-for="Cliente" class="form-control" />
-                                        <label class="form-label" asp-for="Cliente">CLIENTE</label>
+                                        <input type="text" id="clt" asp-for="Empresa" class="form-control" />
+                                        <label class="form-label" asp-for="Empresa">CLIENTE</label>
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="form-outline">
-                                        <input type="text" id="ali" asp-for="Alias" class="form-control" readonly />
-                                        <label class="form-label" id="aliLabel" asp-for="Alias">ALIAS</label>
+                                        <input type="text" id="ali" class="form-control" readonly />
+                                        <label class="form-label" id="aliLabel">ALIAS</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="row mt-2">
                                 <div class="col-6">
                                     <div class="form-outline">
-                                        <input type="email" asp-for="Emailempresa" id="emailEm" class="form-control" readonly />
-                                        <label class="form-label" asp-for="Emailempresa">EMAIL EMPRESA</label>
+                                        <input type="email" id="emailEm" class="form-control" readonly />
+                                        <label class="form-label">EMAIL EMPRESA</label>
                                     </div>
                                 </div>
                                 <div class="col-6">
@@ -91,16 +91,16 @@
                             </div>
                             <div class="row mt-2">
                                 <div class="col-4 form-outline" style="margin-left: 3%; margin-right: 3%;">
-                                    <input type="tel" asp-for="Telefono1" id="telefono1" class="form-control" readonly />
-                                    <label class="form-label" asp-for="Telefono1">TELÉFONO 1</label>
+                                    <input type="tel" asp-for="Fono_contacto" id="telefono1" class="form-control" readonly />
+                                    <label class="form-label" asp-for="Fono_contacto">TELÉFONO 1</label>
                                 </div>
                                 <div class="col-3 form-outline" style="margin-right: 3%;">
-                                    <input type="tel" asp-for="Telefono2" id="telefono2" class="form-control" readonly />
-                                    <label class="form-label" asp-for="Telefono2">TELÉFONO 2</label>
+                                    <input type="tel"  id="telefono2" class="form-control" readonly />
+                                    <label class="form-label">TELÉFONO 2</label>
                                 </div>
                                 <div class="col-3 form-outline">
-                                    <input type="tel" asp-for="Telefono3" id="telefono3" class="form-control" readonly />
-                                    <label class="form-label" asp-for="Telefono3">TELÉFONO 3</label>
+                                    <input type="tel"  id="telefono3" class="form-control" readonly />
+                                    <label class="form-label">TELÉFONO 3</label>
                                 </div>
                             </div>
                             <div class="row mt-2">
@@ -111,7 +111,7 @@
                                     </div>
                                 </div>
                                 <div class="col-7">
-                                    <select class="form-select" asp-for="ModoContacto" id="medioo" aria-label="Default select example">
+                                    <select class="form-select" asp-for="Modo" id="medioo" aria-label="Default select example">
                                         <option selected>MODO CONTACTO</option>
                                     </select>
                                 </div>
@@ -121,36 +121,28 @@
                         <div class="row m-3 form1">
                             <div class="row mt-2">
                                 <div class="col-6">
-                                    <select class="form-select" asp-for="AreaTrabajo" id="atrabj" aria-label="Default select example">
+                                    <select class="form-select" asp-for="Grupo" id="atrabj" aria-label="Default select example">
                                         <option selected>ÁREA DE TRABAJO</option>
                                     </select>
                                 </div>
                                 <div class="col-6">
-                                    <select class="form-select" asp-for="TipoSoporte" id="supp" aria-label="Default select example">
+                                    <select class="form-select" asp-for="Tipo" id="supp" aria-label="Default select example">
                                         <option selected>TIPO DE SOPORTE</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="row mt-2">
                                 <div class="col-6">
-                                    <select class="form-select" id="asignadoo" asp-for="Asignado" aria-label="Default select example">
+                                    <select class="form-select" id="asignadoo" asp-for="Tecnico" aria-label="Default select example">
                                         <option selected>ASIGNADO</option>
                                         ASIGNADO
-                                    </select>
-                                </div>
-                                <div class="col-6">
-                                    <select class="form-select" aria-label="Default select example" asp-for="Proyecto">
-                                        <option selected>PROYECTO</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="row mt-2">
                                 <div class="md-form">
-                                    <textarea asp-for="ResumenTicket" class="md-textarea form-control textareaStyle" rows="3"></textarea>
-                                    <label asp-for="ResumenTicket">Resumen del ticket</label>
+                                    <textarea asp-for="Trabajo" class="md-textarea form-control textareaStyle" rows="3"></textarea>
+                                    <label asp-for="Trabajo">Resumen del ticket</label>
                                 </div>
                             </div>
                         </div>
@@ -174,3 +166,6 @@
         </div>
     </form>
 </div>
+@section Scripts{
+    <script type="text/javascript" src="~/js/modal.js"></script>
+}

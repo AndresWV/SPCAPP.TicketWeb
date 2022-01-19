@@ -1,0 +1,87 @@
+﻿@model IEnumerable<SPCAPP.TicketWeb.Models.TicketSpc>
+@{
+    ViewData["Title"] = "Lista de ticket";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <!--Notificacion de que el Ticket se a creado correctamente-->
+    @if (TempData["mensaje"] != null)
+    {
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            @TempData["mensaje"]
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+    <div class="row mb-4">
+        <div class="col-sm-7" style="margin-left:5%">
+            <h3 class="text-right">TICKET GENERADOS</h3>
+        </div>
+        <div class="col-sm-4">
+            @Html.Partial("ModalTickettCreate", new TicketSpc())
+            <!--<a class="btn float-lg-right colorB" asp-action="Create" asp-controller="TicketSpc">Crear Ticket</a>-->
+            <a class="btn float-lg-right colorB" data-mdb-toggle="modal" data-mdb-target="#staticBackdrop" asp-controller="TicketSpc">Crear Ticket</a>
+        </div>
+    </div>
+    <div class="row">
+        @if (Model.Count() > 0)
+        {
+            <table id="dtBasicExample" class="table table-bordered table-hover w-100" style="display:none">
+                <thead class="table-striped">
+                    <tr class="table-striped text-white small">
+                        <td class="text-uppercase">@Html.DisplayNameFor(m => m.Id)</td>
+                        <td class="text-uppercase">@Html.DisplayNameFor(m => m.Fecha)</td>
+                        <td class="text-uppercase">@Html.DisplayNameFor(m => m.Estado)</td>
+                        <td class="text-uppercase">@Html.DisplayNameFor(m => m.Empresa)</td>
+
+                        <td class="text-uppercase">@Html.DisplayNameFor(m => m.Tecnico)</td>
+
+                        <td>ACCIONES</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr class="w-100">
+                            <td>@item.Id</td>
+                            <td>@item.Fecha</td>
+                            <td class="text-uppercase">@item.Estado</td>
+                            <td class="text-uppercase">@item.Empresa</td>
+
+
+                            <td class="text-uppercase">@item.Tecnico</td>
+
+                            <td>
+                                @*@Html.Partial("ModalTickettEdit", new TicketSpc())
+                                <a asp-controller="TicketSpc" asp-action="" asp-route-id="@item.Id" class="btn coloAction" data-mdb-toggle="modal" data-mdb-target="#modalView"><i class="fas fa-search-plus"></i></a>
+                                @Html.Partial("ModalTickettEdit", new TicketSpc())*@
+                                <a class="btn coloAction" onclick="funcionModal(@item.Id)"><i class="fas fa-search-plus"></i></a>
+                                <a asp-controller="TicketSpc" asp-action="Edit" asp-route-id="@item.Id" class="btn coloAction" data-mdb-toggle="modal" data-mdb-target="#modalEdit"><i class="fas fa-edit"></i></a>
+                                <a asp-controller="TicketSpc" asp-action="Delete" asp-route-id="@item.Id" class="btn coloAction"><i class="fas fa-trash-alt"></i></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>No existen registros</p>
+        }
+
+         <div id="load">
+            <center><img src="https://novacer.spcapp.cl/loading.gif" /></center>
+        </div>
+    </div>
+
+</div>
+@section Scripts{
+    <script>
+        function funcionModal(id) {
+            alert(id)
+        }
+    </script>
+    
+}

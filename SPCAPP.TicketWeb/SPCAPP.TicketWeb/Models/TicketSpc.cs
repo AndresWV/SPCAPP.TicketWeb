@@ -37,8 +37,8 @@ namespace SPCAPP.TicketWeb.Models
         public string Avance { get; set; }
         public DateTime? FechaAvance { get; set; }
         public string Medio { get; set; }
-        public string FkProcede { get; set; }
-        public string FonoContacto { get; set; }
+        public string Fk_procede { get; set; }
+        public string Fono_contacto { get; set; }
         public string Telefono { get; set; }
         public string ProyectoId { get; set; }
         public int? CerradoId { get; set; }

@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="es-cl">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -24,7 +24,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.1/mdb.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.1/mdb.min.js"></script>
     <!-- MDBootstrap Datatables  -->
-    <script type="text/javascript" src="js/addons/datatables.min.js"></script>
+    @*<script type="text/javascript" src="js/addons/datatables.min.js"></script>*@
     <title>TICKET SPCAPP</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
@@ -41,7 +41,7 @@
             <a class="imgA"><img style="max-width:200px;" class="imgLogo" src="/img/logo-1.png"></a>
             <a class="nav-link text-white font-weight-bold mt-3" asp-area="" asp-controller="Home" asp-action="Index">INICIO</a>
             <a class="nav-link text-white font-weight-bold mt-3" asp-area="" asp-controller="Home" asp-action="Privacy">PRIVACY</a>
-            <a class="nav-link text-white font-weight-bold mt-3" asp-area="" asp-controller="Tickett" asp-action="Index">TICKET</a>
+            <a class="nav-link text-white font-weight-bold mt-3" asp-area="" asp-controller="TicketSpc" asp-action="Index">TICKET</a>
             <a href="javascript:void(0);" class="icon" onclick="myFunction()">
                 <i class="fa fa-bars"></i>
             </a>
@@ -75,6 +75,7 @@
     <script type="text/javascript" src="~/js/lineasInput.js"></script>
     <script type="text/javascript" src="~/js/paginacion.js"></script>
     <script type="text/javascript" src="~/js/navBack.js"></script>
+    <script type="text/javascript" src="~/js/modal.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
