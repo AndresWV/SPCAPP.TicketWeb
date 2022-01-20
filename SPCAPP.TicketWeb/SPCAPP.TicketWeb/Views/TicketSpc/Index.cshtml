@@ -20,11 +20,15 @@
             <h3 class="text-right">TICKET GENERADOS</h3>
         </div>
         <div class="col-sm-4">
+
             <a class="btn float-lg-right colorB" onclick="crearModal()">Crear Ticket</a>
         </div>
     </div>
+
+
+
     <div class="row">
-        <div id="openpopup"></div>
+
         @if (Model.Count() > 0)
         {
             <table id="dtBasicExample" class="table table-bordered table-hover w-100" style="display:none">
@@ -53,7 +57,7 @@
                             <td class="text-uppercase">@item.Tecnico</td>
 
                             <td>
-                                <a class="btn coloAction" ><i class="fas fa-search-plus"></i></a>
+                                <a class="btn coloAction"><i class="fas fa-search-plus"></i></a>
                                 <a asp-controller="TicketSpc" asp-action="Edit" asp-route-id="@item.Id" class="btn coloAction" data-mdb-toggle="modal" data-mdb-target="#modalEdit"><i class="fas fa-edit"></i></a>
                                 <a asp-controller="TicketSpc" asp-action="Delete" asp-route-id="@item.Id" class="btn coloAction"><i class="fas fa-trash-alt"></i></a>
                             </td>
@@ -70,21 +74,106 @@
         <div id="load">
             <center><img src="https://novacer.spcapp.cl/loading.gif" /></center>
         </div>
+       
+            <div class="modal fade" id="modalCreate" data-mdb-backdrop="static" data-mdb-keyboard="false" tabindex="-1"
+                 aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            </div>
+               <div class="modal fade" id="modelMike" data-mdb-backdrop="static" data-mdb-keyboard="false" tabindex="-1"
+             aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <!--Titulo-->
+                    <div class="modal-header modalColor">
+                        <div class="col-8">
+                            <h5 id="staticBackdropLabel" class="modal-title titulo">TICKET SPCAA</h5>
+                        </div>
+                        <div class="col-4">
+                            <button type="button" class="btn-close cerrar" data-mdb-dismiss="modal"
+                                    aria-label="Close"></button>
+                        </div>
+                    </div>
+
+                    <div class="modal-body">
+                        <h1>Contenido prueba</h1>
+                    </div>
+
+                    <div class="modal-footer modalColor">
+
+                        <div class="col text-center">
+                            <button type="submit" class="btn btn-lg buttCreate" style="background: white;">Crear Ticket</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 </div>
 @section Scripts{
     <script>
         function crearModal() {
-            $("#openpop").load("/TicketSpc/Create");
+            console.log('pase aka');
+
+            //window.location.assign("/TicketSpc/Create")
+            $("#modalCreate").load("/TicketSpc/Create", function () {
+                //cargarCombos();
+                
+                var s = document.createElement("script");
+                s.type = "text/javascript";
+                s.src = "/js/modal.js";
+                $("head").append(s);
+
+                $('#modalCreate').modal("show");
+
+
+
+            });
+           
+        }
+                        //function funcionModal(id) {
+                        //    $.get("/TicketSpc/View", { id: id }, function (vista) {
+                        //        console.log(vista);
+                        //    });
+
+                        //}
+    </script>
+    <script>
+        function cargarCombos() {
+            //Traer datos select modo contacto
+            $.get("/TicketSpc/GetMContacto", function (dataMedios) {
+                for (var i = 0; i < dataMedios.length; i++) {
+                    var option = document.createElement("option"); //Creas el elemento opción
+                    $(option).html(dataMedios[i].medio1); //Escribes en él el nombre de la provincia
+                    $(option).appendTo("#medioo"); //Lo metes en el select con id provincias
+                }
+            });
+            //Traer los tipo de soporte
+            $.get("/TicketSpc/GetTSoporte", function (dataSoporte) {
+                for (var i = 0; i < dataSoporte.length; i++) {
+                    var option = document.createElement("option"); //Creas el elemento opción
+                    $(option).html(dataSoporte[i].tipoDes); //Escribes en él el nombre de la provincia
+                    $(option).appendTo("#supp"); //Lo metes en el select con id provincias
+                }
+            });
+            //Traer los tecnicos
+            $.get("/TicketSpc/GetTecnico", function (dataAsignados) {
+                for (var i = 0; i < dataAsignados.length; i++) {
+                    var option = document.createElement("option"); //Creas el elemento opción
+                    $(option).html(dataAsignados[i].tecnicoNom); //Escribes en él el nombre de la provincia
+                    $(option).appendTo("#asignadoo"); //Lo metes en el select con id provincias
+                }
+            });
+            //Traer areas de trabajo
+            $.get("/TicketSpc/GetTKgrupos", function (dataTrabajo) {
+
+                for (var i = 0; i < dataTrabajo.length; i++) {
+                    var option = document.createElement("option"); //Creas el elemento opción
+                    $(option).html(dataTrabajo[i].desGrupo); //Escribes en él el nombre de la provincia
+                    $(option).appendTo("#atrabj"); //Lo metes en el select con id provincias
+                }
+            });
+
 
         }
-        //function funcionModal(id) {
-        //    $.get("/TicketSpc/View", { id: id }, function (vista) {
-        //        console.log(vista);
-        //    });
-
-        //}
     </script>
-
 }
