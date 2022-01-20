@@ -46,16 +46,15 @@
                             <div class="row">
                                 <div class="col-6">
                                     <div class="form-outline">
-                                        <input class="form-control" id="folio" asp-for="Id" readonly />
-                                        <label class="form-label" asp-for="Id">FOLIO</label>
+                                        <input class="form-control" id="folio"  readonly />
+                                        <label class="form-label" for="folio">FOLIO</label>
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <select class="form-select" asp-for="Estado" aria-label="Default select example">
-                                        <option selected>ESTADO</option>
-                                        <option value="Pendiente">PENDIENTE</option>
-                                        <option value="Terminado">TERMINADO</option>
-                                        <option value="Nulo">NULO</option>
+                                        <option value="PENDIENTE">PENDIENTE</option>
+                                        @*<option value="Terminado">TERMINADO</option>
+                                        <option value="Nulo">NULO</option>*@
                                     </select>
                                 </div>
                             </div>
@@ -110,7 +109,6 @@
                                 </div>
                                 <div class="col-7">
                                     <select class="form-select" asp-for="Modo" id="medioo" aria-label="Default select example">
-                                        <option selected>MODO CONTACTO</option>
                                     </select>
                                 </div>
                             </div>
@@ -120,27 +118,25 @@
                             <div class="row mt-2">
                                 <div class="col-6">
                                     <select class="form-select" asp-for="Grupo" id="atrabj" aria-label="Default select example">
-                                        <option selected>ÁREA DE TRABAJO</option>
+                                        <option value="SOLUTIONS">SOLUTIONS</option>
                                     </select>
                                 </div>
                                 <div class="col-6">
                                     <select class="form-select" asp-for="Tipo" id="supp" aria-label="Default select example">
-                                        <option selected>TIPO DE SOPORTE</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="row mt-2">
                                 <div class="col-6">
                                     <select class="form-select" id="asignadoo" asp-for="Tecnico" aria-label="Default select example">
-                                        <option selected>ASIGNADO</option>
                                         ASIGNADO
                                     </select>
                                 </div>
                             </div>
                             <div class="row mt-2">
                                 <div class="md-form">
-                                    <textarea asp-for="Trabajo" class="md-textarea form-control textareaStyle" rows="3"></textarea>
-                                    <label asp-for="Trabajo">Resumen del ticket</label>
+                                    <textarea asp-for="Requerimiento" class="md-textarea form-control textareaStyle" rows="3"></textarea>
+                                    <label asp-for="Requerimiento">Resumen del ticket</label>
                                 </div>
                             </div>
                         </div>

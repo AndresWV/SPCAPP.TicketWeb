@@ -88,8 +88,9 @@
                             <h5 id="staticBackdropLabel" class="modal-title titulo">TICKET SPCAA</h5>
                         </div>
                         <div class="col-4">
-                            <button type="button" class="btn-close cerrar" data-mdb-dismiss="modal"
-                                    aria-label="Close"></button>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
                     </div>
 
@@ -112,16 +113,22 @@
 @section Scripts{
     <script>
         function crearModal() {
-            console.log('pase aka');
-
-            //window.location.assign("/TicketSpc/Create")
             $("#modalCreate").load("/TicketSpc/Create", function () {
-                //cargarCombos();
-                
+                //modal
                 var s = document.createElement("script");
                 s.type = "text/javascript";
                 s.src = "/js/modal.js";
                 $("head").append(s);
+                //mdb input
+                var s2 = document.createElement("script");
+                s2.type = "text/javascript";
+                s2.src = "/js/lineasInput.js";
+                $("head").append(s2);
+                //calendario
+                var s3 = document.createElement("script");
+                s3.type = "text/javascript";
+                s3.src = "/js/calendarBack.js";
+                $("head").append(s3);
 
                 $('#modalCreate').modal("show");
 
@@ -129,51 +136,6 @@
 
             });
            
-        }
-                        //function funcionModal(id) {
-                        //    $.get("/TicketSpc/View", { id: id }, function (vista) {
-                        //        console.log(vista);
-                        //    });
-
-                        //}
-    </script>
-    <script>
-        function cargarCombos() {
-            //Traer datos select modo contacto
-            $.get("/TicketSpc/GetMContacto", function (dataMedios) {
-                for (var i = 0; i < dataMedios.length; i++) {
-                    var option = document.createElement("option"); //Creas el elemento opción
-                    $(option).html(dataMedios[i].medio1); //Escribes en él el nombre de la provincia
-                    $(option).appendTo("#medioo"); //Lo metes en el select con id provincias
-                }
-            });
-            //Traer los tipo de soporte
-            $.get("/TicketSpc/GetTSoporte", function (dataSoporte) {
-                for (var i = 0; i < dataSoporte.length; i++) {
-                    var option = document.createElement("option"); //Creas el elemento opción
-                    $(option).html(dataSoporte[i].tipoDes); //Escribes en él el nombre de la provincia
-                    $(option).appendTo("#supp"); //Lo metes en el select con id provincias
-                }
-            });
-            //Traer los tecnicos
-            $.get("/TicketSpc/GetTecnico", function (dataAsignados) {
-                for (var i = 0; i < dataAsignados.length; i++) {
-                    var option = document.createElement("option"); //Creas el elemento opción
-                    $(option).html(dataAsignados[i].tecnicoNom); //Escribes en él el nombre de la provincia
-                    $(option).appendTo("#asignadoo"); //Lo metes en el select con id provincias
-                }
-            });
-            //Traer areas de trabajo
-            $.get("/TicketSpc/GetTKgrupos", function (dataTrabajo) {
-
-                for (var i = 0; i < dataTrabajo.length; i++) {
-                    var option = document.createElement("option"); //Creas el elemento opción
-                    $(option).html(dataTrabajo[i].desGrupo); //Escribes en él el nombre de la provincia
-                    $(option).appendTo("#atrabj"); //Lo metes en el select con id provincias
-                }
-            });
-
-
         }
     </script>
 }

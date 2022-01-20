@@ -40,14 +40,27 @@ namespace SPCAPP.TicketWeb.Controllers
             //valida que cumpla con todo las restricciones de la tabla ticket establecidas por las Data
             if (ModelState.IsValid)
             {
+                var newFecha = new DateTime();
+                newFecha = ticket.Fecha.Value;
+                newFecha =      newFecha.AddSeconds(ticket.HrsInicio.Value.TimeOfDay.Seconds).AddMinutes(ticket.HrsInicio.Value.TimeOfDay.Minutes).AddHours(ticket.HrsInicio.Value.TimeOfDay.Hours);
+                ticket.Id= _context.TicketSpc.Count() == 0 ? 1 : _context.TicketSpc.Max(x => x.Id) + 1;
+                ticket.Fecha = newFecha;
+                ticket.HrsInicio = null;
+                ticket.UserCreaTk = "MIGUEL";
+                ticket.CerradoId = 0;
+                ticket.Passwords = "";
+                ticket.Fk_procede = "";
+                ticket.Realizado = "N";
+                ticket.Programado = "N";
                 _context.TicketSpc.Add(ticket);
-              
+               
                 _context.SaveChanges();
                 //Mensaje para cuandos se cree el ticket
                 TempData["mensaje"] = "El ticket se ha creado correctamente";
                 //Cuando se cree un ticket volver al index
                 return RedirectToAction("Index");
             }
+            
             return View();
         }
         //http get edit
@@ -143,14 +156,19 @@ namespace SPCAPP.TicketWeb.Controllers
         /*********************************************DATOS PARA PRECARGAR CON AUTOCOMPLETADO**************************************************************************/
         public IActionResult GetNombresClientes(string term)
         {
-            //Con la comparacion deja que ingrese minusculas o mayusculas
-            //var result = (from U in bd.ViewAuxis.ToList() where U.NomAux.Contains(term, System.StringComparison.CurrentCultureIgnoreCase) select new { value = U.NomAux });
-            var result = bd.ViewAuxis.ToList().Where(clientee => clientee.NomAux.Contains(term, System.StringComparison.CurrentCultureIgnoreCase)).Select(clientee => clientee.NomAux);
+            var result = bd.Empresas.ToList().Where(clientee => clientee.NomAux.Contains(term, System.StringComparison.CurrentCultureIgnoreCase)).Select(clientee => clientee.Codigo);
+
+            return Json(result);
+        }
+        public IActionResult GetNombresClientesNom(string term)
+        {
+            var result = bd.Empresas.ToList().Where(x => x.Codigo.Equals(term)).Select(x=>x.NomAux);
             return Json(result);
         }
         //Devuelve el primer objeto con la data de la empresa
         public ViewAuxi GetAlias(string term)
         {
+
             var clienteData = bd.ViewAuxis.Where( x => x.NomAux == term ).FirstOrDefault();
             return clienteData;
         }

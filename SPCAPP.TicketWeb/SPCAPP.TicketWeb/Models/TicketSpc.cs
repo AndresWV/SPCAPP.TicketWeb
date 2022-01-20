@@ -7,6 +7,7 @@ namespace SPCAPP.TicketWeb.Models
 {
     public partial class TicketSpc
     {
+
         public int Id { get; set; }
         public string Empresa { get; set; }
         public string Contacto { get; set; }

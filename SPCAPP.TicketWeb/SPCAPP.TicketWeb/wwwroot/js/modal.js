@@ -7,7 +7,6 @@ $(document).ready(function () {
     position: { my: "left bottom", at: "left bottom" },
     delay: 300,
         open: function () {
-            console.log("llega");
             $("ul.ui-menu").width($(document.getElementById("#clt")).innerWidth());
     },
     classes: {
@@ -15,64 +14,67 @@ $(document).ready(function () {
     },
     //Cuando seleccione un elemento del menu desplegable...
     select: function (event, ui) {
-        //tomar datos en base al cliente seleccionado por el autocompletado
-        $.get("/TicketSpc/GetAlias", { term: ui.item.value }, function (data) {
-            $(".result").html(data);
-            //cambiar código
-            $("#cod").val("" + data.codAux);
-            $('#cod').focus();
-            //cambiar folio
-            $("#folio").val("" + data.comAux);
-            $('#folio').focus();
-            //cambiar alias
-            $("#ali").val("" + data.noFaux);
-            $('#ali').focus();
-            //cambiar email empresa
-            $("#emailEm").val("" + data.eMailDte);
-            $('#emailEm').focus();
-            //cargar contactos para el select contacto
-            $.get("/TicketSpc/GetContactos", { term: data.codAux }, function (data2) {
-                for (var i = 0; i < data2.length; i++) {
-                    var option = document.createElement("option"); //Creas el elemento opción
-                    $(option).html(data2[i].nomCon); //Escribes en él el nombre de la provincia
-                    $(option).appendTo("#cont"); //Lo metes en el select con id provincias
-                }
-            });
-            //cargar datos en base al contacto seleccionado
-            $("#cont").change(function () {
-                $.get("/TicketSpc/GetContacto", { term: $(this).val() }, function (dataContacto) {
-                    //telefono1
-                    if (dataContacto.fonCon != null) {
-                        $("#telefono1").val("" + dataContacto.fonCon);
-
-                    } else {
-                        $("#telefono1").val("" + 0);
+        $.get("/TicketSpc/GetNombresClientesNom", { term: ui.item.value }, function (dataNom) {
+            console.log(dataNom[0]);
+            //tomar datos en base al cliente seleccionado por el autocompletado
+            $.get("/TicketSpc/GetAlias", { term: dataNom[0] }, function (data) {
+                console.log(data);
+                $(".result").html(data);
+                //cambiar código
+                $("#cod").val("" + data.codAux);
+                $('#cod').focus();
+                //cambiar folio
+                $("#folio").val("" + data.comAux);
+                $('#folio').focus();
+                //cambiar alias
+                $("#ali").val("" + data.noFaux);
+                $('#ali').focus();
+                //cambiar email empresa
+                $("#emailEm").val("" + data.eMailDte);
+                $('#emailEm').focus();
+                //cargar contactos para el select contacto
+                $.get("/TicketSpc/GetContactos", { term: data.codAux }, function (data2) {
+                    for (var i = 0; i < data2.length; i++) {
+                        var option = document.createElement("option"); //Creas el elemento opción
+                        $(option).html(data2[i].nomCon); //Escribes en él el nombre de la provincia
+                        $(option).appendTo("#cont"); //Lo metes en el select con id provincias
                     }
-                    $('#telefono1').focus();
-                    //telefono2
-                    if (dataContacto.fonCon2 != null) {
+                });
+                //cargar datos en base al contacto seleccionado
+                $("#cont").change(function () {
+                    $.get("/TicketSpc/GetContacto", { term: $(this).val() }, function (dataContacto) {
+                        //telefono1
+                        if (dataContacto.fonCon != null) {
+                            $("#telefono1").val("" + dataContacto.fonCon);
 
-                        $("#telefono2").val("" + dataContacto.fonCon2);
+                        } else {
+                            $("#telefono1").val("" + 0);
+                        }
+                        $('#telefono1').focus();
+                        //telefono2
+                        if (dataContacto.fonCon2 != null) {
 
-                    } else {
-                        $("#telefono2").val("" + 0);
-                    }
-                    $('#telefono2').focus();
-                    //telefono3
-                    if (dataContacto.fonCon3 != null) {
-                        $("#telefono3").val("" + dataContacto.fonCon3);
+                            $("#telefono2").val("" + dataContacto.fonCon2);
 
-                    } else {
-                        $("#telefono3").val("" + 0);
-                    }
-                    $('#telefono3').focus();
-                    //cambiar email empresa
-                    $("#email").val("" + dataContacto.email);
-                    $('#email').focus();
+                        } else {
+                            $("#telefono2").val("" + 0);
+                        }
+                        $('#telefono2').focus();
+                        //telefono3
+                        if (dataContacto.fonCon3 != null) {
+                            $("#telefono3").val("" + dataContacto.fonCon3);
+
+                        } else {
+                            $("#telefono3").val("" + 0);
+                        }
+                        $('#telefono3').focus();
+                        //cambiar email empresa
+                        $("#email").val("" + dataContacto.email);
+                        $('#email').focus();
+                    });
                 });
             });
         });
-
     }
 });
 });
@@ -100,12 +102,4 @@ $.get("/TicketSpc/GetTecnico", function (dataAsignados) {
         $(option).appendTo("#asignadoo"); //Lo metes en el select con id provincias
     }
 });
-//Traer areas de trabajo
-$.get("/TicketSpc/GetTKgrupos", function (dataTrabajo) {
 
-    for (var i = 0; i < dataTrabajo.length; i++) {
-        var option = document.createElement("option"); //Creas el elemento opción
-        $(option).html(dataTrabajo[i].desGrupo); //Escribes en él el nombre de la provincia
-        $(option).appendTo("#atrabj"); //Lo metes en el select con id provincias
-    }
-});
