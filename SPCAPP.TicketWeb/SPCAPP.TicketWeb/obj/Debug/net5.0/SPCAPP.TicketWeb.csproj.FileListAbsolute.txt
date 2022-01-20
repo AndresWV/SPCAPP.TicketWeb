@@ -431,3 +431,4 @@ C:\Users\andre\Desktop\C#\SPCAPP_TicketWeb\SPCAPP.TicketWeb\SPCAPP.TicketWeb\obj
 C:\Users\andre\Desktop\C#\SPCAPP_TicketWeb\SPCAPP.TicketWeb\SPCAPP.TicketWeb\obj\Debug\net5.0\SPCAPP.TicketWeb.genruntimeconfig.cache
 C:\Users\andre\Desktop\C#\SPCAPP_TicketWeb\SPCAPP.TicketWeb\SPCAPP.TicketWeb\obj\Debug\net5.0\Razor\Views\TicketSpc\Create.cshtml.g.cs
 C:\Users\andre\Desktop\C#\SPCAPP_TicketWeb\SPCAPP.TicketWeb\SPCAPP.TicketWeb\obj\Debug\net5.0\Razor\Views\TicketSpc\Edit.cshtml.g.cs
+C:\Users\andre\Desktop\C#\SPCAPP_TicketWeb\SPCAPP.TicketWeb\SPCAPP.TicketWeb\obj\Debug\net5.0\Razor\Views\TicketSpc\View.cshtml.g.cs

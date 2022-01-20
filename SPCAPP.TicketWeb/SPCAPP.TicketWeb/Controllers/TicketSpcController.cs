@@ -30,7 +30,7 @@ namespace SPCAPP.TicketWeb.Controllers
         //http get create
         public IActionResult Create()
         {
-            return View();
+            return PartialView("Create");
         }
         //http post create, el validate se encarga de limitar solicitudes en caso de uso de bot
         [HttpPost]
@@ -122,6 +122,24 @@ namespace SPCAPP.TicketWeb.Controllers
             return RedirectToAction("Index");
 
         }
+        //http get view
+        public IActionResult View(int? id)
+        {
+            //validar que la id
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+
+            //obtener ticket
+            var ticket = _context.TicketSpc.Find(id);
+            //verificar que el ticket existe
+            if (ticket == null)
+            {
+                return NotFound();
+            }
+            return PartialView("View",ticket);
+        }
         /*********************************************DATOS PARA PRECARGAR CON AUTOCOMPLETADO**************************************************************************/
         public IActionResult GetNombresClientes(string term)
         {
@@ -171,6 +189,11 @@ namespace SPCAPP.TicketWeb.Controllers
         {
             var areas = bd.TkGrupos;
             return Json(areas);
+        }
+        public TicketSpc GetTicket(int id)
+        {
+            var ticket = bd.TicketSpcs.Where(x => x.Id.Equals(id)).FirstOrDefault();
+            return ticket;
         }
     }
     

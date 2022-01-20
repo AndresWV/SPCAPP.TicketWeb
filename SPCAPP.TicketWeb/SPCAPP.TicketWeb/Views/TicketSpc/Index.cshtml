@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container">
+<div class="container AREA_PARTIAL_VIEW">
     <!--Notificacion de que el Ticket se a creado correctamente-->
     @if (TempData["mensaje"] != null)
     {
@@ -20,12 +20,11 @@
             <h3 class="text-right">TICKET GENERADOS</h3>
         </div>
         <div class="col-sm-4">
-            @Html.Partial("Create", new TicketSpc())
-            <!--<a class="btn float-lg-right colorB" asp-action="Create" asp-controller="TicketSpc">Crear Ticket</a>-->
-            <a class="btn float-lg-right colorB" data-mdb-toggle="modal" data-mdb-target="#staticBackdrop" asp-controller="TicketSpc">Crear Ticket</a>
+            <a class="btn float-lg-right colorB" onclick="crearModal()">Crear Ticket</a>
         </div>
     </div>
     <div class="row">
+        <div id="openpopup"></div>
         @if (Model.Count() > 0)
         {
             <table id="dtBasicExample" class="table table-bordered table-hover w-100" style="display:none">
@@ -54,10 +53,7 @@
                             <td class="text-uppercase">@item.Tecnico</td>
 
                             <td>
-                                @*@Html.Partial("ModalTickettEdit", new TicketSpc())
-                                    <a asp-controller="TicketSpc" asp-action="" asp-route-id="@item.Id" class="btn coloAction" data-mdb-toggle="modal" data-mdb-target="#modalView"><i class="fas fa-search-plus"></i></a>
-                                    @Html.Partial("ModalTickettEdit", new TicketSpc())*@
-                                <a class="btn coloAction" onclick="funcionModal(@item.Id)"><i class="fas fa-search-plus"></i></a>
+                                <a class="btn coloAction" ><i class="fas fa-search-plus"></i></a>
                                 <a asp-controller="TicketSpc" asp-action="Edit" asp-route-id="@item.Id" class="btn coloAction" data-mdb-toggle="modal" data-mdb-target="#modalEdit"><i class="fas fa-edit"></i></a>
                                 <a asp-controller="TicketSpc" asp-action="Delete" asp-route-id="@item.Id" class="btn coloAction"><i class="fas fa-trash-alt"></i></a>
                             </td>
@@ -79,9 +75,16 @@
 </div>
 @section Scripts{
     <script>
-        function funcionModal(id) {
-            alert(id)
+        function crearModal() {
+            $("#openpop").load("/TicketSpc/Create");
+
         }
+        //function funcionModal(id) {
+        //    $.get("/TicketSpc/View", { id: id }, function (vista) {
+        //        console.log(vista);
+        //    });
+
+        //}
     </script>
 
 }
