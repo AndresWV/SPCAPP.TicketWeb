@@ -19,7 +19,7 @@ namespace SPCAPP.TicketWeb.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.0");
 
-            modelBuilder.Entity("SPCAPP.TicketWeb.Models.Ticket", b =>
+            modelBuilder.Entity("SPCAPP.TicketWeb.Models.Tickett", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -29,74 +29,63 @@ namespace SPCAPP.TicketWeb.Migrations
                     b.Property<string>("Alias")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("AreaEmpresa")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("AreaTrabajo")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Asignado")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Cliente")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Codigo")
-                        .HasColumnType("int");
+                    b.Property<string>("Codigo")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Contacto")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DescripcionProblema")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("EmailEmpresa")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
+                    b.Property<string>("Emailempresa")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Estado")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Folio")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("Hora")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ModoContacto")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Proyecto")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Telefono_1")
-                        .HasColumnType("int");
+                    b.Property<string>("ResumenTicket")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Telefono_2")
-                        .HasColumnType("int");
+                    b.Property<string>("Telefono1")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Telefono_3")
-                        .HasColumnType("int");
+                    b.Property<string>("Telefono2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Telefono3")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TipoSoporte")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Ticket");
+                    b.ToTable("Tickett");
                 });
 #pragma warning restore 612, 618
         }

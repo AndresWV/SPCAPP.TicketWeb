@@ -1,0 +1,180 @@
+﻿@model SPCAPP.TicketWeb.Models.Tickett
+@{
+    ViewData["Title"] = "Eliminar ticket";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container centerContainer">
+    <div class="row">
+        <div class="col-sm-12"><h3>Eliminar Ticket</h3></div>
+    </div>
+    <form method="post" asp-action="DeleteTicket">
+        <input type="hidden" asp-for="Id" />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="row">
+            <div class="col-6">
+                <div class="codigoStyle form-outline">
+                    <input class="form-control" asp-for="Id" type="number" disabled />
+                    <label class="form-label" asp-for="Id">CÓDIGO</label>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="form-group">
+                    <input type="date" class="form-control clickable input-md datee" asp-for="Fecha"
+                           placeholder="FECHA  &#xf133;" disabled>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="md-form">
+                    <input type="time" asp-for="Hora" class="form-control hour" disabled>
+                </div>
+            </div>
+        </div>
+
+        <div class="w-100"></div>
+        <div class="row section2Style">
+
+            <div class="row mt-5">
+                <div class="col form-outline folio" style="margin-left: 13%;">
+                    <input type="text" asp-for="Folio" class="form-control" disabled />
+                    <label class="form-label" asp-for="Folio">FOLIO</label>
+                </div>
+                <div class="col" style="margin-right: 10%;">
+                    <select class="form-select" asp-for="Estado" aria-label="Default select example" disabled>
+                        <option selected>ESTADO</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="w-100"></div>
+            <div class="row">
+                <div class="col-3 form-outline folio" style="margin-top: 3%;margin-left: 13%;">
+                    <input type="text" asp-for="Cliente" class="form-control" disabled />
+                    <label class="form-label" asp-for="Cliente">CLIENTE</label>
+                </div>
+                <div class="col form-outline" style="margin-top: 3%;margin-left: 1%; margin-right: 11%;">
+                    <input type="text" asp-for="Alias" class="form-control" disabled />
+                    <label class="form-label" asp-for="Alias">ALIAS</label>
+                </div>
+            </div>
+
+            <div class="w-100"></div>
+            <div class="row">
+                <div class="col form-outline folio" style="margin-top: 3%;margin-left: 13%;">
+                    <input type="email" asp-for="Emailempresa" class="form-control" disabled />
+                    <label class="form-label" asp-for="Emailempresa">EMAIL EMPRESA</label>
+                </div>
+                <div class="col" style="margin-top: 3%;margin-right: 10%;">
+                    <select class="form-select" asp-for="Contacto" aria-label="Default select example" disabled>
+                        <option selected>CONTACTO</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="w-100"></div>
+            <div class="row">
+                <div class="col form-outline folio" style="margin-top: 3%;margin-left: 13%;margin-right: 3%;">
+                    <input type="tel" asp-for="Telefono1" class="form-control" disabled />
+                    <label class="form-label" asp-for="Telefono1">TELÉFONO 1</label>
+                </div>
+                <div class="col form-outline folio" style="margin-top: 3%;;margin-right: 3%;">
+                    <input type="tel" asp-for="Telefono2" class="form-control" disabled />
+                    <label class="form-label" asp-for="Telefono2">TELÉFONO 2</label>
+                </div>
+                <div class="col form-outline folio" style="margin-top: 3%;margin-right: 11%;">
+                    <input type="tel" asp-for="Telefono3" class="form-control" disabled />
+                    <label class="form-label" asp-for="Telefono3">TELÉFONO 3</label>
+                </div>
+            </div>
+
+            <div class="w-100"></div>
+            <div class="row mb-5">
+                <div class="col form-outline folio" style="margin-top: 3%;margin-left: 13%;">
+                    <input type="email" asp-for="Email" class="form-control" disabled />
+                    <label class="form-label" asp-for="Email">EMAIL</label>
+                </div>
+                <div class="col" style="margin-top: 3%;margin-right: 10%;">
+                    <select class="form-select" asp-for="ModoContacto" aria-label="Default select example" disabled>
+                        <option selected>MODO CONTACTO</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <h4 class="h3Ticket">SOLICITUD DE REQUERIMIENTOS</h4>
+        </div>
+
+        <div class="row section2Style mt-1 mb-5">
+
+            <div class="row mt-5">
+                <div class="col form-outline folio" style="margin-left: 13%;">
+                    <select class="form-select" asp-for="AreaTrabajo" aria-label="Default select example" disabled>
+                        <option selected>ÁREA DE TRABAJO</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+                <div class="col" style="margin-right: 10%;">
+                    <select class="form-select" asp-for="TipoSoporte" aria-label="Default select example" disabled>
+                        <option selected>TIPO DE SOPORTE</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="w-100"></div>
+            <div class="row">
+                <div class="col form-outline folio" style="margin-top: 3%;margin-left: 13%;">
+                    <select class="form-select" asp-for="Asignado" aria-label="Default select example" disabled>
+                        <option selected>ASIGNADO</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+                <div class="col" style="margin-top: 3%;margin-right: 10%;">
+                    <select class="form-select" aria-label="Default select example" asp-for="Proyecto" style="visibility:hidden;" disabled>
+                        <option selected>PROYECTO</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="w-100"></div>
+            <div class="row">
+                <div class="col md-form" style="margin-top: 3%;margin-left: 13%;margin-right: 10%;">
+                    <textarea asp-for="ResumenTicket" class="md-textarea form-control textareaStyle" rows="3" disabled></textarea>
+                    <label asp-for="ResumenTicket">Resumen del ticket</label>
+                </div>
+            </div>
+
+            <div w-100></div>
+            <div class="row mt-1 mb-5">
+                <div class="col" style="margin-left: 43%;">
+                    <button type="submit" class="btn btn-primary btn-lg">Eliminar Ticket</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<!--Incoorporar validacion del lado del cliente-->
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
