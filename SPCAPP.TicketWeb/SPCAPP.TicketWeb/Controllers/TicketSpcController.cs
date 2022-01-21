@@ -79,7 +79,7 @@ namespace SPCAPP.TicketWeb.Controllers
             {
                 return NotFound();
             }
-            return View(ticket);
+            return PartialView("Edit", ticket);
         }
         //http post edit, el validate se encarga de limitar solicitudes en caso de uso de bot
         [HttpPost]
@@ -114,7 +114,7 @@ namespace SPCAPP.TicketWeb.Controllers
             {
                 return NotFound();
             }
-            return View(ticket);
+            return PartialView("Delete",ticket);
         }
         //http post delete, el validate se encarga de limitar solicitudes en caso de uso de bot
         [HttpPost]
@@ -143,7 +143,6 @@ namespace SPCAPP.TicketWeb.Controllers
             {
                 return NotFound();
             }
-
             //obtener ticket
             var ticket = _context.TicketSpc.Find(id);
             //verificar que el ticket existe
@@ -151,7 +150,7 @@ namespace SPCAPP.TicketWeb.Controllers
             {
                 return NotFound();
             }
-            return PartialView("View",ticket);
+            return PartialView("View", ticket);
         }
         /*********************************************DATOS PARA PRECARGAR CON AUTOCOMPLETADO**************************************************************************/
         public IActionResult GetNombresClientes(string term)

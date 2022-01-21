@@ -21,7 +21,7 @@
         </div>
         <div class="col-sm-4">
 
-            <a class="btn float-lg-right colorB" onclick="crearModal()">Crear Ticket</a>
+            <a class="btn float-lg-right colorB" onclick="crearModal(1,0)">Crear Ticket</a>
         </div>
     </div>
 
@@ -57,9 +57,12 @@
                             <td class="text-uppercase">@item.Tecnico</td>
 
                             <td>
-                                <a class="btn coloAction"><i class="fas fa-search-plus"></i></a>
-                                <a asp-controller="TicketSpc" asp-action="Edit" asp-route-id="@item.Id" class="btn coloAction" data-mdb-toggle="modal" data-mdb-target="#modalEdit"><i class="fas fa-edit"></i></a>
-                                <a asp-controller="TicketSpc" asp-action="Delete" asp-route-id="@item.Id" class="btn coloAction"><i class="fas fa-trash-alt"></i></a>
+                                <!--Ver-->
+                                <a class="btn coloAction" onclick="crearModal(2,@item.Id)"><i class="fas fa-search-plus"></i></a>
+                                <!--Editar-->
+                                <a class="btn coloAction" onclick="crearModal(3,@item.Id)"><i class="fas fa-edit"></i></a>
+                                <!--Eliminar-->
+                                <a class="btn coloAction" onclick="crearModal(4,@item.Id)"><i class="fas fa-trash-alt"></i></a>
                             </td>
                         </tr>
                     }
@@ -112,30 +115,54 @@
 </div>
 @section Scripts{
     <script>
-        function crearModal() {
-            $("#modalCreate").load("/TicketSpc/Create", function () {
-                //modal
-                var s = document.createElement("script");
-                s.type = "text/javascript";
-                s.src = "/js/modal.js";
-                $("head").append(s);
-                //mdb input
-                var s2 = document.createElement("script");
-                s2.type = "text/javascript";
-                s2.src = "/js/lineasInput.js";
-                $("head").append(s2);
-                //calendario
-                var s3 = document.createElement("script");
-                s3.type = "text/javascript";
-                s3.src = "/js/calendarBack.js";
-                $("head").append(s3);
+        //Cargar los script como al abrir el modal no se estaban cargando debido a que al abrir una ventana emergente
+        //no se vuelven a llamar
+        function cargarScript() {
+            //modal
+            var s = document.createElement("script");
+            s.type = "text/javascript";
+            s.src = "/js/modal.js";
+            $("head").append(s);
+            //mdb input
+            var s2 = document.createElement("script");
+            s2.type = "text/javascript";
+            s2.src = "/js/lineasInput.js";
+            $("head").append(s2);
+            //calendario
+            var s3 = document.createElement("script");
+            s3.type = "text/javascript";
+            s3.src = "/js/calendarBack.js";
+            $("head").append(s3);
 
-                $('#modalCreate').modal("show");
-
-
-
-            });
-           
+            $('#modalCreate').modal("show");
+        }
+        //Controlar que modal se abrira
+        function crearModal(buttonOption, idd) {
+            //Crear ticket
+            if (buttonOption == 1) {
+                $("#modalCreate").load("/TicketSpc/Create", function () {
+                    cargarScript();
+                });
+            }
+            //ver ticket
+            else if (buttonOption == 2) {
+                $("#modalCreate").load("/TicketSpc/View", { id : idd} ,function () {
+                    cargarScript();
+                });
+            }
+            //Editat ticket
+            else if (buttonOption == 3) {
+                $("#modalCreate").load("/TicketSpc/Edit", { id: idd }, function (data) {
+                    console.log(data);
+                    cargarScript();
+                });
+            }
+            //Eliminar ticket
+            else {
+                $("#modalCreate").load("/TicketSpc/Delete", { id: idd }, function () {
+                    cargarScript();
+                });
+            }
         }
     </script>
 }

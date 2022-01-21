@@ -1,7 +1,7 @@
 ﻿@model SPCAPP.TicketWeb.Models.TicketSpc
 
 <div>
-    <form method="post" asp-action="View">
+    <form method="post" asp-action="Delete">
 
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -61,7 +61,7 @@
                         <div class="row mt-2">
                             <div class="col-6">
                                 <div class="form-outline folio">
-                                    <input type="text" id="clt" asp-for="Empresa" class="form-control" disabled />
+                                    <input type="text" id="clt" asp-for="Empresa" class="form-control" disabled/>
                                     <label class="form-label" asp-for="Empresa">CLIENTE</label>
                                 </div>
                             </div>
@@ -144,7 +144,7 @@
 
                 <div class="modal-footer modalColor">
                     <div class="col text-center">
-                        <h2 class="titulo">Vista de tu ticket</h2>
+                        <button type="submit" class="btn btn-lg buttCreate" style="background: white;">Eliminar Ticket</button>
                     </div>
                 </div>
             </div>
