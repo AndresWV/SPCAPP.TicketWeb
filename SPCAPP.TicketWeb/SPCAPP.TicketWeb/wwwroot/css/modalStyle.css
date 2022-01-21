@@ -1,11 +1,10 @@
 ﻿
-.cerrar,
 .titulo {
     font-style: italic;
     font-weight: bold;
     font-family: url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@1,200&display=swap');
 }
-
+.cerrar,
 .hr2 {
     float: right;
 }

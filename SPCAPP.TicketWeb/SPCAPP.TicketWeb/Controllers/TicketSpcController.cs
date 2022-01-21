@@ -177,6 +177,11 @@ namespace SPCAPP.TicketWeb.Controllers
             var contactoData = bd.Contactos.Where(x => x.CodAuc == term);
             return Json(contactoData);
         }
+        public String GetContactoSelect(string term)
+        {
+            var contactoData = bd.TicketSpcs.Where(x => x.CodAux == term).Select(y => y.Contacto).FirstOrDefault();
+            return contactoData;
+        }
         //Busqueda por nombre del contacto
         public Contacto GetContacto(string term)
         {
