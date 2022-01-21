@@ -152,8 +152,7 @@
             }
             //Editat ticket
             else if (buttonOption == 3) {
-                $("#modalCreate").load("/TicketSpc/Edit", { id: idd }, function (data) {
-                    console.log(data);
+                $("#modalCreate").load("/TicketSpc/Edit", { id: idd }, function () {
                     cargarScript();
                 });
             }

@@ -79,12 +79,12 @@ namespace SPCAPP.TicketWeb.Controllers
             {
                 return NotFound();
             }
-            return PartialView("Edit", ticket);
+            return PartialView("Edit",ticket);
         }
         //http post edit, el validate se encarga de limitar solicitudes en caso de uso de bot
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(TicketSpc ticket)
+        public IActionResult EditTicket(TicketSpc ticket)
         {
             //valida que cumpla con todo las restricciones de la tabla ticket establecidas por las Data
             if (ModelState.IsValid)
