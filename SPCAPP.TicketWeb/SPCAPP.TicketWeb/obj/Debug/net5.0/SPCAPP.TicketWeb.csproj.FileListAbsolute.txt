@@ -433,6 +433,3 @@ C:\Users\andre\Desktop\C#\SPCAPP_TicketWeb\SPCAPP.TicketWeb\SPCAPP.TicketWeb\obj
 C:\Users\andre\Desktop\C#\SPCAPP_TicketWeb\SPCAPP.TicketWeb\SPCAPP.TicketWeb\obj\Debug\net5.0\ref\SPCAPP.TicketWeb.dll
 C:\Users\andre\Desktop\C#\SPCAPP_TicketWeb\SPCAPP.TicketWeb\SPCAPP.TicketWeb\obj\Debug\net5.0\SPCAPP.TicketWeb.pdb
 C:\Users\andre\Desktop\C#\SPCAPP_TicketWeb\SPCAPP.TicketWeb\SPCAPP.TicketWeb\obj\Debug\net5.0\SPCAPP.TicketWeb.genruntimeconfig.cache
-C:\Users\andre\Desktop\C#\SPCAPP_TicketWeb\SPCAPP.TicketWeb\SPCAPP.TicketWeb\obj\Debug\net5.0\Razor\Views\Login\Index.cshtml.g.cs
-C:\Users\andre\Desktop\C#\SPCAPP_TicketWeb\SPCAPP.TicketWeb\SPCAPP.TicketWeb\bin\Debug\net5.0\EntityFramework.dll
-C:\Users\andre\Desktop\C#\SPCAPP_TicketWeb\SPCAPP.TicketWeb\SPCAPP.TicketWeb\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
