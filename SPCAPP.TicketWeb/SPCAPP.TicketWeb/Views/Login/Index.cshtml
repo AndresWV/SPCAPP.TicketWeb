@@ -1,0 +1,46 @@
+﻿@model SPCAPP.TicketWeb.Models.UserWinForm
+<div class="loginContainer">
+    <div class="container">
+        <div class="row form">
+            <!--Imagen soft-->
+            <div class="col-7 softland">
+                <div class="imagenLogin">
+
+                </div>
+
+            </div>
+            <!--Form login-->
+            <div class="col-5 formBorder ml-0">
+                <form method="submit">
+                    <!--Titulo-->
+                    <div class="row mt-5">
+                        <h3 class="textLogin">INICIAR SESION</h3>
+                    </div>
+                    <!--form login-->
+                    <div class="row centrarForm mt-3">
+                        <div class="row">
+                            <!-- Email input -->
+                            <div class="form-outline mb-4">
+                                <input type="email" id="form3Example3" asp-for="Usuario" class="form-control form-control-lg"
+                                       placeholder="INGRESE SU USUARIO" />
+                                <label class="form-label" for="form3Example3">USUARIO</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <!-- Password input -->
+                            <div class="form-outline mb-3">
+                                <input type="password" id="form3Example4" asp-for="Clave" class="form-control form-control-lg"
+                                       placeholder="INGRESE SU CONTRASEÑA" />
+                                <label class="form-label" for="form3Example4">CONTRASEÑA</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <button type="button" class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
