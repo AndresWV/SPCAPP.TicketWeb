@@ -34,7 +34,7 @@ namespace SPCAPP.TicketWeb.Controllers
             else
             {
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "TicketSpc");
             }
         }
     }
