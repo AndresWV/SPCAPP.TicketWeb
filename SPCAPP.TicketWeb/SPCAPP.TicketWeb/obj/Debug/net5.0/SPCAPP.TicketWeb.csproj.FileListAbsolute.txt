@@ -413,6 +413,7 @@ C:\Users\andre\Desktop\C#\SPCAPP_TicketWeb\SPCAPP.TicketWeb\SPCAPP.TicketWeb\obj
 C:\Users\andre\Desktop\C#\SPCAPP_TicketWeb\SPCAPP.TicketWeb\SPCAPP.TicketWeb\obj\Debug\net5.0\SPCAPP.TicketWeb.TagHelpers.input.cache
 C:\Users\andre\Desktop\C#\SPCAPP_TicketWeb\SPCAPP.TicketWeb\SPCAPP.TicketWeb\obj\Debug\net5.0\SPCAPP.TicketWeb.TagHelpers.output.cache
 C:\Users\andre\Desktop\C#\SPCAPP_TicketWeb\SPCAPP.TicketWeb\SPCAPP.TicketWeb\obj\Debug\net5.0\SPCAPP.TicketWeb.RazorCoreGenerate.cache
+C:\Users\andre\Desktop\C#\SPCAPP_TicketWeb\SPCAPP.TicketWeb\SPCAPP.TicketWeb\obj\Debug\net5.0\Razor\Views\Acceso\Index.cshtml.g.cs
 C:\Users\andre\Desktop\C#\SPCAPP_TicketWeb\SPCAPP.TicketWeb\SPCAPP.TicketWeb\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
 C:\Users\andre\Desktop\C#\SPCAPP_TicketWeb\SPCAPP.TicketWeb\SPCAPP.TicketWeb\obj\Debug\net5.0\Razor\Views\Home\Privacy.cshtml.g.cs
 C:\Users\andre\Desktop\C#\SPCAPP_TicketWeb\SPCAPP.TicketWeb\SPCAPP.TicketWeb\obj\Debug\net5.0\Razor\Views\Shared\Error.cshtml.g.cs
