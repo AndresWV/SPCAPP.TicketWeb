@@ -144,18 +144,61 @@
                     <div class="row">
                         <div class="row d-flex justify-content-center">
                             <div class="col-5">
-                                <button class="btn coloAction float-lg-right">AVANCES</button>
+                                <button type="button" class="btn coloAction float-lg-right">AVANCES</button>
                             </div>
                             <div class="col-3">
-                                <button class="btn coloAction ml-2">CONTRASEÑAS</button>
+                                <button type="button" class="btn coloAction ml-2">CONTRASEÑAS</button>
                             </div>
                             <div class="col-4">
-                                <button class="btn coloAction float-lg-left">TRABAJO RALIZADO</button>
+                                <button type="button" class="btn coloAction float-lg-left">TRABAJO RALIZADO</button>
                             </div>
                         </div>
-                        <div class="row">
+                        
+                        <div class="row form1">
                             <!--Aqui se carga segun el button seleccionado los avances posibles-->
-                            <div class="abrirSeccionAvances" style="display:none"></div>
+                            <div class="abrirSeccionAvances" >
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="col-6 ">
+                                            <h5>AVANCES</h5>
+                                        </div>
+                                        <div class="col-6 ">
+                                            <input type="checkbox" class="filled-in" checked="checked" />
+                                        </div>
+                                    </div>
+                                    <div class="col-8">
+                                        <div class="col-6">
+                                            <div class="col-6 ">
+                                                <h5>TRABAJO PROGRAMADO</h5>
+                                            </div>
+                                            <div class="col-6 float-lg-right">
+                                                <input type="checkbox" class="filled-in" checked="checked" />
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <!--Fecha-->
+                                            <div class="col-5 hr2 float-lg-right">
+                                                <div class="md-form hrIn">
+                                                    <input type="time" class="form-control clickable input-md" placeholder="HORA   &#xf107;">
+                                                </div>
+                                            </div>
+                                            <!--Hora-->
+                                            <div class="col-7">
+                                                <div class="form-group fecha">
+                                                    <input type="date" class="form-control clickable input-md" placeholder="FECHA  &#xf133;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="md-form mb-4 pink-textarea active-pink-textarea">
+                                        <i class="fas fa-angle-double-right prefix"></i>
+                                        <textarea id="form21" class="md-textarea form-control" rows="3"></textarea>
+                                        <label for="form21">Descripcion de los avances realizados</label>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     

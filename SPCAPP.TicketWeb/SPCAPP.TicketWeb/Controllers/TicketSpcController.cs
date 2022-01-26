@@ -90,6 +90,7 @@ namespace SPCAPP.TicketWeb.Controllers
             if (ModelState.IsValid)
             {
                 _context.TicketSpc.Update(ticket);
+                
                 _context.SaveChanges();
                 //Mensaje para cuandos se cree el ticket
                 TempData["mensaje"] = "El ticket se ha actualizado correctamente";
