@@ -104,3 +104,6 @@ $.get("/TicketSpc/GetTecnico", function (dataAsignados) {
     }
 });
 
+function closeModal(id) {
+    $("#modalCreate").modal('hide');
+}
