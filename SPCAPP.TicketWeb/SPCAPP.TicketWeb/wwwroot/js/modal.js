@@ -100,6 +100,7 @@ $.get("/TicketSpc/GetTecnico", function (dataAsignados) {
         var option = document.createElement("option"); //Creas el elemento opción
         $(option).html(dataAsignados[i].tecnicoNom); //Escribes en él el nombre de la provincia
         $(option).appendTo("#asignadoo"); //Lo metes en el select con id provincias
+        $(option).appendTo("#asignadoo2"); //Lo metes en el select con id provincias
     }
 });
 
