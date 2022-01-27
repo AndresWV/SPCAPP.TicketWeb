@@ -104,6 +104,16 @@ $.get("/TicketSpc/GetTecnico", function (dataAsignados) {
     }
 });
 
+//Traer gastos
+$.get("/TicketSpc/GetGastos", function (dataAsignados) {
+    console.log(dataAsignados[0].desGasto);
+    for (var i = 0; i < dataAsignados.length; i++) {
+        
+        var option = document.createElement("option"); //Creas el elemento opción
+        $(option).html(dataAsignados[i].desGasto); //Escribes en él el nombre de la provincia
+        $(option).appendTo("#gastosSelect"); //Lo metes en el select con id provincias
+    }
+});
 function closeModal(id) {
     $("#modalCreate").modal('hide');
 }
