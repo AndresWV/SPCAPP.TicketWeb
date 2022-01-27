@@ -115,6 +115,14 @@
 </div>
 @section Scripts{
     <script>
+        function seleccionarVista(id) {
+            $("#avancesDiv").hide();
+            $("#passwordDiv").hide();
+            $("#trbjRealizado").hide();
+            var idd = "#" + id;
+            console.log(idd);
+            $(idd).show();
+        }
         //Cargar los script como al abrir el modal no se estaban cargando debido a que al abrir una ventana emergente
         //no se vuelven a llamar
         function cargarScript() {
