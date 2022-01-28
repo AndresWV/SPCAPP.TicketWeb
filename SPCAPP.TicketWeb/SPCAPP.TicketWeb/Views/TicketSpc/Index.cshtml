@@ -116,7 +116,9 @@
 @section Scripts{
     <script>
         function abrirGastos() {
+            $("#vistaGastoss").load("/Gastos/GastosVista");
             $("#gastosVista").show();
+            
         }
         function seleccionarVista(id) {
             $("#avancesDiv").hide();
@@ -174,5 +176,6 @@
                 });
             }
         }
+        
     </script>
 }

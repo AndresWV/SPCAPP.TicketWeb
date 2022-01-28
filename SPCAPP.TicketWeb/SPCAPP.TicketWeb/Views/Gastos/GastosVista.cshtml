@@ -1,0 +1,34 @@
+﻿@model IEnumerable<SPCAPP.TicketWeb.Models.RendTk>
+<div>
+    <table id="dtBasicExample" class="table table-bordered table-hover w-100" style="display:none">
+        <thead class="table-striped">
+            <tr class="table-striped text-white small">
+                <td class="text-uppercase">@Html.DisplayNameFor(m => m.Tk)</td>
+                <td class="text-uppercase">gasto</td>
+                <td class="text-uppercase">@Html.DisplayNameFor(m => m.Cantidad)</td>
+                <td class="text-uppercase">@Html.DisplayNameFor(m => m.Precio)</td>
+                <td class="text-uppercase">@Html.DisplayNameFor(m => m.Total)</td>
+
+                <td>ACCIONES</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="w-100">
+                    <td>@item.Tk</td>
+                    <td class="text-uppercase">@item.GastoId</td>
+                    <td>@item.Cantidad</td>
+                    <td>@item.Precio</td>
+                    <td>@item.Total</td>
+
+                    <td>
+                        <!--Eliminar-->
+                        <a class="btn coloAction" onclick=""><i class="fas fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    
+</div>
