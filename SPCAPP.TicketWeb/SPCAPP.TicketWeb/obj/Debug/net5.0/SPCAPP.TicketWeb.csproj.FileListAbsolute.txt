@@ -436,3 +436,6 @@ C:\Users\andre\Desktop\C#\SPCAPP_TicketWeb\SPCAPP.TicketWeb\SPCAPP.TicketWeb\obj
 C:\Users\andre\Desktop\C#\SPCAPP_TicketWeb\SPCAPP.TicketWeb\SPCAPP.TicketWeb\obj\Debug\net5.0\SPCAPP.TicketWeb.pdb
 C:\Users\andre\Desktop\C#\SPCAPP_TicketWeb\SPCAPP.TicketWeb\SPCAPP.TicketWeb\obj\Debug\net5.0\SPCAPP.TicketWeb.genruntimeconfig.cache
 C:\Users\andre\Desktop\C#\SPCAPP_TicketWeb\SPCAPP.TicketWeb\SPCAPP.TicketWeb\obj\Debug\net5.0\Razor\Views\Acceso\Index.cshtml.g.cs
+C:\Users\andre\Desktop\C#\SPCAPP_TicketWeb\SPCAPP.TicketWeb\SPCAPP.TicketWeb\obj\Debug\net5.0\Razor\Views\Avances\AvancesVista.cshtml.g.cs
+C:\Users\andre\Desktop\C#\SPCAPP_TicketWeb\SPCAPP.TicketWeb\SPCAPP.TicketWeb\obj\Debug\net5.0\Razor\Views\Avances\passwordVista.cshtml.g.cs
+C:\Users\andre\Desktop\C#\SPCAPP_TicketWeb\SPCAPP.TicketWeb\SPCAPP.TicketWeb\obj\Debug\net5.0\Razor\Views\Avances\trbRealizadoVista.cshtml.g.cs
