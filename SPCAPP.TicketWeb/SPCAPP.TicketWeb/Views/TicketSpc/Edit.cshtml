@@ -1,7 +1,7 @@
 ﻿@model SPCAPP.TicketWeb.Models.TicketSpc
 
 <div>
-    <form method="post" asp-action="EditTicket">
+    <form method="post" asp-action="EditTicket" asp-route-id=Model.Id>
 
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -17,130 +17,146 @@
                 </div>
 
                 <div class="modal-body">
-                    <!--Fecha y hora-->
-                    <div class="row date">
-                        <div class="col-3">
-                            <div class="form-outline">
-                                <input class="form-control" id="cod" asp-for="CodAux" type="number" readonly />
-                                <label class="form-label" asp-for="CodAux">CÓDIGO</label>
-                            </div>
+                    <!--TABS-->
+                    <div class="tab">
+                        <div class="tab">
+                            <button class="tablinks" onclick="openTabs(event, 'editVist')">EDITAR</button>
+                            <button class="tablinks" onclick="openTabs(event, 'avancesVist')">AVANCES</button>
+                            <button class="tablinks" onclick="openTabs(event, 'passVist')">PASSWORD</button>
+                            <button class="tablinks" onclick="openTabs(event, 'trbReaVist')">TRABAJO RALIZADO</button>
                         </div>
+                    </div>
+
+                    <div id="editVist" class="tabcontent">
                         <!--Fecha y hora-->
-                        <div class="col-9">
-                            <!--Fecha-->
-                            <div class="col-5 hr2">
-                                <div class="md-form hrIn">
-                                    <input type="time" class="form-control clickable input-md" asp-for="HrsInicio" placeholder="HORA   &#xf107;">
-                                </div>
-                            </div>
-                            <!--Hora-->
-                            <div class="col-7">
-                                <div class="form-group fecha">
-                                    <input type="date" class="form-control clickable input-md" asp-for="Fecha" placeholder="FECHA  &#xf133;">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--Form part1-->
-                    <div class="row m-3 form1">
-                        <div class="row">
-                            <div class="col-6">
+                        <div class="row date">
+                            <div class="col-3">
                                 <div class="form-outline">
-                                    <input class="form-control" id="folio" readonly />
-                                    <label class="form-label" for="folio">FOLIO</label>
+                                    <input class="form-control" id="cod" asp-for="CodAux" type="number" readonly />
+                                    <label class="form-label" asp-for="CodAux">CÓDIGO</label>
                                 </div>
                             </div>
-                            <div class="col-6">
-                                <select class="form-select" asp-for="Estado" aria-label="Default select example">
-                                    <option value="PENDIENTE">PENDIENTE</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row mt-2">
-                            <div class="col-6">
-                                <div class="form-outline folio">
-                                    <input type="text" id="clt" asp-for="Empresa" class="form-control" />
-                                    <label class="form-label" asp-for="Empresa">CLIENTE</label>
+                            <!--Fecha y hora-->
+                            <div class="col-9">
+                                <!--Fecha-->
+                                <div class="col-5 hr2">
+                                    <div class="md-form hrIn">
+                                        <input type="time" class="form-control clickable input-md" asp-for="HrsInicio" placeholder="HORA   &#xf107;">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-outline">
-                                    <input type="text" id="ali" class="form-control" readonly />
-                                    <label class="form-label" id="aliLabel">ALIAS</label>
+                                <!--Hora-->
+                                <div class="col-7">
+                                    <div class="form-group fecha">
+                                        <input type="date" class="form-control clickable input-md" asp-for="Fecha" placeholder="FECHA  &#xf133;">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row mt-2">
-                            <div class="col-6">
-                                <div class="form-outline">
-                                    <input type="email" id="emailEm" class="form-control" readonly />
-                                    <label class="form-label">EMAIL EMPRESA</label>
+                        <!--Form part1-->
+                        <div class="row m-3 form1">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-outline">
+                                        <input class="form-control" id="folio" readonly />
+                                        <label class="form-label" for="folio">FOLIO</label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <select class="form-select" asp-for="Estado" aria-label="Default select example">
+                                        <option value="PENDIENTE">PENDIENTE</option>
+                                    </select>
                                 </div>
                             </div>
-                            <div class="col-6">
-                                <select id="cont" class="form-select" asp-for="Contacto" aria-label="Default select example">
-                                    <option selected>CONTACTO</option>
-                                    CONTACTO
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row mt-2">
-                            <div class="col-4 form-outline" style="margin-left: 3%; margin-right: 3%;">
-                                <input type="tel" asp-for="Fono_contacto" id="telefono1" class="form-control" readonly />
-                                <label class="form-label" asp-for="Fono_contacto">TELÉFONO 1</label>
-                            </div>
-                            <div class="col-3 form-outline" style="margin-right: 3%;">
-                                <input type="tel" id="telefono2" class="form-control" readonly />
-                                <label class="form-label">TELÉFONO 2</label>
-                            </div>
-                            <div class="col-3 form-outline">
-                                <input type="tel" id="telefono3" class="form-control" readonly />
-                                <label class="form-label">TELÉFONO 3</label>
-                            </div>
-                        </div>
-                        <div class="row mt-2">
-                            <div class="col-5">
-                                <div class="form-outline">
-                                    <input type="email" asp-for="Email" id="email" class="form-control" readonly />
-                                    <label class="form-label" asp-for="Email">EMAIL</label>
+                            <div class="row mt-2">
+                                <div class="col-6">
+                                    <div class="form-outline folio">
+                                        <input type="text" id="clt" asp-for="Empresa" class="form-control" />
+                                        <label class="form-label" asp-for="Empresa">CLIENTE</label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-outline">
+                                        <input type="text" id="ali" class="form-control" readonly />
+                                        <label class="form-label" id="aliLabel">ALIAS</label>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-7">
-                                <select class="form-select" asp-for="Modo" id="medioo" aria-label="Default select example">
-                                </select>
+                            <div class="row mt-2">
+                                <div class="col-6">
+                                    <div class="form-outline">
+                                        <input type="email" id="emailEm" class="form-control" readonly />
+                                        <label class="form-label">EMAIL EMPRESA</label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <select id="cont" class="form-select" asp-for="Contacto" aria-label="Default select example">
+                                        <option selected>CONTACTO</option>
+                                        CONTACTO
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-4 form-outline" style="margin-left: 3%; margin-right: 3%;">
+                                    <input type="tel" asp-for="Fono_contacto" id="telefono1" class="form-control" readonly />
+                                    <label class="form-label" asp-for="Fono_contacto">TELÉFONO 1</label>
+                                </div>
+                                <div class="col-3 form-outline" style="margin-right: 3%;">
+                                    <input type="tel" id="telefono2" class="form-control" readonly />
+                                    <label class="form-label">TELÉFONO 2</label>
+                                </div>
+                                <div class="col-3 form-outline">
+                                    <input type="tel" id="telefono3" class="form-control" readonly />
+                                    <label class="form-label">TELÉFONO 3</label>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-5">
+                                    <div class="form-outline">
+                                        <input type="email" asp-for="Email" id="email" class="form-control" readonly />
+                                        <label class="form-label" asp-for="Email">EMAIL</label>
+                                    </div>
+                                </div>
+                                <div class="col-7">
+                                    <select class="form-select" asp-for="Modo" id="medioo" aria-label="Default select example">
+                                    </select>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!--Form part2-->
-                    <div class="row m-3 form1">
-                        <div class="row mt-2">
-                            <div class="col-6">
-                                <select class="form-select" asp-for="Grupo" id="atrabj" aria-label="Default select example">
-                                    <option value="SOLUTIONS">SOLUTIONS</option>
-                                </select>
+                        <!--Form part2-->
+                        <div class="row m-3 form1">
+                            <div class="row mt-2">
+                                <div class="col-6">
+                                    <select class="form-select" asp-for="Grupo" id="atrabj" aria-label="Default select example">
+                                        <option value="SOLUTIONS">SOLUTIONS</option>
+                                    </select>
+                                </div>
+                                <div class="col-6">
+                                    <select class="form-select" asp-for="Tipo" id="supp" aria-label="Default select example">
+                                    </select>
+                                </div>
                             </div>
-                            <div class="col-6">
-                                <select class="form-select" asp-for="Tipo" id="supp" aria-label="Default select example">
-                                </select>
+                            <div class="row mt-2">
+                                <div class="col-6">
+                                    <select class="form-select" id="asignadoo" asp-for="Tecnico" aria-label="Default select example">
+                                        ASIGNADO
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="md-form">
+                                    <textarea asp-for="Requerimiento" class="md-textarea form-control textareaStyle" rows="3"></textarea>
+                                    <label asp-for="Requerimiento">Resumen del ticket</label>
+                                </div>
                             </div>
                         </div>
-                        <div class="row mt-2">
-                            <div class="col-6">
-                                <select class="form-select" id="asignadoo" asp-for="Tecnico" aria-label="Default select example">
-                                    ASIGNADO
-                                </select>
+                        <!--Form parte 3-->
+                        <!--Button para desplegar-->
+                        <div class="row w-100">
+                            <div class="col text-center">
+                                <button type="submit" class="btn btn-lg buttCreate" style="background: white;">Editar Ticket</button>
                             </div>
                         </div>
-                        <div class="row mt-2">
-                            <div class="md-form">
-                                <textarea asp-for="Requerimiento" class="md-textarea form-control textareaStyle" rows="3"></textarea>
-                                <label asp-for="Requerimiento">Resumen del ticket</label>
-                            </div>
-                        </div>
-                    </div>
-                    <!--Form parte 3-->
-                    <!--Button para desplegar-->
-                    <div class="row w-100 d-flex justify-content-center">
+                        @*<div class="row w-100 d-flex justify-content-center">
                         <div class="col-4">
                             <button type="button" onclick="seleccionarVista('avancesDiv')" class="btn coloAction float-lg-right">AVANCES</button>
                         </div>
@@ -149,18 +165,26 @@
                         </div>
                         <div class="col-5">
                             <button type="button" onclick="seleccionarVista('trbjRealizado')" class="btn coloAction float-lg-left">TRABAJO RALIZADO</button>
+                            </div>
                         </div>
-                    </div>
-                    <!--Vistas para desplegar-->
-                    <div class="row m-3 form1" id="contenedorVistas" style="display:none">
+                        Vistas para desplegar
+                        <div class="row m-3 form1" id="contenedorVistas" style="display:none">
 
+                        </div>*@
+                    </div>
+                    <div id="avancesVist" class="tabcontent">
+                        <h1>AVANCEs</h1>
+                    </div>
+                    <div id="passVist" class="tabcontent">
+                        <h1>PASSWORD</h1>
+                    </div>
+                    <div id="trbReaVist" class="tabcontent">
+                        <h1>TRABAJO REALIZADO</h1>
                     </div>
                 </div>
                 
                 <div class="modal-footer modalColor">
-                    <div class="col text-center">
-                        <button type="submit" class="btn btn-lg buttCreate" style="background: white;">Editar Ticket</button>
-                    </div>
+                    
                 </div>
             </div>
         </div>

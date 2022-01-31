@@ -23,7 +23,10 @@ namespace SPCAPP.TicketWeb.Controllers
         //http get index
         public IActionResult Index()
         {
-            IEnumerable<TicketSpc> listaTicket = _context.TicketSpc;
+            var ultimoTicket = _context.TicketSpc.Count();
+            var primerTicket = ultimoTicket - 200;
+            IEnumerable<TicketSpc> listaTicket = _context.TicketSpc.Skip(Math.Max(0,primerTicket));
+           
             return View(listaTicket);
         }
 
@@ -84,11 +87,12 @@ namespace SPCAPP.TicketWeb.Controllers
         //http post edit, el validate se encarga de limitar solicitudes en caso de uso de bot
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult EditTicket(TicketSpc ticket)
+        public IActionResult EditTicket(TicketSpc ticket, int id)
         {
             //valida que cumpla con todo las restricciones de la tabla ticket establecidas por las Data
             if (ModelState.IsValid)
             {
+                ticket.Id = id;
                 _context.TicketSpc.Update(ticket);
                 
                 _context.SaveChanges();
