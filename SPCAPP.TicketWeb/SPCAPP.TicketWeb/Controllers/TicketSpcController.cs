@@ -107,7 +107,6 @@ namespace SPCAPP.TicketWeb.Controllers
         //http get delete
         public IActionResult Delete(int? id)
         {
-            id= (int)TempData["idTk"];
             //validar que la id
             if (id == null || id == 0)
             {
@@ -128,7 +127,7 @@ namespace SPCAPP.TicketWeb.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeleteTicket(int? id)
         {
-            var ticket = _context.TicketSpc.Find(id);
+            var ticket = _context.TicketSpc.Find((int)TempData["idTk"]);
             if (ticket == null)
             {
                 return NotFound();
