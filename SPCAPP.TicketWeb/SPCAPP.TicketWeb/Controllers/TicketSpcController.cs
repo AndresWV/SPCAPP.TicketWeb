@@ -4,10 +4,11 @@ using SPCAPP.TicketWeb.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace SPCAPP.TicketWeb.Controllers
 {
+
     public class TicketSpcController : Controller
     {
         //conexion con la base de datos
@@ -87,12 +88,12 @@ namespace SPCAPP.TicketWeb.Controllers
         //http post edit, el validate se encarga de limitar solicitudes en caso de uso de bot
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult EditTicket(TicketSpc ticket, int id)
+        public IActionResult EditTicket(TicketSpc ticket, int idTick)
         {
             //valida que cumpla con todo las restricciones de la tabla ticket establecidas por las Data
             if (ModelState.IsValid)
             {
-                ticket.Id = id;
+                ticket.Id = (int)TempData["idTk"]; 
                 _context.TicketSpc.Update(ticket);
                 
                 _context.SaveChanges();
@@ -106,6 +107,7 @@ namespace SPCAPP.TicketWeb.Controllers
         //http get delete
         public IActionResult Delete(int? id)
         {
+            id= (int)TempData["idTk"];
             //validar que la id
             if (id == null || id == 0)
             {

@@ -1,33 +1,38 @@
 ﻿@model SPCAPP.TicketWeb.Models.TicketSpc
-
+@{
+    TempData["idTk"] = (int)Model.Id;
+}
 <div>
-    <form method="post" asp-action="EditTicket" asp-route-id=Model.Id>
-
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <!--Titulo-->
-                <div class="modal-header modalColor">
-                    <div class="col-7">
-                        <h5 id="staticBackdropLabel" class="modal-title titulo float-lg-right">TICKET SPCAA</h5>
-                    </div>
-                    <div class="col-5">
-                        <button type="button" onclick="closeModal('#modelMike')" class="btn-close cerrar" data-mdb-dismiss="modal"
-                                aria-label="Close"></button>
-                    </div>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <!--Titulo-->
+            <div class="modal-header modalColor">
+                <div class="col-7">
+                    <h5 id="staticBackdropLabel" class="modal-title titulo float-lg-right">TICKET SPCAA</h5>
                 </div>
+                <div class="col-5">
+                    <button type="button" onclick="closeModal('#modelMike')" class="btn-close cerrar" data-mdb-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+            </div>
 
-                <div class="modal-body">
-                    <!--TABS-->
-                    <div class="tab">
-                        <div class="tab">
-                            <button class="tablinks" onclick="openTabs(event, 'editVist')">EDITAR</button>
-                            <button class="tablinks" onclick="openTabs(event, 'avancesVist')">AVANCES</button>
-                            <button class="tablinks" onclick="openTabs(event, 'passVist')">PASSWORD</button>
-                            <button class="tablinks" onclick="openTabs(event, 'trbReaVist')">TRABAJO RALIZADO</button>
-                        </div>
-                    </div>
-
+            <div class="modal-body">
+                <!--TABS-->
+                @*<div class="tab">
+                    <button id="defaultOpen" class="tablinks" onclick="openTabs(event, 'editVist')">EDITAR</button>
+                    <button class="tablinks" onclick="openTabs(event, 'avancesVist')">AVANCES</button>
+                    <button class="tablinks" onclick="openTabs(event, 'passVist')">PASSWORD</button>
+                    <button class="tablinks" onclick="openTabs(event, 'trbReaVist')">TRABAJO RALIZADO</button>
+                </div>*@
+                <div class="tab">
+                    <button id="defaultOpen" class="tablinks" onclick="openTabs(event, 'editVist')">EDITAR</button>
+                    <button class="tablinks" onclick="openTabs(event, 'avancesVist')">AVANCES</button>
+                    <button class="tablinks" onclick="openTabs(event, 'passVist')">PASSWORD</button>
+                    <button class="tablinks" onclick="openTabs(event, 'trbReaVist')">TRABAJO REALIZADO</button>
+                </div>
+                <form method="post" asp-action="EditTicket" asp-route-idTick=@ViewData["idd"]>
                     <div id="editVist" class="tabcontent">
+
                         <!--Fecha y hora-->
                         <div class="row date">
                             <div class="col-3">
@@ -151,26 +156,7 @@
                         </div>
                         <!--Form parte 3-->
                         <!--Button para desplegar-->
-                        <div class="row w-100">
-                            <div class="col text-center">
-                                <button type="submit" class="btn btn-lg buttCreate" style="background: white;">Editar Ticket</button>
-                            </div>
-                        </div>
-                        @*<div class="row w-100 d-flex justify-content-center">
-                        <div class="col-4">
-                            <button type="button" onclick="seleccionarVista('avancesDiv')" class="btn coloAction float-lg-right">AVANCES</button>
-                        </div>
-                        <div class="col-3">
-                            <button type="button" onclick="seleccionarVista('passwordDiv')" class="btn coloAction ml-2">CONTRASEÑAS</button>
-                        </div>
-                        <div class="col-5">
-                            <button type="button" onclick="seleccionarVista('trbjRealizado')" class="btn coloAction float-lg-left">TRABAJO RALIZADO</button>
-                            </div>
-                        </div>
-                        Vistas para desplegar
-                        <div class="row m-3 form1" id="contenedorVistas" style="display:none">
 
-                        </div>*@
                     </div>
                     <div id="avancesVist" class="tabcontent">
                         <h1>AVANCEs</h1>
@@ -181,13 +167,19 @@
                     <div id="trbReaVist" class="tabcontent">
                         <h1>TRABAJO REALIZADO</h1>
                     </div>
-                </div>
-                
-                <div class="modal-footer modalColor">
-                    
+                </form>
+
+
+            </div>
+
+            <div class="modal-footer modalColor">
+                <div class="row w-100">
+                    <div class="col text-center">
+                        <input type="submit" class="btn btn-lg buttCreate" value="Editar Ticket" style="background: white;" />
+                    </div>
                 </div>
             </div>
         </div>
-
-    </form>
+    </div>
+    
 </div>

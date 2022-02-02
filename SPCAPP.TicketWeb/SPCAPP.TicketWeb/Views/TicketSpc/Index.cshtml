@@ -57,6 +57,9 @@
                             <td class="text-uppercase">@item.Tecnico</td>
 
                             <td>
+                                @{ 
+                                    ViewData["idd"] = (int)@item.Id;
+                                }
                                 <!--Ver-->
                                 <a class="btn coloAction" onclick="crearModal(2,@item.Id)"><i class="fas fa-search-plus"></i></a>
                                 <!--Editar-->
@@ -115,6 +118,7 @@
 </div>
 @section Scripts{
     <script>
+        document.getElementById("defaultOpen").click();
         function openTabs(evt, cityName) {
             // Declare all variables
             var i, tabcontent, tablinks;
@@ -166,6 +170,11 @@
             var s3 = document.createElement("script");
             s3.type = "text/javascript";
             s3.src = "/js/calendarBack.js";
+            $("head").append(s3);
+            //edit
+            var s3 = document.createElement("script");
+            s3.type = "text/javascript";
+            s3.src = "/js/editModal.js";
             $("head").append(s3);
 
             $('#modalCreate').modal("show");
