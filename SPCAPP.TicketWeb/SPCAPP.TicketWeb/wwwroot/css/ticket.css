@@ -101,7 +101,7 @@ display: none;
 }
 /*logo*/
 .imgA {
-    margin-right: 25%;
+    margin-right: 45%;
 }
 @media screen and (max-width: 680px) {
     .topnav a:not(:first-child) {
