@@ -127,7 +127,7 @@ namespace SPCAPP.TicketWeb.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeleteTicket(int? id)
         {
-            var ticket = _context.TicketSpc.Find((int)TempData["idTk"]);
+            var ticket = _context.TicketSpc.Find(TempData["idTkDel"]);
             if (ticket == null)
             {
                 return NotFound();
@@ -167,7 +167,7 @@ namespace SPCAPP.TicketWeb.Controllers
         }
         public IActionResult GetNombresClientesNom(string term)
         {
-            var result = bd.Empresas.ToList().Where(x => x.Codigo.Equals(term)).Select(x=>x.NomAux);
+            var result = bd.Empresas.ToList().Where(x => x.Codigo.Equals(term));
             return Json(result);
         }
         //Devuelve el primer objeto con la data de la empresa
@@ -224,11 +224,13 @@ namespace SPCAPP.TicketWeb.Controllers
             var areas = bd.TkGrupos;
             return Json(areas);
         }
-        public TicketSpc GetTicket(int id)
+        public TicketSpc GetTicket()
         {
+            var id = TempData["idTk"];
             var ticket = bd.TicketSpcs.Where(x => x.Id.Equals(id)).FirstOrDefault();
             return ticket;
         }
+
     }
     
 }

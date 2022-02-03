@@ -15,10 +15,8 @@ $(document).ready(function () {
     //Cuando seleccione un elemento del menu desplegable...
     select: function (event, ui) {
         $.get("/TicketSpc/GetNombresClientesNom", { term: ui.item.value }, function (dataNom) {
-            console.log(dataNom[0]);
             //tomar datos en base al cliente seleccionado por el autocompletado
-            $.get("/TicketSpc/GetAlias", { term: dataNom[0] }, function (data) {
-                console.log(data);
+            $.get("/TicketSpc/GetAlias", { term: dataNom[0].NomAux }, function (data) {
                 $(".result").html(data);
                 //cambiar código
                 $("#cod").val("" + data.codAux);

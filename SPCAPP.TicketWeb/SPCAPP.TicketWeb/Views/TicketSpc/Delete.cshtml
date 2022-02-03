@@ -1,5 +1,7 @@
 ﻿@model SPCAPP.TicketWeb.Models.TicketSpc
-
+@{
+    TempData["idTkDel"] = (int)Model.Id;
+}
 <div>
     <form method="post" asp-action="DeleteTicket" asp-route-id=@ViewData["idd"]>
 
@@ -61,7 +63,7 @@
                         <div class="row mt-2">
                             <div class="col-6">
                                 <div class="form-outline folio">
-                                    <input type="text" id="clt" asp-for="Empresa" class="form-control" disabled/>
+                                    <input type="text" id="clt" asp-for="Empresa" class="form-control" disabled />
                                     <label class="form-label" asp-for="Empresa">CLIENTE</label>
                                 </div>
                             </div>
