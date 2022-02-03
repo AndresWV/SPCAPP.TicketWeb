@@ -1977,13 +1977,13 @@ namespace SPCAPP.TicketWeb.Models
 
                 entity.Property(e => e.FechaTrabajo).HasColumnType("datetime");
 
-                entity.Property(e => e.FkProcede)
+                entity.Property(e => e.Fk_procede)
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Fk_Procede")
                     .HasComment("Modern_Spanish_CI_AS");
 
-                entity.Property(e => e.FonoContacto)
+                entity.Property(e => e.Fono_contacto)
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasColumnName("Fono_contacto")

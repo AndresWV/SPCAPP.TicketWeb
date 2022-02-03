@@ -1,8 +1,8 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="es-cl">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, scale=1.0" />
     <!--JQUERY-->
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
@@ -24,11 +24,12 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.1/mdb.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.1/mdb.min.js"></script>
     <!-- MDBootstrap Datatables  -->
-    <script type="text/javascript" src="js/addons/datatables.min.js"></script>
     <title>TICKET SPCAPP</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-
+    <link rel="stylesheet" href="~/css/modalStyle.css" />
+    <link rel="stylesheet" href="~/css/login.css" />
+    <link rel="stylesheet" href="~/css/mediaquery.css" />
 
 
 
@@ -37,13 +38,13 @@
 
     <header>
         <div class="topnav mb-6 border-bottom box-shadow" id="myTopnav">
-            <a class="imgA"><img style="max-width:200px;" class="imgLogo" src="/img/logo-1.png"></a>
-            <a class="nav-link text-white font-weight-bold mt-3" asp-area="" asp-controller="Home" asp-action="Index">INICIO</a>
-            <a class="nav-link text-white font-weight-bold mt-3" asp-area="" asp-controller="Home" asp-action="Privacy">PRIVACY</a>
-            <a class="nav-link text-white font-weight-bold mt-3" asp-area="" asp-controller="Tickett" asp-action="Index">TICKET</a>
-            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-                <i class="fa fa-bars"></i>
-            </a>
+            <div class="d-flex justify-content-lg-end">
+                <a class="imgA"><img style="max-width:200px; margin-left:50%" class="imgLogo" src="/img/logo-1.png"></a>
+                <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                    <i class="fa fa-bars"></i>
+                </a>
+                <a class="nav-link text-white font-weight-bold mt-3" asp-area="" asp-controller="Home" asp-action="CerrarSesion">Cerrar sesion</a>
+            </div>
         </div>
 
     </header>
@@ -72,8 +73,10 @@
     <!--Script para que se visualicen las lineas de input-->
     <script type="text/javascript" src="~/js/calendarBack.js"></script>
     <script type="text/javascript" src="~/js/lineasInput.js"></script>
+    <script type="text/javascript" src="~/js/editModal.js"></script>
     <script type="text/javascript" src="~/js/paginacion.js"></script>
     <script type="text/javascript" src="~/js/navBack.js"></script>
+    <script type="text/javascript" src="~/js/modal.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

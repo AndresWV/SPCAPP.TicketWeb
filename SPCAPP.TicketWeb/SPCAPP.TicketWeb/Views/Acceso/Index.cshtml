@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="loginContainer">
+    <div class="container">
+        <div class="row form">
+            <!--Imagen soft-->
+            <div class="col-7 softland">
+                <div class="imagenLogin">
+
+                </div>
+
+            </div>
+            <!--Form login-->
+            <div class="col-5 formBorder ml-0">
+                <form action="@Url.Action("Index","Acceso")" method="post">
+                    <!--Titulo-->
+                    <div class="row mt-5">
+                        <h3 class="textLogin">INICIAR SESION</h3>
+                    </div>
+                    <!--form login-->
+                    <div class="row centrarForm mt-3">
+                        <div class="row">
+                            <!-- Email input -->
+                            <div class="form-outline mb-4">
+                                <input type="text" name="nomUsuario" id="form3Example3" class="form-control form-control-lg inputLog"
+                                       placeholder="INGRESE SU USUARIO" />
+                                <label class="form-label texInput" for="form3Example3">USUARIO</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <!-- Password input -->
+                            <div class="form-outline mb-3">
+                                <input type="password" name="pass" id="form3Example4" class="form-control form-control-lg inputLog"
+                                       placeholder="INGRESE SU CONTRASEÑA" />
+                                <label class="form-label texInput" for="form3Example4">CONTRASEÑA</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <button type="submit" class="btn btn-primary buttonlen"><label class="texInputBut">LOGIN</label></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

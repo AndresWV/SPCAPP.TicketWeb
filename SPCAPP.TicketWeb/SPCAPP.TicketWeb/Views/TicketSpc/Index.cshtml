@@ -1,0 +1,213 @@
+﻿@model IEnumerable<SPCAPP.TicketWeb.Models.TicketSpc>
+@{
+    ViewData["Title"] = "Lista de ticket";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container AREA_PARTIAL_VIEW">
+    <!--Notificacion de que el Ticket se a creado correctamente-->
+    @if (TempData["mensaje"] != null)
+    {
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            @TempData["mensaje"]
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+    <div class="row mb-4">
+        <div class="col-sm-7" style="margin-left:5%">
+            <h3 class="text-right">TICKET GENERADOS</h3>
+        </div>
+        <div class="col-sm-4">
+
+            <a class="btn float-lg-right colorB" onclick="crearModal(1,0)">Crear Ticket</a>
+        </div>
+    </div>
+
+
+
+    <div class="row">
+
+        @if (Model.Count() > 0)
+        {
+            <table id="dtBasicExample" class="table table-bordered table-hover w-100" style="display:none">
+                <thead class="table-striped">
+                    <tr class="table-striped text-white small">
+                        <td class="text-uppercase">@Html.DisplayNameFor(m => m.Id)</td>
+                        <td class="text-uppercase">@Html.DisplayNameFor(m => m.Fecha)</td>
+                        <td class="text-uppercase">@Html.DisplayNameFor(m => m.Estado)</td>
+                        <td class="text-uppercase">@Html.DisplayNameFor(m => m.Empresa)</td>
+
+                        <td class="text-uppercase">@Html.DisplayNameFor(m => m.Tecnico)</td>
+
+                        <td>ACCIONES</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr class="w-100">
+                            <td>@item.Id</td>
+                            <td>@item.Fecha</td>
+                            <td class="text-uppercase">@item.Estado</td>
+                            <td class="text-uppercase">@item.Empresa</td>
+
+
+                            <td class="text-uppercase">@item.Tecnico</td>
+
+                            <td>
+                                @{ 
+                                    ViewData["idd"] = (int)@item.Id;
+                                }
+                                <!--Ver-->
+                                <a class="btn coloAction" onclick="crearModal(2,@item.Id)"><i class="fas fa-search-plus"></i></a>
+                                <!--Editar-->
+                                <a class="btn coloAction" onclick="crearModal(3,@item.Id)"><i class="fas fa-edit"></i></a>
+                                <!--Eliminar-->
+                                <a class="btn coloAction" onclick="crearModal(4,@item.Id)"><i class="fas fa-trash-alt"></i></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>No existen registros</p>
+        }
+
+        <div id="load">
+            <center><img src="https://novacer.spcapp.cl/loading.gif" /></center>
+        </div>
+       
+            <div class="modal fade" id="modalCreate" data-mdb-backdrop="static" data-mdb-keyboard="false" tabindex="-1"
+                 aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            </div>
+               <div class="modal fade" id="modelMike" data-mdb-backdrop="static" data-mdb-keyboard="false" tabindex="-1"
+             aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <!--Titulo-->
+                    <div class="modal-header modalColor">
+                        <div class="col-8">
+                            <h5 id="staticBackdropLabel" class="modal-title titulo">TICKET SPCAA</h5>
+                        </div>
+                        <div class="col-4">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="modal-body">
+                        <h1>Contenido prueba</h1>
+                    </div>
+
+                    <div class="modal-footer modalColor">
+
+                        <div class="col text-center">
+                            <button type="submit" class="btn btn-lg buttCreate" style="background: white;">Crear Ticket</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+@section Scripts{
+
+    <script>
+      
+        document.getElementById("defaultOpen").click();
+        function openTabs(evt, cityName) {
+            // Declare all variables
+            var i, tabcontent, tablinks;
+
+            // Get all elements with class="tabcontent" and hide them
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            // Get all elements with class="tablinks" and remove the class "active"
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            // Show the current tab, and add an "active" class to the button that opened the tab
+            document.getElementById(cityName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        function abrirGastos() {
+            $("#vistaGastoss").load("/Gastos/GastosVista");
+            $("#gastosVista").show();
+            
+        }
+        function seleccionarVista(id) {
+            $("#avancesDiv").hide();
+            $("#passwordDiv").hide();
+            $("#trbjRealizado").hide();
+            var idd = "#" + id;
+            $("#contenedorVistas").show();
+            $(idd).show();
+        }
+        //Cargar los script como al abrir el modal no se estaban cargando debido a que al abrir una ventana emergente
+        //no se vuelven a llamar
+        function cargarScript() {
+            //modal
+            var s = document.createElement("script");
+            s.type = "text/javascript";
+            s.src = "/js/modal.js";
+            $("head").append(s);
+            //mdb input
+            var s2 = document.createElement("script");
+            s2.type = "text/javascript";
+            s2.src = "/js/lineasInput.js";
+            $("head").append(s2);
+            //calendario
+            var s3 = document.createElement("script");
+            s3.type = "text/javascript";
+            s3.src = "/js/calendarBack.js";
+            $("head").append(s3);
+            //edit
+            var s3 = document.createElement("script");
+            s3.type = "text/javascript";
+            s3.src = "/js/editModal.js";
+            $("head").append(s3);
+
+            $('#modalCreate').modal("show");
+        }
+        //Controlar que modal se abrira
+        function crearModal(buttonOption, idd) {
+            //Crear ticket
+            if (buttonOption == 1) {
+                $("#modalCreate").load("/TicketSpc/Create", function () {
+                    cargarScript();
+                });
+            }
+            //ver ticket
+            else if (buttonOption == 2) {
+                $("#modalCreate").load("/TicketSpc/View", { id : idd} ,function () {
+                    cargarScript();
+                });
+            }
+            //Editat ticket
+            else if (buttonOption == 3) {
+                $("#modalCreate").load("/TicketSpc/Edit", { id: idd }, function () {
+                    cargarScript();
+                });
+            }
+            //Eliminar ticket
+            else {
+                $("#modalCreate").load("/TicketSpc/Delete", { id: idd }, function () {
+                    cargarScript();
+                });
+            }
+        }
+        
+    </script>
+}

@@ -13,7 +13,6 @@ namespace SPCAPP.TicketWeb.Data
         {
 
         }
-
-        public DbSet<Tickett> Tickett { get; set; }
+        public DbSet<TicketSpc> TicketSpc { get; set; }
     }
 }
