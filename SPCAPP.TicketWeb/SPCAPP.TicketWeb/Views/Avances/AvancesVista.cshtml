@@ -16,14 +16,14 @@
                 </div>
             </div>
             <div class="col-6 float-lg-right">
-                <input type="datetime-local" id="meeting-time" name="meeting-time" class="float-lg-right">
+                <input type="datetime-local" id="meeting-time" name="meeting-time" class="float-lg-right" asp-for="HrsPrograma">
             </div>
         </div>
     </div>
     <div class="row">
         <div class="form-group">
             <label for="avancesDesc">DESCRIPCION DE LOS AVANCES</label>
-            <textarea class="form-control" id="avancesDesc" rows="7"></textarea>
+            <textarea class="form-control" id="avancesDesc" asp-for="Avance" rows="7"></textarea>
         </div>
     </div>
 </div>

@@ -8,10 +8,6 @@ namespace SPCAPP.TicketWeb.Controllers
 {
     public class AvancesController : Controller
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
         [HttpGet]
         public IActionResult AvancesVista()
         {
