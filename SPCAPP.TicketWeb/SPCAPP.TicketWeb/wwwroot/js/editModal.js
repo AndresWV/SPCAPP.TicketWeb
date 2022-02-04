@@ -29,11 +29,35 @@ $.get("/TicketSpc/GetTicket", function (ticket) {
             $(option).html(mcontactosLista[i].medio1); //Escribes en él el nombre de la provincia
             $(option).appendTo("#mediooEdit"); //Lo metes en el select con id provincias
             if (mcontactosLista[i].medio1 == ticket.modo) {
-                
                 opt = $(option).html(mcontactosLista[i].medio1);
             }
-            $("#mediooEdit").val(opt[0].label);
         }
+        $("#mediooEdit").val(opt[0].label);
+    });
+    $.get("/TicketSpc/GetTSoporte", function (soportes) {
+        var opt = '';
+        for (var i = 0; i < soportes.length; i++) {
+            var option = document.createElement("option"); //Creas el elemento opción
+            $(option).html(soportes[i].tipoDes); //Escribes en él el nombre de la provincia
+            $(option).appendTo("#supp"); //Lo metes en el select con id provincias
+            if (soportes[i].tipoDes == ticket.tipo) {
+                opt = $(option).html(soportes[i].tipoDes);
+            }
+        }
+        $("#supp").val(opt[0].label);
+    });
+    $.get("/TicketSpc/GetTecnico", function (tecnicos) {
+        var opt = '';
+        console.log(tecnicos);
+        for (var i = 0; i < tecnicos.length; i++) {
+            var option = document.createElement("option"); 
+            $(option).html(tecnicos[i].tecnicoNom);
+            $(option).appendTo("#asignadoo"); 
+            if (tecnicos[i].tecnicoNom == ticket.userCreaTk) {
+                opt = $(option).html(tecnicos[i].tecnicoNom);
+            }
+        }
+        $("#asignadoo").val(opt[0].label);
     });
 });
 
