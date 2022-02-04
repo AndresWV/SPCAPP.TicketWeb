@@ -16,7 +16,7 @@ $(document).ready(function () {
     select: function (event, ui) {
         $.get("/TicketSpc/GetNombresClientesNom", { term: ui.item.value }, function (dataNom) {
             //tomar datos en base al cliente seleccionado por el autocompletado
-            $.get("/TicketSpc/GetAlias", { term: dataNom[0].NomAux }, function (data) {
+            $.get("/TicketSpc/GetAlias", { term: dataNom[0].nomAux }, function (data) {
                 $(".result").html(data);
                 //cambiar código
                 $("#cod").val("" + data.codAux);
@@ -32,6 +32,7 @@ $(document).ready(function () {
                 $('#emailEm').focus();
                 //cargar contactos para el select contacto
                 $.get("/TicketSpc/GetContactos", { term: data.codAux }, function (data2) {
+                    
                     for (var i = 0; i < data2.length; i++) {
                         var option = document.createElement("option"); //Creas el elemento opción
                         $(option).html(data2[i].nomCon); //Escribes en él el nombre de la provincia
@@ -104,7 +105,6 @@ $.get("/TicketSpc/GetTecnico", function (dataAsignados) {
 
 //Traer gastos
 $.get("/TicketSpc/GetGastos", function (dataAsignados) {
-    console.log(dataAsignados[0].desGasto);
     for (var i = 0; i < dataAsignados.length; i++) {
         
         var option = document.createElement("option"); //Creas el elemento opción

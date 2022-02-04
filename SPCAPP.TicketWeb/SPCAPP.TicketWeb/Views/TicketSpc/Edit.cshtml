@@ -26,7 +26,6 @@
                 </div>
                 <form method="post" asp-action="EditTicket" asp-route-idTick=@ViewData["idd"]>
                     <div id="editVist" class="tabcontent">
-
                         <!--Fecha y hora-->
                         <div class="row date">
                             <div class="col-3">
@@ -75,7 +74,7 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="form-outline">
-                                        <input type="text" id="ali" class="form-control" readonly />
+                                        <input type="text" id="aliEdit" class="form-control" readonly />
                                         <label class="form-label" id="aliLabel">ALIAS</label>
                                     </div>
                                 </div>
@@ -90,8 +89,6 @@
                                 <div class="col-6">
                                    
                                     <select id="contEdit" class="form-select"  asp-for="Contacto" aria-label="Default select example">
-                                        <option selected>CONTACTO</option>
-                                        CONTACTO
                                     </select>
                                 </div>
                             </div>
@@ -117,7 +114,7 @@
                                     </div>
                                 </div>
                                 <div class="col-7">
-                                    <select class="form-select" asp-for="Modo" id="medioo" aria-label="Default select example">
+                                    <select class="form-select" asp-for="Modo" id="mediooEdit" aria-label="Default select example">
                                     </select>
                                 </div>
                             </div>
