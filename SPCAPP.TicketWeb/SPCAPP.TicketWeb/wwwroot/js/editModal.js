@@ -1,7 +1,7 @@
 ﻿$("#trbReaVist").load("/Avances/trbRealizadoVista");
 $("#passVist").load("/Avances/passwordVista");
 $("#avancesVist").load("/Avances/AvancesVista");
-
+$("#gastosVista").load("/Avances/gastos");
 
 $.get("/TicketSpc/GetTicket", function (ticket) {
     /*Con esto dejo setiado la opcion del contacto seleccionado*/
@@ -59,4 +59,7 @@ $.get("/TicketSpc/GetTicket", function (ticket) {
     });
 });
 
-
+function cargarGastos() {
+    $("#gastosVista").load("/Avances/gastos");
+    $("#gastosVista").show();
+}

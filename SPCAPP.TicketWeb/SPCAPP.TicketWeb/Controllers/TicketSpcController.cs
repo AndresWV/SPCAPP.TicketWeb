@@ -158,6 +158,7 @@ namespace SPCAPP.TicketWeb.Controllers
             }
             return PartialView("View", ticket);
         }
+
         /*********************************************DATOS PARA PRECARGAR CON AUTOCOMPLETADO**************************************************************************/
         public IActionResult GetNombresClientes(string term)
         {

@@ -25,5 +25,10 @@ namespace SPCAPP.TicketWeb.Controllers
         {
             return PartialView("trbRealizadoVista");
         }
+        [HttpGet]
+        public IActionResult gastos()
+        {
+            return PartialView("gastos");
+        }
     }
 }

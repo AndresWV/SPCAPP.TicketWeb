@@ -20,11 +20,6 @@ function openTabs(evt, cityName) {
     evt.currentTarget.className += " active";
 }
 
-function abrirGastos() {
-    $("#vistaGastoss").load("/Gastos/GastosVista");
-    $("#gastosVista").show();
-            
-}
 function seleccionarVista(id) {
     $("#avancesDiv").hide();
     $("#passwordDiv").hide();
