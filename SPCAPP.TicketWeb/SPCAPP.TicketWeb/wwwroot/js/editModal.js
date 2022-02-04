@@ -4,7 +4,6 @@ $("#avancesVist").load("/Avances/AvancesVista");
 
 
 $.get("/TicketSpc/GetTicket", function (ticket) {
-    console.log(ticket);
     /*Con esto dejo setiado la opcion del contacto seleccionado*/
     $.get("/TicketSpc/GetNombresClientesNom", { term: ticket.empresa }, function (dataMedios) {
         $("#aliEdit").val(dataMedios[0].nomAux);
@@ -48,7 +47,6 @@ $.get("/TicketSpc/GetTicket", function (ticket) {
     });
     $.get("/TicketSpc/GetTecnico", function (tecnicos) {
         var opt = '';
-        console.log(tecnicos);
         for (var i = 0; i < tecnicos.length; i++) {
             var option = document.createElement("option"); 
             $(option).html(tecnicos[i].tecnicoNom);
