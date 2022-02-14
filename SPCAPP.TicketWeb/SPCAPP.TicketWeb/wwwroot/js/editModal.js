@@ -50,16 +50,34 @@ $.get("/TicketSpc/GetTicket", function (ticket) {
         for (var i = 0; i < tecnicos.length; i++) {
             var option = document.createElement("option"); 
             $(option).html(tecnicos[i].tecnicoNom);
-            $(option).appendTo("#asignadoo"); 
+            $(option).appendTo("#asignadoo");
+            $(option).appendTo("#asignadoo2");
             if (tecnicos[i].tecnicoNom == ticket.userCreaTk) {
                 opt = $(option).html(tecnicos[i].tecnicoNom);
             }
         }
         $("#asignadoo").val(opt[0].label);
     });
-});
 
-function cargarGastos() {
+
+});
+function gastosAdd() {
     $("#gastosVista").load("/Avances/gastos");
     $("#gastosVista").show();
+    //Traer gastos
+    $.get("/TicketSpc/GetGastos", function (dataAsignados) {
+        for (var i = 0; i < dataAsignados.length; i++) {
+            var option = document.createElement("option"); //Creas el elemento opción
+            $(option).html(dataAsignados[i].desGasto); //Escribes en él el nombre de la provincia
+            $(option).appendTo("#gastosSelect"); //Lo metes en el select con id provincias
+        }
+    });
+}
+function tablaGas() {
+    $("#tablaGastos").load("/Avances/TablaGastos");
+    $("#tablaGastos").show();
+}
+function cargarGastos() {
+    gastosAdd();
+    tablaGas();
 }

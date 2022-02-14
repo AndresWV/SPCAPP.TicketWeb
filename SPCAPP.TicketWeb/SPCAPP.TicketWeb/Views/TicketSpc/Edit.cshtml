@@ -24,7 +24,8 @@
                     <button class="tablinks" onclick="openTabs(event, 'passVist')">PASSWORD</button>
                     <button class="tablinks" onclick="openTabs(event, 'trbReaVist')">TRABAJO REALIZADO</button>
                 </div>
-                <form method="post" asp-action="EditTicket" asp-route-idTick=@ViewData["idd"]>
+                <form method="post" asp-action="EditTicket" asp-route-idTick=@TempData["idTk"]>
+                    <input type="text" style="display:none" id="ide" asp-for="Id" />
                     <div id="editVist" class="tabcontent">
                         <!--Fecha y hora-->
                         <div class="row date">
@@ -148,22 +149,23 @@
                             </div>
                         </div>
 
-                    <!--Form parte 3-->
+                        <!--Form parte 3-->
                     </div>
                     <div id="avancesVist" class="tabcontent"></div>
                     <div id="passVist" class="tabcontent"></div>
                     <div id="trbReaVist" class="tabcontent"></div>
+                    <div class="row w-100">
+                        <div class="col text-center">
+                            <input type="submit" class="btn btn-lg buttCreate" value="Editar Ticket" style="background: white;" />
+                        </div>
+                    </div>
                 </form>
 
 
             </div>
 
             <div class="modal-footer modalColor">
-                <div class="row w-100">
-                    <div class="col text-center">
-                        <input type="submit" class="btn btn-lg buttCreate" value="Editar Ticket" style="background: white;" />
-                    </div>
-                </div>
+                
             </div>
         </div>
     </div>

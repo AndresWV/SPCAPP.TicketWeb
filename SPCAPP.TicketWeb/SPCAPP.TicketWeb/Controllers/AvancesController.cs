@@ -30,5 +30,11 @@ namespace SPCAPP.TicketWeb.Controllers
         {
             return PartialView("gastos");
         }
+
+        [HttpGet]
+        public IActionResult TablaGastos()
+        {
+            return PartialView("TablaGastos", new List<Models.RendTk>());
+        }
     }
 }

@@ -99,19 +99,9 @@ $.get("/TicketSpc/GetTecnico", function (dataAsignados) {
         var option = document.createElement("option"); //Creas el elemento opción
         $(option).html(dataAsignados[i].tecnicoNom); //Escribes en él el nombre de la provincia
         $(option).appendTo("#asignadoo"); //Lo metes en el select con id provincias
-        $(option).appendTo("#asignadoo2"); //Lo metes en el select con id provincias
     }
 });
 
-//Traer gastos
-$.get("/TicketSpc/GetGastos", function (dataAsignados) {
-    for (var i = 0; i < dataAsignados.length; i++) {
-        
-        var option = document.createElement("option"); //Creas el elemento opción
-        $(option).html(dataAsignados[i].desGasto); //Escribes en él el nombre de la provincia
-        $(option).appendTo("#gastosSelect"); //Lo metes en el select con id provincias
-    }
-});
 function closeModal(id) {
     $("#modalCreate").modal('hide');
 }

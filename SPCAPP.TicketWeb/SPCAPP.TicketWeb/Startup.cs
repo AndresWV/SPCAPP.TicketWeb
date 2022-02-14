@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -32,7 +33,6 @@ namespace SPCAPP.TicketWeb
                    providerOptions => providerOptions.EnableRetryOnFailure()));
             //Configuracion de cadena de conexion
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-           // services.AddDbContext<SPCTKContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection2")));
             services.AddControllersWithViews();
 
         }
@@ -54,7 +54,6 @@ namespace SPCAPP.TicketWeb
             app.UseStaticFiles();
 
             app.UseRouting();
-
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

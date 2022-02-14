@@ -93,9 +93,28 @@ namespace SPCAPP.TicketWeb.Controllers
             //valida que cumpla con todo las restricciones de la tabla ticket establecidas por las Data
             if (ModelState.IsValid)
             {
-                ticket.Id = (int)TempData["idTk"]; 
+                ticket.Id = idTick;
                 _context.TicketSpc.Update(ticket);
-                
+
+                if (ticket.Visita.Equals("true")) { ticket.Visita = "S"; }
+                else { ticket.Visita = "N"; }
+                if (ticket.Remoto.Equals("true")) { ticket.Remoto = "S"; }
+                else { ticket.Remoto = "N"; }
+                if (ticket.Taller.Equals("true")) { ticket.Taller = "S"; }
+                else { ticket.Taller = "N"; }
+                if (ticket.Telefono.Equals("true")) { ticket.Telefono = "S"; }
+                else { ticket.Telefono = "N"; }
+                if (ticket.Tw.Equals("true")) { ticket.Tw = "S"; }
+                else { ticket.Tw = "N"; }
+                if (ticket.Programado.Equals("true")) { ticket.Programado = "S"; }
+                else { ticket.Programado = "N"; }
+                if (ticket.Realizado.Equals("true")) { ticket.Realizado= "S"; }
+                else { ticket.Realizado = "N"; }
+
+                ticket.Ot = null;
+
+                var x = ticket;
+
                 _context.SaveChanges();
                 //Mensaje para cuandos se cree el ticket
                 TempData["mensaje"] = "El ticket se ha actualizado correctamente";
@@ -225,9 +244,13 @@ namespace SPCAPP.TicketWeb.Controllers
             var areas = bd.TkGrupos;
             return Json(areas);
         }
-        public TicketSpc GetTicket()
+        public TicketSpc GetTicket(int idd)
         {
             var id = TempData["idTk"];
+            if(id==null || id=="0")
+            {
+                id = idd;
+            }
             var ticket = bd.TicketSpcs.Where(x => x.Id.Equals(id)).FirstOrDefault();
             return ticket;
         }

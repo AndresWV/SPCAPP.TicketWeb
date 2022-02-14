@@ -1,5 +1,6 @@
 ﻿document.getElementById("defaultOpen").click();
 function openTabs(evt, cityName) {
+    trbRealizadoScript();
     // Declare all variables
     var i, tabcontent, tablinks;
 
@@ -19,7 +20,89 @@ function openTabs(evt, cityName) {
     document.getElementById(cityName).style.display = "block";
     evt.currentTarget.className += " active";
 }
+function trbRealizadoScript() {
+    var x = $("#ide").val()
+    $.get("/TicketSpc/GetTicket", { idd: x }, function (ticket) {
+        console.log(ticket);
+        $.get("/TicketSpc/GetNombresClientesNom", { term: ticket.empresa }, function (data) {
+            $("#aliEdit").val(data[0].nomAux)
+            $("#aliEdit").focus();
+            $.get("/TicketSpc/GetContactos", { term: ticket.codAux }, function (dataContacto) {
+                var medioSet = null;
+                for (var i = 0; i < dataContacto.length; i++) {
+                    var option = document.createElement("option"); //Creas el elemento opción
+                    $(option).html(dataContacto[i].nomCon); //Escribes en él el nombre de la provincia
+                    $(option).appendTo("#contEdit"); //Lo metes en el select con id provincias
+                    if (dataContacto[i].nomCon == ticket.contacto) {
+                        medioSet = dataContacto[i].nomCon
+                    }
+                }
+                $("#contEdit").val(medioSet);
+            });
+            /*SELECT QUE ESTA AL LADO DEL BUTTON DE GASTOS EN EL TAB TRABAJOS REALIZADOS*/
+            $.get("/TicketSpc/GetTecnico", function (tecnicos) {
+                var opt = '';
+                var opterminado = '';
+                for (var i = 0; i < tecnicos.length; i++) {
+                    var option = document.createElement("option");
+                    $(option).html(tecnicos[i].tecnicoNom);
+                    $(option).appendTo("#asignadoo");
+                    if (tecnicos[i].tecnicoNom == ticket.tecnico) {
+                        opt = tecnicos[i].tecnicoNom;
+                    }
+                }
+                $("#asignadoo").val(opt);
+            });
+            $.get("/TicketSpc/GetTecnico", function (tecnicos) {
+                var opt = '';
+                var opterminado = '';
+                for (var i = 0; i < tecnicos.length; i++) {
+                    var option = document.createElement("option");
+                    $(option).html(tecnicos[i].tecnicoNom);
+                    $(option).appendTo("#asignadoo2");
+                    if (tecnicos[i].tecnicoNom == ticket.terminado) {
+                        opt = tecnicos[i].tecnicoNom;
+                    }
+                }
+                $("#asignadoo2").val(opt);
+            });
+        });
+        /*INICIAR EL MEDIO DE CONTACTO, CON EL QUE FUE ELEGIDO CUANDO SE CREO EL TICKET*/
+        $.get("/TicketSpc/GetMContacto", function (dataMedios) {
+            var medioSet = null;
+            for (var i = 0; i < dataMedios.length; i++) {
+                var option = document.createElement("option"); //Creas el elemento opción
+                $(option).html(dataMedios[i].medio1); //Escribes en él el nombre de la provincia
+                $(option).appendTo("#mediooEdit"); //Lo metes en el select con id provincias
+                if (dataMedios[i].medio1 == ticket.modo) {
+                    medioSet = dataMedios[i].medio1
+                }
+            }
+            $("#mediooEdit").val(medioSet);
+        });
+        /*INICIAR EL TIPO DE SOPORTE, CON EL QUE FUE ELEGIDO CUANDO SE CREO EL TICKET*/
+        $.get("/TicketSpc/GetTSoporte", function (dataSoporte) {
+            console.log(dataSoporte[0].tipoDes);
+            var medioSet = null;
+            for (var i = 0; i < dataSoporte.length; i++) {
+                var option = document.createElement("option"); //Creas el elemento opción
+                $(option).html(dataSoporte[i].tipoDes); //Escribes en él el nombre de la provincia
+                $(option).appendTo("#supp"); //Lo metes en el select con id provincias
+                if (dataSoporte[i].tipoDes == ticket.tipo) {
+                    medioSet = dataSoporte[i].tipoDes;
+                }
+            }
+            $("#supp").val(medioSet);
+        });
+        /*SETEAR TEXTAREA DE AVANCES*/
+        $("#avancesDesc").val(ticket.avance)
+        /*SETEAR TEXTAREA DE PASSWORD*/
+        $("#passwordDesc").val(ticket.passwords)
+    });
+    
+    
 
+}
 function seleccionarVista(id) {
     $("#avancesDiv").hide();
     $("#passwordDiv").hide();
