@@ -82,7 +82,6 @@ function trbRealizadoScript() {
         });
         /*INICIAR EL TIPO DE SOPORTE, CON EL QUE FUE ELEGIDO CUANDO SE CREO EL TICKET*/
         $.get("/TicketSpc/GetTSoporte", function (dataSoporte) {
-            console.log(dataSoporte[0].tipoDes);
             var medioSet = null;
             for (var i = 0; i < dataSoporte.length; i++) {
                 var option = document.createElement("option"); //Creas el elemento opción
@@ -94,10 +93,27 @@ function trbRealizadoScript() {
             }
             $("#supp").val(medioSet);
         });
+
+        /*FECHA AVANCES*/
+        $("#trabjoDate").val(ticket.fechaTrabajo);
         /*SETEAR TEXTAREA DE AVANCES*/
         $("#avancesDesc").val(ticket.avance)
+        /*SETEAR CHECKBOX PROGRAMADO*/
+        if (ticket.programado == "N") { $("#trjProgramado").prop("checked", false); }
+        else { $("#trjProgramado").prop("checked", true);}
+
         /*SETEAR TEXTAREA DE PASSWORD*/
         $("#passwordDesc").val(ticket.passwords)
+
+        /*SETEAR TEXTAREA DE TRABAJO REALIZADO*/
+        $("#trabaRejoDesc").val(ticket.trabajo);
+        /*SETEAR CHECKBOX TW*/
+        if (ticket.tw == "N") { $("#tw").prop("checked", false); }
+        else { $("#tw").prop("checked", true); }
+        /*SETEAR CHECKBOX VISITA*/
+        if (ticket.tw == "N") { $("#tw").prop("checked", false); }
+        else { $("#tw").prop("checked", true); }
+       
     });
     
     
