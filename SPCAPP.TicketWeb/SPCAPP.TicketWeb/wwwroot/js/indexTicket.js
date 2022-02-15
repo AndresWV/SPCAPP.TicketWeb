@@ -23,7 +23,6 @@ function openTabs(evt, cityName) {
 function trbRealizadoScript() {
     var x = $("#ide").val()
     $.get("/TicketSpc/GetTicket", { idd: x }, function (ticket) {
-        console.log(ticket);
         $.get("/TicketSpc/GetNombresClientesNom", { term: ticket.empresa }, function (data) {
             $("#aliEdit").val(data[0].nomAux)
             $("#aliEdit").focus();
@@ -60,7 +59,7 @@ function trbRealizadoScript() {
                     var option = document.createElement("option");
                     $(option).html(tecnicos[i].tecnicoNom);
                     $(option).appendTo("#asignadoo2");
-                    if (tecnicos[i].tecnicoNom == ticket.terminado) {
+                    if (tecnicos[i].tecnicoNom == ticket.terminadoPor) {
                         opt = tecnicos[i].tecnicoNom;
                     }
                 }
@@ -113,7 +112,31 @@ function trbRealizadoScript() {
         /*SETEAR CHECKBOX VISITA*/
         if (ticket.tw == "N") { $("#tw").prop("checked", false); }
         else { $("#tw").prop("checked", true); }
-       
+        /*SETEAR CHECKBOX TRABAJO REALIZADO*/
+        if (ticket.programado == "N") { $("#trjR").prop("checked", false); }
+        else { $("#trjR").prop("checked", true); }
+        /*SETEAR CHECKBOX TW*/
+        if (ticket.programado == "N") { $("#tw").prop("checked", false); }
+        else { $("#tw").prop("checked", true); }
+        /*SETEAR CHECKBOX VISITA*/
+        if (ticket.programado == "N") { $("#visitaCheck").prop("checked", false); }
+        else { $("#visitaCheck").prop("checked", true); }
+        /*SETEAR CHECKBOX REMOTO*/
+        if (ticket.programado == "N") { $("#remotoCheck").prop("checked", false); }
+        else { $("#remotoCheck").prop("checked", true); }
+        /*SETEAR CHECKBOX TALLER*/
+        if (ticket.programado == "N") { $("#tallerCheck").prop("checked", false); }
+        else { $("#tallerCheck").prop("checked", true); }
+        /*SETEAR CHECKBOX TELEFONICO*/
+        if (ticket.programado == "N") { $("#telCheck").prop("checked", false); }
+        else { $("#telCheck").prop("checked", true); }
+        /*FECHA DE CIERRE*/
+        //separar fecha de la hora
+        var z = ticket.fechaCierre.split("T");
+        $("#dateTrabRlz").val(z[0]);
+        /*HORA DE INCIO Y TEMRINO*/
+        $("#hraIni").val(ticket.hrsInicio.split("T")[1]);
+        $("#hraTerm").val(ticket.hrsTermino.split("T")[1]);
     });
     
     
