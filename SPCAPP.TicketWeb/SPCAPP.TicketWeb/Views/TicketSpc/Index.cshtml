@@ -57,13 +57,21 @@
                             <td class="text-uppercase">@item.Tecnico</td>
 
                             <td>
-                                @{ 
+                                @{
                                     ViewData["idd"] = (int)@item.Id;
                                 }
                                 <!--Ver-->
                                 <a class="btn coloAction" onclick="crearModal(2,@item.Id)"><i class="fas fa-search-plus"></i></a>
-                                <!--Editar-->
-                                <a class="btn coloAction" onclick="crearModal(3,@item.Id)"><i class="fas fa-edit"></i></a>
+                                @if (item.Estado.ToString() != "TERMINADO")
+                                {
+                                    <!--Editar-->
+                                    <a class="btn coloAction" onclick="crearModal(3,@item.Id)"><i class="fas fa-edit"></i></a>
+                                }
+                                else
+                                {
+                                    <!--Editar-->
+                                    <a class="btn coloAction2" disabled><i class="fas fa-edit"></i></a>
+                                }
                                 <!--Eliminar-->
                                 <a class="btn coloAction" onclick="crearModal(4,@item.Id)"><i class="fas fa-trash-alt"></i></a>
                             </td>

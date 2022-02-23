@@ -1,19 +1,40 @@
 ﻿@model SPCAPP.TicketWeb.Models.TicketSpc
+@{ 
+    TempData["idTrb"] = ViewData["editID"];
+}
 <!--TRABAJO REALIZADO-->
 <div class="row">
     <!--checks-->
     <div class="row">
         <div class="col-6 form-check">
             <label class="form-check-label textForm3 ml-3 mr-5" for="trjProgramado">TRABAJO REALIZADO</label>
-            <input class="form-check-input ml-3" type="checkbox" id="trjR" asp-for="Realizado" />
+            @*<input class="form-check-input ml-3" type="checkbox" id="trjR" asp-for="Realizado" />*@
+        <select id="trjR" asp-for="Realizado">
+            TRABAJO REALIZADO
+            <option value="N">N</option>
+            <option value="S">S</option>
+
+        </select>
         </div>
         <div class="col-3 form-check">
             <label class="form-check-label textForm3 ml-3 mr-3" for="trjProgramado">CON OT</label>
-            <input class="form-check-input ml-1" type="checkbox" id="ot" />
+            @*<input class="form-check-input ml-1" type="checkbox" id="ot" />*@
+        <select id="ot">
+            OT
+            <option value="N">N</option>
+            <option value="S">S</option>
+
+        </select>
         </div>
         <div class="col-3 form-check">
             <label class="form-check-label textForm3 ml-3 mr-3" for="trjProgramado">CON TW</label>
-            <input class="form-check-input ml-1" type="checkbox" id="tw" asp-for="Tw" />
+            @*<input class="form-check-input ml-1" type="checkbox" id="tw" asp-for="Tw" />*@
+        <select id="tw" asp-for="Tw">
+            TW
+            <option value="N">N</option>
+            <option value="S">S</option>
+
+        </select>
         </div>
     </div>
     <div class="row mt-3">
@@ -43,18 +64,28 @@
                 <div class="row">
                     <div class="row">
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="visitaCheck" asp-for="Visita">
-                            <label class="form-check-label" for="visitaCheck">
+                            @*<input class="form-check-input" type="checkbox" id="visitaCheck" asp-for="Visita">*@
+                            <label class="form-check-label textForm3 ml-3 mr-5" for="visitaCheck">VISITA</label>
+                            <select id="visitaCheck" asp-for="Visita">
                                 VISITA
-                            </label>
+                                <option value="N">N</option>
+                                <option value="S">S</option>
+
+                            </select>
+
                         </div>
                     </div>
                     <div class="row mt-3">
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="remotoCheck" asp-for="Remoto">
-                            <label class="form-check-label" for="remotoCheck">
+                            <label class="form-check-label textForm3 ml-3 mr-5" for="remotoCheck">REMOTO</label>
+                            @*<input class="form-check-input" type="checkbox" id="remotoCheck" asp-for="Remoto">*@
+                            <select id="remotoCheck" asp-for="Remoto">
                                 REMOTO
-                            </label>
+                                <option value="N">N</option>
+                                <option value="S">S</option>
+
+                            </select>
+
                         </div>
                     </div>
                 </div>
@@ -63,18 +94,24 @@
                 <div class="row float-lg-right">
                     <div class="row">
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="tallerCheck" asp-for="Taller">
-                            <label class="form-check-label" for="tallerCheck">
+                            @*<input class="form-check-input" type="checkbox" id="tallerCheck" asp-for="Taller">*@
+                            <label class="form-check-label textForm3 ml-3 mr-5" for="tallerCheck">TALLER</label>
+                            <select id="tallerCheck" asp-for="Taller">
                                 TALLER
-                            </label>
+                                <option value="N">N</option>
+                                <option value="S">S</option>
+                            </select>
                         </div>
                     </div>
                     <div class="row mt-3">
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="telCheck" asp-for="Telefono">
-                            <label class="form-check-label" for="telCheck">
-                                TELEFONICO
-                            </label>
+                            @*<input class="form-check-input" type="checkbox" id="telCheck" asp-for="Telefono">*@
+                            <label class="form-check-label textForm3 ml-3 mr-5" for="telCheck">TELEFONO</label>
+                            <select id="telCheck" asp-for="Telefono">
+                                TELEFONO
+                                <option value="N">N</option>
+                                <option value="S">S</option>
+                            </select>
                         </div>
                     </div>
 
@@ -90,7 +127,8 @@
     </div>
     <div class="row mt-2">
         <div class="col-5">
-            <button type="button" onclick="cargarGastos()" class="btn coloAction ml-3">GASTOS</button>
+
+            <button type="button" onclick="cargarGastos(@Model.Id)" class="btn coloAction ml-3">GASTOS</button>
         </div>
         <div class="col-7">
             <select class="form-select float-lg-right" id="asignadoo2" aria-label="Default select example" asp-for="TerminadoPor">

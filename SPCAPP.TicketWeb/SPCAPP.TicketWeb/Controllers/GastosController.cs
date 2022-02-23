@@ -14,25 +14,24 @@ namespace SPCAPP.TicketWeb.Controllers
         private readonly ApplicationDbContext _context;
         private readonly SPCTKContext _bd;
         public SPCTKContext bd = new SPCTKContext();
-
-        public IActionResult Gastos()
+        public GastosController(ApplicationDbContext context)
         {
+            _context = context;
+        }
+        public IActionResult CreateGasto(string gasto, int cantidad, float precio)
+        {
+            RendTk rendTk = new RendTk();
+            rendTk.Id = 0;
+            rendTk.GastoId = gasto;
+            rendTk.Cantidad = cantidad;
+            rendTk.Precio = precio;
+            rendTk.Tk = (int)TempData["idTkEdit"];
+            rendTk.Fecha = DateTime.Now;
+            rendTk.Total = (float) rendTk.Precio * rendTk.Cantidad;
+            _context.RendTk.Add(rendTk);
+            _context.SaveChanges();
+
             return View();
-        }
-        public IActionResult GastosVista()
-        {
-
-            return PartialView("GastosVista", new List<RendTk>());
-        }
-        public int nGastosLista()
-        {
-            var listaGastos = bd.RendTks;
-            return listaGastos.Count();
-        }
-        public IActionResult getGastosLista()
-        {
-            var listaGastos = bd.RendTks;
-            return Json(listaGastos);
         }
     }
 }

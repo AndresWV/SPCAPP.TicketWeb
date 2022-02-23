@@ -1,4 +1,4 @@
-﻿@model SPCAPP.TicketWeb.Models.TicketSpc
+﻿@model SPCAPP.TicketWeb.Models.RendTk
 
 <!--Titulo-->
 <div class="row">
@@ -14,25 +14,25 @@
 </div>
 <!--Datos-->
 <div class="row mt-3">
-    <form>
+    <form >
         <div class="col-5">
-            <select class="form-select" id="gastosSelect" aria-label="Default select example">
+            <select class="form-select" id="gastosSelect" aria-label="Default select example" asp-for="GastoId">
             </select>
         </div>
         <div class="col-3">
             <div class="form-outline">
-                <input type="number" class="form-control" id="cantidad" />
+                <input type="number" class="form-control" id="cantidad" asp-for="Cantidad"/>
                 <label class="form-label" for="cantidad">CANTIDAD</label>
             </div>
         </div>
         <div class="col-3">
             <div class="form-outline">
-                <input type="number" class="form-control" id="precioGasto"  />
+                <input type="number" class="form-control" id="precioGasto"  asp-for="Precio"/>
                 <label class="form-label" for="precioGasto">PRECIO</label>
             </div>
         </div>
         <div class="col-1">
-            <a class="btn coloAction" onclick=""><i class="fas fa-plus"></i></a>
+            <a class="btn coloAction" onclick="addGasto()"><i class="fas fa-plus"></i></a>
         </div>
     </form>
     

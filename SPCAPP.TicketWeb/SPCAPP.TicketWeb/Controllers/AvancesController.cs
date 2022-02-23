@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SPCAPP.TicketWeb.Data;
+using SPCAPP.TicketWeb.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,33 +10,39 @@ namespace SPCAPP.TicketWeb.Controllers
 {
     public class AvancesController : Controller
     {
-        [HttpGet]
-        public IActionResult AvancesVista()
+        //conexion con la base de datos
+        private readonly ApplicationDbContext _context;
+        private readonly SPCTKContext _bd;
+        public SPCTKContext bd = new SPCTKContext();
+
+        public IActionResult AvancesVista(int idd)
         {
+            var ticket = bd.TicketSpcs.Where(x => x.Id == idd).FirstOrDefault();
             return PartialView("AvancesVista");
         }
 
-        [HttpGet]
-        public IActionResult passwordVista()
+        public IActionResult passwordVista(int idd)
         {
+            var ticket = bd.TicketSpcs.Where(x => x.Id == idd).FirstOrDefault();
             return PartialView("passwordVista");
         }
 
-        [HttpGet]
-        public IActionResult trbRealizadoVista()
-        {
-            return PartialView("trbRealizadoVista");
+        public IActionResult trbRealizadoVista(int idd)
+        { 
+            var ticket = bd.TicketSpcs.Where(x => x.Id == idd).FirstOrDefault();
+            return PartialView("trbRealizadoVista", ticket);
         }
-        [HttpGet]
         public IActionResult gastos()
         {
             return PartialView("gastos");
         }
 
-        [HttpGet]
-        public IActionResult TablaGastos()
+        public IActionResult TablaGastos(int idd)
         {
-            return PartialView("TablaGastos", new List<Models.RendTk>());
+            var lista = bd.RendTks.Where(x => x.Tk == idd);
+            return PartialView("TablaGastos", lista);
         }
+
+        
     }
 }

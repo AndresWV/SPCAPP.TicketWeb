@@ -15,5 +15,6 @@ namespace SPCAPP.TicketWeb.Data
 
         }
         public DbSet<TicketSpc> TicketSpc { get; set; }
+        public DbSet<RendTk> RendTk { get; set; }
     }
 }

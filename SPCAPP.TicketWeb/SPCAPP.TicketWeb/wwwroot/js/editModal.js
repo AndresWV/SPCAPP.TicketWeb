@@ -1,9 +1,8 @@
-﻿$("#trbReaVist").load("/Avances/trbRealizadoVista");
-$("#passVist").load("/Avances/passwordVista");
-$("#avancesVist").load("/Avances/AvancesVista");
-$("#gastosVista").load("/Avances/gastos");
+﻿
 
 $.get("/TicketSpc/GetTicket", function (ticket) {
+    
+
     /*Con esto dejo setiado la opcion del contacto seleccionado*/
     $.get("/TicketSpc/GetNombresClientesNom", { term: ticket.empresa }, function (dataMedios) {
         $("#aliEdit").val(dataMedios[0].nomAux);
@@ -73,11 +72,11 @@ function gastosAdd() {
         }
     });
 }
-function tablaGas() {
-    $("#tablaGastos").load("/Avances/TablaGastos");
+function tablaGas(idd) {
+    $("#tablaGastos").load("/Avances/TablaGastos", {idd:idd});
     $("#tablaGastos").show();
 }
-function cargarGastos() {
+function cargarGastos(idd) {
     gastosAdd();
-    tablaGas();
+    tablaGas(idd);
 }

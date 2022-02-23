@@ -1,5 +1,16 @@
 ﻿document.getElementById("defaultOpen").click();
-function openTabs(evt, cityName) {
+function addGasto() {
+    var gasto = $("#gastosSelect").val();
+    var cantidad = $("#cantidad").val();
+    var precio = $("#precioGasto").val();
+    $.post("/Gastos/CreateGasto", { gasto: gasto, cantidad: cantidad, precio: precio })
+}
+function openTabs(evt, cityName, id) {
+    $("#trbReaVist").load("/Avances/trbRealizadoVista", { idd:id });
+    $("#passVist").load("/Avances/passwordVista", { idd: id });
+    $("#avancesVist").load("/Avances/AvancesVista", { idd: id });
+    $("#gastosVista").load("/Avances/gasto");
+
     trbRealizadoScript();
     // Declare all variables
     var i, tabcontent, tablinks;
@@ -98,38 +109,33 @@ function trbRealizadoScript() {
         /*SETEAR TEXTAREA DE AVANCES*/
         $("#avancesDesc").val(ticket.avance)
         /*SETEAR CHECKBOX PROGRAMADO*/
-        if (ticket.programado == "N") { $("#trjProgramado").prop("checked", false); }
-        else { $("#trjProgramado").prop("checked", true);}
+        if (ticket.programado == "N") { $("#trjProgramado").val("N") }
+        else { $("#trjProgramado").val("S")}
 
         /*SETEAR TEXTAREA DE PASSWORD*/
         $("#passwordDesc").val(ticket.passwords)
 
         /*SETEAR TEXTAREA DE TRABAJO REALIZADO*/
         $("#trabaRejoDesc").val(ticket.trabajo);
-        /*SETEAR CHECKBOX TW*/
-        if (ticket.tw == "N") { $("#tw").prop("checked", false); }
-        else { $("#tw").prop("checked", true); }
-        /*SETEAR CHECKBOX VISITA*/
-        if (ticket.tw == "N") { $("#tw").prop("checked", false); }
-        else { $("#tw").prop("checked", true); }
+       
         /*SETEAR CHECKBOX TRABAJO REALIZADO*/
-        if (ticket.programado == "N") { $("#trjR").prop("checked", false); }
-        else { $("#trjR").prop("checked", true); }
+        if (ticket.programado == "N") { console.log("llega");$("#trjR").val("N")  }
+        else { $("#trjR").val("S") }
         /*SETEAR CHECKBOX TW*/
-        if (ticket.programado == "N") { $("#tw").prop("checked", false); }
-        else { $("#tw").prop("checked", true); }
+        if (ticket.programado == "N") { $("#tw").val("N")  }
+        else { $("#tw").val("S") }
         /*SETEAR CHECKBOX VISITA*/
-        if (ticket.programado == "N") { $("#visitaCheck").prop("checked", false); }
-        else { $("#visitaCheck").prop("checked", true); }
+        if (ticket.programado == "N") { $("#visitaCheck").val("N")  }
+        else { $("#visitaCheck").val("S") }
         /*SETEAR CHECKBOX REMOTO*/
-        if (ticket.programado == "N") { $("#remotoCheck").prop("checked", false); }
-        else { $("#remotoCheck").prop("checked", true); }
+        if (ticket.programado == "N") { $("#remotoCheck").val("N")  }
+        else { $("#remotoCheck").val("S") }
         /*SETEAR CHECKBOX TALLER*/
-        if (ticket.programado == "N") { $("#tallerCheck").prop("checked", false); }
-        else { $("#tallerCheck").prop("checked", true); }
+        if (ticket.programado == "N") { $("#tallerCheck").val("N")  }
+        else { $("#tallerCheck").val("S") }
         /*SETEAR CHECKBOX TELEFONICO*/
-        if (ticket.programado == "N") { $("#telCheck").prop("checked", false); }
-        else { $("#telCheck").prop("checked", true); }
+        if (ticket.programado == "N") { $("#telCheck").val("N")  }
+        else { $("#telCheck").val("S") }
         /*FECHA DE CIERRE*/
         //separar fecha de la hora
         var z = ticket.fechaCierre.split("T");
@@ -138,9 +144,6 @@ function trbRealizadoScript() {
         $("#hraIni").val(ticket.hrsInicio.split("T")[1]);
         $("#hraTerm").val(ticket.hrsTermino.split("T")[1]);
     });
-    
-    
-
 }
 function seleccionarVista(id) {
     $("#avancesDiv").hide();

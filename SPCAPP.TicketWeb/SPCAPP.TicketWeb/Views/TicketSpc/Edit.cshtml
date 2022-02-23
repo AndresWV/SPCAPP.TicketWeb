@@ -1,6 +1,7 @@
 ﻿@model SPCAPP.TicketWeb.Models.TicketSpc
 @{
     TempData["idTk"] = (int)Model.Id;
+    ViewData["editID"] = (int)Model.Id;
 }
 <div>
     <div class="modal-dialog modal-lg">
@@ -19,10 +20,10 @@
             <div class="modal-body">
                 <!--TABS-->
                 <div class="tab">
-                    <button id="defaultOpen" class="tablinks" onclick="openTabs(event, 'editVist')">EDITAR</button>
-                    <button class="tablinks" onclick="openTabs(event, 'avancesVist')">AVANCES</button>
-                    <button class="tablinks" onclick="openTabs(event, 'passVist')">PASSWORD</button>
-                    <button class="tablinks" onclick="openTabs(event, 'trbReaVist')">TRABAJO REALIZADO</button>
+                    <button id="defaultOpen" class="tablinks" onclick="openTabs(event, 'editVist',@TempData["idTk"])">EDITAR</button>
+                    <button class="tablinks" onclick="openTabs(event, 'avancesVist',@TempData["idTk"])">AVANCES</button>
+                    <button class="tablinks" onclick="openTabs(event, 'passVist',@TempData["idTk"])">PASSWORD</button>
+                    <button class="tablinks" onclick="openTabs(event, 'trbReaVist',@TempData["idTk"])">TRABAJO REALIZADO</button>
                 </div>
                 <form method="post" asp-action="EditTicket" asp-route-idTick=@TempData["idTk"]>
                     <input type="text" style="display:none" id="ide" asp-for="Id" />
