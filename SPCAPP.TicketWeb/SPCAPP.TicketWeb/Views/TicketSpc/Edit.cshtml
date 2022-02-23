@@ -20,10 +20,10 @@
             <div class="modal-body">
                 <!--TABS-->
                 <div class="tab">
-                    <button id="defaultOpen" class="tablinks" onclick="openTabs(event, 'editVist',@TempData["idTk"])">EDITAR</button>
-                    <button class="tablinks" onclick="openTabs(event, 'avancesVist',@TempData["idTk"])">AVANCES</button>
-                    <button class="tablinks" onclick="openTabs(event, 'passVist',@TempData["idTk"])">PASSWORD</button>
-                    <button class="tablinks" onclick="openTabs(event, 'trbReaVist',@TempData["idTk"])">TRABAJO REALIZADO</button>
+                    <button id="defaultOpen" class="tablinks" onclick="openTabs(event, 'editVist',@TempData["idTk"],2)">EDITAR</button>
+                    <button class="tablinks" onclick="openTabs(event, 'avancesVist',@TempData["idTk"],2)">AVANCES</button>
+                    <button class="tablinks" onclick="openTabs(event, 'passVist',@TempData["idTk"],2)">PASSWORD</button>
+                    <button class="tablinks" onclick="openTabs(event, 'trbReaVist',@TempData["idTk"],2)">TRABAJO REALIZADO</button>
                 </div>
                 <form method="post" asp-action="EditTicket" asp-route-idTick=@TempData["idTk"]>
                     <input type="text" style="display:none" id="ide" asp-for="Id" />

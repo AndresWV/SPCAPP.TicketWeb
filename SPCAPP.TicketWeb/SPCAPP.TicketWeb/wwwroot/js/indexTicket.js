@@ -5,11 +5,25 @@ function addGasto() {
     var precio = $("#precioGasto").val();
     $.post("/Gastos/CreateGasto", { gasto: gasto, cantidad: cantidad, precio: precio })
 }
-function openTabs(evt, cityName, id) {
-    $("#trbReaVist").load("/Avances/trbRealizadoVista", { idd:id });
-    $("#passVist").load("/Avances/passwordVista", { idd: id });
-    $("#avancesVist").load("/Avances/AvancesVista", { idd: id });
-    $("#gastosVista").load("/Avances/gasto");
+function blockEditVista() {
+    $("#x").prop("disabled", true);
+}
+function openTabs(evt, cityName, id, op) {
+    console.log("entra: " + op)
+    if (op == 2) {
+        $("#trbReaVist").load("/Avances/trbRealizadoVista", { idd: id });
+        $("#passVist").load("/Avances/passwordVista", { idd: id });
+        $("#avancesVist").load("/Avances/AvancesVista", { idd: id });
+        $("#gastosVista").load("/Avances/gasto");
+    }
+
+    else {
+        
+        $("#trbReaVist2").load("/Avances/trbRealizadoVista", { idd: id });
+        $("#passVist2").load("/Avances/passwordVista", { idd: id });
+        $("#avancesVist2").load("/Avances/AvancesVista", { idd: id });
+        
+    }
 
     trbRealizadoScript();
     // Declare all variables
@@ -118,24 +132,7 @@ function trbRealizadoScript() {
         /*SETEAR TEXTAREA DE TRABAJO REALIZADO*/
         $("#trabaRejoDesc").val(ticket.trabajo);
        
-        /*SETEAR CHECKBOX TRABAJO REALIZADO*/
-        if (ticket.programado == "N") { console.log("llega");$("#trjR").val("N")  }
-        else { $("#trjR").val("S") }
-        /*SETEAR CHECKBOX TW*/
-        if (ticket.programado == "N") { $("#tw").val("N")  }
-        else { $("#tw").val("S") }
-        /*SETEAR CHECKBOX VISITA*/
-        if (ticket.programado == "N") { $("#visitaCheck").val("N")  }
-        else { $("#visitaCheck").val("S") }
-        /*SETEAR CHECKBOX REMOTO*/
-        if (ticket.programado == "N") { $("#remotoCheck").val("N")  }
-        else { $("#remotoCheck").val("S") }
-        /*SETEAR CHECKBOX TALLER*/
-        if (ticket.programado == "N") { $("#tallerCheck").val("N")  }
-        else { $("#tallerCheck").val("S") }
-        /*SETEAR CHECKBOX TELEFONICO*/
-        if (ticket.programado == "N") { $("#telCheck").val("N")  }
-        else { $("#telCheck").val("S") }
+
         /*FECHA DE CIERRE*/
         //separar fecha de la hora
         var z = ticket.fechaCierre.split("T");
