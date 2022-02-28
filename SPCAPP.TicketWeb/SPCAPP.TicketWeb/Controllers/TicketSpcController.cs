@@ -46,12 +46,19 @@ namespace SPCAPP.TicketWeb.Controllers
             {
                 var newFecha = new DateTime();
                 newFecha = ticket.Fecha.Value;
-                newFecha =      newFecha.AddSeconds(ticket.HrsInicio.Value.TimeOfDay.Seconds).AddMinutes(ticket.HrsInicio.Value.TimeOfDay.Minutes).AddHours(ticket.HrsInicio.Value.TimeOfDay.Hours);
-                ticket.Id= _context.TicketSpc.Count() == 0 ? 1 : _context.TicketSpc.Max(x => x.Id) + 1;
+                newFecha = newFecha.AddSeconds(ticket.HrsInicio.Value.TimeOfDay.Seconds).AddMinutes(ticket.HrsInicio.Value.TimeOfDay.Minutes).AddHours(ticket.HrsInicio.Value.TimeOfDay.Hours);
+                ticket.Id = _context.TicketSpc.Count() == 0 ? 1 : _context.TicketSpc.Max(x => x.Id) + 1;
                 ticket.Fecha = newFecha;
                 ticket.HrsInicio = null;
                 ticket.UserCreaTk = "MIGUEL";
                 ticket.CerradoId = 0;
+                ticket.Realizado = "N";
+                ticket.Remoto = "N";
+                ticket.Taller = "N";
+                ticket.Visita = "N";
+                ticket.Tw = "N";
+                ticket.Telefono = "N";
+
                 ticket.Passwords = "";
                 ticket.Fk_procede = "";
                 ticket.Realizado = "N";
@@ -199,7 +206,7 @@ namespace SPCAPP.TicketWeb.Controllers
         //Traer todos los tecnicos
         public IActionResult GetTecnico()
         {
-            var contactoData = bd.Tecnicos;
+            var contactoData = bd.Tecnicos.Where(x=>x.Activo.Equals("S"));
             return Json(contactoData);
         }
         //Traer todos los gastos

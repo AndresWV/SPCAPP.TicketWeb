@@ -2,13 +2,11 @@
 var dt = new Date();
 var time = dt.getHours() + ":" + dt.getMinutes();
 $("#horaInicioCreate").val(time);
-var today = new Date();
-var dd = String(today.getDate()).padStart(2, '0');
-var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-var yyyy = today.getFullYear();
-
-today = mm + '/' + dd + '/' + yyyy;
-$("#fechaCreate").val(output);
+var now = new Date();
+var day = ("0" + now.getDate()).slice(-2);
+var month = ("0" + (now.getMonth() + 1)).slice(-2);
+var today = now.getFullYear() + "-" + (month) + "-" + (day);
+$('#fechaCreate').val(today);
 
 
 //Metodo para controlar el autocompletado del text input CLIENTE
