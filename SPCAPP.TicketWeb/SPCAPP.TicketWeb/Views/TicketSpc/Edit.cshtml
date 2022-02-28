@@ -17,7 +17,7 @@
                 </div>
             </div>
 
-            <div class="modal-body">
+            <div class="modal-body" id="contentEdit">
                 <!--TABS-->
                 <div class="tab">
                     <button id="defaultOpen" class="tablinks" onclick="openTabs(event, 'editVist',@TempData["idTk"],2)">EDITAR</button>
@@ -41,13 +41,13 @@
                                 <!--Fecha-->
                                 <div class="col-5 hr2">
                                     <div class="md-form hrIn">
-                                        <input type="time" class="form-control clickable input-md" asp-for="Fecha" placeholder="HORA   &#xf107;">
+                                        <input type="time" id="horaEdit" class="form-control clickable input-md" asp-for="Fecha" placeholder="HORA   &#xf107;">
                                     </div>
                                 </div>
                                 <!--Hora-->
                                 <div class="col-7">
                                     <div class="form-group fecha">
-                                        <input type="date" class="form-control clickable input-md" asp-for="Fecha" placeholder="FECHA  &#xf133;">
+                                        <input type="date" id="fechaEdit" class="form-control clickable input-md" asp-for="Fecha" placeholder="FECHA  &#xf133;">
                                     </div>
                                 </div>
                             </div>
@@ -62,7 +62,7 @@
                                     </div>
                                 </div>
                                 <div class="col-6">
-                                    <select class="form-select" asp-for="Estado" aria-label="Default select example">
+                                    <select class="form-select" id="estadoEdit" asp-for="Estado" aria-label="Default select example">
                                         <option value="PENDIENTE">PENDIENTE</option>
                                         <option value="TERMINADO">TERMINADO</option>
                                     </select>
@@ -144,7 +144,7 @@
                             </div>
                             <div class="row mt-2">
                                 <div class="md-form">
-                                    <textarea asp-for="Requerimiento" class="md-textarea form-control textareaStyle" rows="3"></textarea>
+                                    <textarea asp-for="Requerimiento" id="textAreaEdit" class="md-textarea form-control textareaStyle" rows="3"></textarea>
                                     <label asp-for="Requerimiento">Resumen del ticket</label>
                                 </div>
                             </div>
@@ -157,7 +157,7 @@
                     <div id="trbReaVist" class="tabcontent"></div>
                     <div class="row w-100">
                         <div class="col text-center">
-                            <input type="submit" class="btn btn-lg buttCreate" value="Editar Ticket" style="background: white;" />
+                            <input type="submit" class="btn btn-lg buttCreate" value="Editar Ticket" id="btnEdit" style="background: white;" />
                         </div>
                     </div>
                 </form>

@@ -20,17 +20,31 @@ namespace SPCAPP.TicketWeb.Controllers
             var ticket = bd.TicketSpcs.Where(x => x.Id == idd).FirstOrDefault();
             return PartialView("AvancesVista");
         }
-
+        public IActionResult AvancesVistaBlock()
+        {
+            return PartialView("AvancesVistaBlock");
+        }
         public IActionResult passwordVista(int idd)
         {
             var ticket = bd.TicketSpcs.Where(x => x.Id == idd).FirstOrDefault();
             return PartialView("passwordVista");
         }
+        public IActionResult passwordVistaBlock(int idd)
+        {
+            return PartialView("passwordVistaBlock");
+        }
 
         public IActionResult trbRealizadoVista(int idd)
-        { 
+        {
+            ViewData["idTrb"] = idd;
             var ticket = bd.TicketSpcs.Where(x => x.Id == idd).FirstOrDefault();
             return PartialView("trbRealizadoVista", ticket);
+        }
+        public IActionResult trbRealizadoVistaBlock(int idd)
+        {
+            ViewData["idTrb2"] = idd;
+            var ticket = bd.TicketSpcs.Where(x => x.Id == idd).FirstOrDefault();
+            return PartialView("trbRealizadoVistaBlock", ticket);
         }
         public IActionResult gastos()
         {

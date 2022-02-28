@@ -3,7 +3,7 @@ $(document).ready(function () {
    
     $("#clt").autocomplete({
         source: '/TicketSpc/GetNombresClientes',
-    minlength: 4,
+    minlength: 1,
     position: { my: "left bottom", at: "left bottom" },
     delay: 300,
         open: function () {

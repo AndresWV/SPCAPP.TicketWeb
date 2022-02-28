@@ -1,12 +1,14 @@
 ﻿@model SPCAPP.TicketWeb.Models.TicketSpc
-
+@{
+    TempData["idTrb"] = ViewData["editID"];
+}
 <!--TRABAJO REALIZADO-->
 <div class="row">
     <!--checks-->
     <div class="row">
         <div class="col-6 form-check">
             <label class="form-check-label textForm3 ml-3 mr-5" for="trjProgramado">TRABAJO REALIZADO</label>
-            <select id="trjR" asp-for="Realizado">
+            <select id="trjR" asp-for="Realizado" disabled>
                 TRABAJO REALIZADO
                 <option value="N">N</option>
                 <option value="S">S</option>
@@ -15,7 +17,7 @@
         </div>
         <div class="col-3 form-check">
             <label class="form-check-label textForm3 ml-3 mr-3" for="trjProgramado">CON OT</label>
-            <select id="ot">
+            <select id="ot" disabled>
                 OT
                 <option value="N">N</option>
                 <option value="S">S</option>
@@ -24,7 +26,7 @@
         </div>
         <div class="col-3 form-check">
             <label class="form-check-label textForm3 ml-3 mr-3" for="trjProgramado">CON TW</label>
-            <select id="tw" asp-for="Tw">
+            <select id="tw" asp-for="Tw" disabled>
                 TW
                 <option value="N">N</option>
                 <option value="S">S</option>
@@ -42,15 +44,15 @@
                     </div>
                 </div>
                 <div class="row ml-1  mr-2">
-                    <input type="date" id="dateTrabRlz" asp-for="FechaCierre" />
+                    <input type="date" id="dateTrabRlz" asp-for="FechaCierre" disabled/>
                 </div>
             </div>
             <div class="col-5 float-right">
                 <div class="row">
-                    <input type="time" id="hraIni" asp-for="HrsInicio">
+                    <input type="time" id="hraIni" asp-for="HrsInicio" disabled>
                 </div>
                 <div class="row mt-3">
-                    <input type="time" id="hraTerm" asp-for="HrsTermino">
+                    <input type="time" id="hraTerm" asp-for="HrsTermino" disabled>
                 </div>
             </div>
         </div>
@@ -64,7 +66,7 @@
                         <div class="row">
                             <div class="form-check">
                                 <label class="form-check-label textForm3 ml-1 mr-5" for="visitaCheck">VISITA</label>
-                                <select id="visitaCheck" asp-for="Visita">
+                                <select id="visitaCheck" asp-for="Visita" disabled>
                                     VISITA
                                     <option value="N">N</option>
                                     <option value="S">S</option>
@@ -76,7 +78,7 @@
                         <div class="row mt-3">
                             <div class="form-check">
                                 <label class="form-check-label textForm3 ml-1 mr-5" for="remotoCheck">REMOTO</label>
-                                <select id="remotoCheck" asp-for="Remoto">
+                                <select id="remotoCheck" asp-for="Remoto" disabled>
                                     REMOTO
                                     <option value="N">N</option>
                                     <option value="S">S</option>
@@ -92,7 +94,7 @@
                         <div class="row">
                             <div class="form-check">
                                 <label class="form-check-label textForm3 mr-5 float-left" for="tallerCheck">TALLER</label>
-                                <select id="tallerCheck" asp-for="Taller">
+                                <select id="tallerCheck" asp-for="Taller" disabled>
                                     TALLER
                                     <option value="N">N</option>
                                     <option value="S">S</option>
@@ -102,7 +104,7 @@
                         <div class="row mt-3">
                             <div class="form-check">
                                 <label class="form-check-label textForm3 ml-1 mr-1" for="telCheck">TELEFONO</label>
-                                <select id="telCheck" asp-for="Telefono">
+                                <select id="telCheck" asp-for="Telefono" disabled>
                                     TELEFONO
                                     <option value="N">N</option>
                                     <option value="S">S</option>
@@ -117,17 +119,17 @@
     </div>
     <div class="row mt-3">
         <div class="form-group">
-            <textarea class="form-control" id="trabaRejoDesc" rows="7" asp-for="Trabajo"></textarea>
+            <textarea class="form-control" id="trabaRejoDesc" rows="7" asp-for="Trabajo" disabled></textarea>
             <label for="trabaRejoDesc">DESCRIPCION DEL TRABAJO REALIZADO</label>
         </div>
     </div>
     <div class="row mt-2">
         <div class="col-5">
 
-            <button type="button" onclick="cargarGastos(@ViewData["idTrb"])" class="btn coloAction ml-3">GASTOS</button>
+            <button type="button" onclick="tablaGas(@ViewData["idTrb2"])" class="btn coloAction ml-3">GASTOS</button>
         </div>
         <div class="col-7">
-            <select class="form-select float-lg-right" id="asignadoo2" aria-label="Default select example" asp-for="TerminadoPor">
+            <select class="form-select float-lg-right" id="asignadoo2" aria-label="Default select example" asp-for="TerminadoPor" disabled>
                 ASIGNADO
             </select>
         </div>

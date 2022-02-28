@@ -7,6 +7,7 @@ C:\Users\andre\Desktop\C#\SPCAPP_TicketWeb\SPCAPP.TicketWeb\SPCAPP.TicketWeb\obj
 C:\Users\andre\Desktop\C#\SPCAPP_TicketWeb\SPCAPP.TicketWeb\SPCAPP.TicketWeb\obj\Release\net5.0\PubTmp\Out\wwwroot\favicon.ico
 C:\Users\andre\Desktop\C#\SPCAPP_TicketWeb\SPCAPP.TicketWeb\SPCAPP.TicketWeb\obj\Release\net5.0\PubTmp\Out\wwwroot\img\img1.jpg
 C:\Users\andre\Desktop\C#\SPCAPP_TicketWeb\SPCAPP.TicketWeb\SPCAPP.TicketWeb\obj\Release\net5.0\PubTmp\Out\wwwroot\img\logo-1.png
+C:\Users\andre\Desktop\C#\SPCAPP_TicketWeb\SPCAPP.TicketWeb\SPCAPP.TicketWeb\obj\Release\net5.0\PubTmp\Out\wwwroot\js\blockEdit.js
 C:\Users\andre\Desktop\C#\SPCAPP_TicketWeb\SPCAPP.TicketWeb\SPCAPP.TicketWeb\obj\Release\net5.0\PubTmp\Out\wwwroot\js\calendarBack.js
 C:\Users\andre\Desktop\C#\SPCAPP_TicketWeb\SPCAPP.TicketWeb\SPCAPP.TicketWeb\obj\Release\net5.0\PubTmp\Out\wwwroot\js\editModal.js
 C:\Users\andre\Desktop\C#\SPCAPP_TicketWeb\SPCAPP.TicketWeb\SPCAPP.TicketWeb\obj\Release\net5.0\PubTmp\Out\wwwroot\js\indexTicket.js

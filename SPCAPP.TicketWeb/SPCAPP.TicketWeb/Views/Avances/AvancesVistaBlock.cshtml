@@ -5,7 +5,7 @@
         <div class="col-2">
             <div class="form-check float-left">
                 <label class="form-check-label textForm3" for="avances">AVANCES</label>
-                <select id="avancesSele">
+                <select id="avancesSele" disabled>
                     AVANCES
                     <option value="N">N</option>
                     <option value="S">S</option>
@@ -17,7 +17,7 @@
             <div class="col-6">
                 <div class="form-check float-left">
                     <label class="form-check-label textForm3 ml-3 mr-5" for="trjProgramado">TRABAJO PROGRAMADO</label>
-                    <select id="trjProgramadoSele" asp-for="Programado">
+                    <select id="trjProgramadoSele" asp-for="Programado" disabled>
                         TRABAJO PROGRAMADO
                         <option value="N">N</option>
                         <option value="S">S</option>
@@ -26,14 +26,14 @@
                 </div>
             </div>
             <div class="col-6 float-lg-right">
-                <input type="datetime-local" id="trabjoDate" class="float-lg-right" asp-for="FechaTrabajo">
+                <input type="datetime-local" id="trabjoDate" class="float-lg-right" asp-for="FechaTrabajo" disabled>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="form-group">
             <label for="avancesDesc">DESCRIPCION DE LOS AVANCES</label>
-            <textarea class="form-control" id="avancesDesc" asp-for="Avance" rows="7"></textarea>
+            <textarea class="form-control" id="avancesDesc" asp-for="Avance" rows="7" readonly></textarea>
         </div>
     </div>
 </div>

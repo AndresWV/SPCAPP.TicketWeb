@@ -5,27 +5,18 @@ function addGasto() {
     var precio = $("#precioGasto").val();
     $.post("/Gastos/CreateGasto", { gasto: gasto, cantidad: cantidad, precio: precio })
 }
-function blockEditVista() {
-    $("#x").prop("disabled", true);
-}
+
 function openTabs(evt, cityName, id, op) {
-    console.log("entra: " + op)
-    if (op == 2) {
-        $("#trbReaVist").load("/Avances/trbRealizadoVista", { idd: id });
-        $("#passVist").load("/Avances/passwordVista", { idd: id });
-        $("#avancesVist").load("/Avances/AvancesVista", { idd: id });
-        $("#gastosVista").load("/Avances/gasto");
-    }
-
-    else {
-        
-        $("#trbReaVist2").load("/Avances/trbRealizadoVista", { idd: id });
-        $("#passVist2").load("/Avances/passwordVista", { idd: id });
-        $("#avancesVist2").load("/Avances/AvancesVista", { idd: id });
-        
-    }
-
+    $("#trbReaVist").load("/Avances/trbRealizadoVista", { idd: id });
+    $("#trbReaVist2").load("/Avances/trbRealizadoVistaBlock", { idd: id });
+    
+    $("#passVist").load("/Avances/passwordVista", { idd: id });
+    $("#passVist2").load("/Avances/passwordVistaBlock");
+    /*$("#gastosVista").load("/Avances/gasto");*/
+    $("#avancesVist").load("/Avances/AvancesVista", { idd: id });
+    $("#avancesVist2").load("/Avances/AvancesVistaBlock", { idd: id });
     trbRealizadoScript();
+    
     // Declare all variables
     var i, tabcontent, tablinks;
 
@@ -39,12 +30,14 @@ function openTabs(evt, cityName, id, op) {
     tablinks = document.getElementsByClassName("tablinks");
     for (i = 0; i < tablinks.length; i++) {
         tablinks[i].className = tablinks[i].className.replace(" active", "");
+        
     }
 
     // Show the current tab, and add an "active" class to the button that opened the tab
     document.getElementById(cityName).style.display = "block";
     evt.currentTarget.className += " active";
 }
+
 function trbRealizadoScript() {
     var x = $("#ide").val()
     $.get("/TicketSpc/GetTicket", { idd: x }, function (ticket) {
@@ -135,11 +128,17 @@ function trbRealizadoScript() {
 
         /*FECHA DE CIERRE*/
         //separar fecha de la hora
-        var z = ticket.fechaCierre.split("T");
-        $("#dateTrabRlz").val(z[0]);
+        if (ticket.fechaCierre != null) {
+            var z = ticket.fechaCierre.split("T");
+            $("#dateTrabRlz").val(z[0]);
+        }
         /*HORA DE INCIO Y TEMRINO*/
-        $("#hraIni").val(ticket.hrsInicio.split("T")[1]);
-        $("#hraTerm").val(ticket.hrsTermino.split("T")[1]);
+        if (ticket.hrsInicio!=null) {
+            $("#hraIni").val(ticket.hrsInicio.split("T")[1]);
+        }
+        if (ticket.hrsTermino!=null) {
+            $("#hraTerm").val(ticket.hrsTermino.split("T")[1]);
+        }
     });
 }
 function seleccionarVista(id) {
@@ -175,10 +174,12 @@ function cargarScript() {
     $("head").append(s3);
 
     $('#modalCreate').modal("show");
+    
 }
 //Controlar que modal se abrira
-function crearModal(buttonOption, idd) {
+function crearModal(buttonOption, idd, blockInput) {
     //Crear ticket
+    
     if (buttonOption == 1) {
         $("#modalCreate").load("/TicketSpc/Create", function () {
             cargarScript();
@@ -199,7 +200,7 @@ function crearModal(buttonOption, idd) {
     //Eliminar ticket
     else {
         $("#modalCreate").load("/TicketSpc/Delete", { id: idd }, function () {
-            cargarScript();
+            cargarScript(4);
         });
     }
 }
