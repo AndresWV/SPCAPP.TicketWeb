@@ -1,28 +1,41 @@
 ﻿@model SPCAPP.TicketWeb.Models.TicketSpc
+@{ 
+    var avance = ViewBag.Avances;
+    var programado = ViewBag.Programado;
+}
 <!--AVANCES-->
 <div class="row" id="contentAvances">
     <div class="row w-100">
         <div class="col-2">
             <div class="form-check float-left">
                 <label class="form-check-label textForm3" for="avances">AVANCES</label>
-                <select id="avancesSele">
-                    AVANCES
-                    <option value="N">N</option>
-                    <option value="S">S</option>
-
-                </select>
+                @if (avance.Equals("S"))
+                {
+                    <input class="form-check-input ml-2" type="checkbox" id="avancesSele" checked />
+                    
+                }
+                else
+                {
+                    <input class="form-check-input ml-2" type="checkbox" id="avancesSele" />
+                   
+                }
             </div>
         </div>
         <div class="col-10">
             <div class="col-6">
                 <div class="form-check float-left">
                     <label class="form-check-label textForm3 ml-3 mr-5" for="trjProgramado">TRABAJO PROGRAMADO</label>
-                    <select id="trjProgramadoSele" asp-for="Programado">
-                        TRABAJO PROGRAMADO
-                        <option value="N">N</option>
-                        <option value="S">S</option>
+                    @if (programado.Equals("S"))
+                    {
+                        <input class="form-check-input" type="checkbox" id="trjProgramadoSele" onclick="checkAvances(1)" checked />
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" id="trjProgramadoSele" onclick="checkAvances(2)"/>
+                    }
+                    <input type="text" id="programadoCheck" asp-for="Programado" hidden>
+                    
 
-                    </select>
                 </div>
             </div>
             <div class="col-6 float-lg-right">

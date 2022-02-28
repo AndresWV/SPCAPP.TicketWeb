@@ -1,4 +1,17 @@
-﻿//Metodo para controlar el autocompletado del text input CLIENTE
+﻿/*INICIAR CON LA FECHA Y HORA ACTUALES*/
+var dt = new Date();
+var time = dt.getHours() + ":" + dt.getMinutes();
+$("#horaInicioCreate").val(time);
+var today = new Date();
+var dd = String(today.getDate()).padStart(2, '0');
+var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+var yyyy = today.getFullYear();
+
+today = mm + '/' + dd + '/' + yyyy;
+$("#fechaCreate").val(output);
+
+
+//Metodo para controlar el autocompletado del text input CLIENTE
 $(document).ready(function () {
    
     $("#clt").autocomplete({

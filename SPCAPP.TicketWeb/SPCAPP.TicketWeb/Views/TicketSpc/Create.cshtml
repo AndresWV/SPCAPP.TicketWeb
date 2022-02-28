@@ -30,13 +30,13 @@
                                 <!--Fecha-->
                                 <div class="col-5 hr2">
                                     <div class="md-form hrIn">
-                                        <input type="time" class="form-control clickable input-md" asp-for="HrsInicio" placeholder="HORA   &#xf107;">
+                                        <input type="time" class="form-control clickable input-md" id="horaInicioCreate" asp-for="HrsInicio" placeholder="HORA   &#xf107;">
                                     </div>
                                 </div>
                                 <!--Hora-->
                                 <div class="col-7">
                                     <div class="form-group fecha">
-                                        <input type="date" class="form-control clickable input-md" asp-for="Fecha" placeholder="FECHA  &#xf133;">
+                                        <input type="date" class="form-control clickable input-md" id="fechaCreate" asp-for="Fecha" placeholder="FECHA  &#xf133;">
                                     </div>
                                 </div>
                             </div>
@@ -143,14 +143,7 @@
                     </div>
 
                     <div class="modal-footer modalColor">
-                        <div class="row w-100">
-                            <p class="text-center">
-                                <label>
-                                    <input type="checkbox" class="filled-in" checked="checked" />
-                                    <span>AGREGAR A CALENDARIO</span>
-                                </label>
-                            </p>
-                        </div>
+                 
                         <div class="col text-center">
                             <button type="submit" class="btn btn-lg buttCreate" style="background: white;">Crear Ticket</button>
                         </div>

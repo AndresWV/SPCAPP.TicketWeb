@@ -18,6 +18,22 @@ namespace SPCAPP.TicketWeb.Controllers
         public IActionResult AvancesVista(int idd)
         {
             var ticket = bd.TicketSpcs.Where(x => x.Id == idd).FirstOrDefault();
+            ViewBag.Avances = "N";
+            ViewBag.Programado = "N";
+            //verificar que el ticket existe
+            if (ticket == null)
+            {
+                return NotFound();
+            }
+            if (ticket.Avance == "S")
+            {
+                ViewBag.Avances = "S";
+            }
+            if (ticket.Programado == "S")
+            {
+                ViewBag.Programado = "S";
+            }
+
             return PartialView("AvancesVista");
         }
         public IActionResult AvancesVistaBlock()
@@ -38,6 +54,12 @@ namespace SPCAPP.TicketWeb.Controllers
         {
             ViewData["idTrb"] = idd;
             var ticket = bd.TicketSpcs.Where(x => x.Id == idd).FirstOrDefault();
+            ViewBag.Realizado = ticket.Realizado;
+            ViewBag.Tw = ticket.Tw;
+            ViewBag.Visita = ticket.Visita;
+            ViewBag.Taller = ticket.Taller;
+            ViewBag.Telefono = ticket.Telefono;
+            ViewBag.Remoto = ticket.Remoto;
             return PartialView("trbRealizadoVista", ticket);
         }
         public IActionResult trbRealizadoVistaBlock(int idd)

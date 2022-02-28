@@ -1,39 +1,46 @@
 ﻿@model SPCAPP.TicketWeb.Models.TicketSpc
+@{ 
 
+    var realizado = ViewBag.Realizado;
+    var tw = ViewBag.Tw;
+    var visita = ViewBag.Visita;
+    var remoto = ViewBag.Remoto;
+    var taller = ViewBag.Taller;
+    var telefono = ViewBag.Telefono;
+}
 <!--TRABAJO REALIZADO-->
 <div class="row">
     <!--checks-->
     <div class="row">
         <div class="col-6 form-check">
             <label class="form-check-label textForm3 ml-3 mr-5" for="trjProgramado">TRABAJO REALIZADO</label>
-            <select id="trjR" asp-for="Realizado">
-                TRABAJO REALIZADO
-                <option value="N">N</option>
-                <option value="S">S</option>
+            @if (realizado.Equals("S"))
+            {
+                <input class="form-check-input ml-2" type="checkbox" id="trjR" onclick="checkTrbRealizado('#trjR','#realizadoCheck',1)" checked />
+            }
+            else
+            {
+                <input class="form-check-input ml-2" type="checkbox" id="trjR" onclick="checkTrbRealizado('#trjR','#realizadoCheck',2)"/>
+            }
+            <input type="text" id="realizadoCheck" asp-for="Realizado" hidden>
 
-            </select>
-        </div>
-        <div class="col-3 form-check">
-            <label class="form-check-label textForm3 ml-3 mr-3" for="trjProgramado">CON OT</label>
-            <select id="ot">
-                OT
-                <option value="N">N</option>
-                <option value="S">S</option>
-
-            </select>
         </div>
         <div class="col-3 form-check">
             <label class="form-check-label textForm3 ml-3 mr-3" for="trjProgramado">CON TW</label>
-            <select id="tw" asp-for="Tw">
-                TW
-                <option value="N">N</option>
-                <option value="S">S</option>
-
-            </select>
+            @if (tw.Equals("S"))
+            {
+                <input class="form-check-input ml-2" type="checkbox" id="tw" onclick="checkTrbRealizado('#tw','#twCheck',1)" checked>
+            }
+            else
+            {
+                 <input class="form-check-input ml-2" type="checkbox" id="tw" onclick="checkTrbRealizado('#trjR','#twCheck',2)">
+            }
+            
+            <input type="text" id="twCheck" asp-for="Tw" hidden>
         </div>
     </div>
     <div class="row mt-3">
-        <div class="row d-flex justify-content-xl-center">
+        <div class="col-7 float-left">
             <div class="col-5 float-left ">
                 <div class="row">
                     <div class="form-outline mr-2">
@@ -47,73 +54,80 @@
             </div>
             <div class="col-5 float-right">
                 <div class="row">
-                    <input type="time" id="hraIni" asp-for="HrsInicio">
+                    <input type="time" id="hraIni" asp-for="HrsInicio" placeholder="Hra Inicio">
                 </div>
                 <div class="row mt-3">
-                    <input type="time" id="hraTerm" asp-for="HrsTermino">
+                    <input type="time" id="hraTerm" asp-for="HrsTermino" placeholder="Hra Termino">
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row mt-3">
-        <div class="row d-flex justify-content-xl-center">
+        <div class="col-5 float-lg-right">
+            <div class="col-6 float-left">
+                <div class="row ml-2">
+                    <div class="form-check">
+                        <label class="form-check-label textForm3" for="visitaCheck">VISITA</label>
+                        @if (visita.Equals("S"))
+                        {
+                            <input class="form-check-input ml-2 mr-2" type="checkbox" id="visitaCheck" onclick="checkTrbRealizado('#visitaCheck','#visitaCheckk',1)" checked />
+                        }
+                        else
+                        {
+                            <input class="form-check-input ml-2 mr-2" type="checkbox" id="visitaCheck" onclick="checkTrbRealizado('#visitaCheck','#visitaCheckk',2)" />
+                        }
 
-            <div class="col-5">
-                <div class="col-5 float-lg-left">
-                    <div class="row">
-                        <div class="row">
-                            <div class="form-check">
-                                <label class="form-check-label textForm3 ml-1 mr-5" for="visitaCheck">VISITA</label>
-                                <select id="visitaCheck" asp-for="Visita">
-                                    VISITA
-                                    <option value="N">N</option>
-                                    <option value="S">S</option>
+                        <input type="text" id="visitaCheckk" asp-for="Visita" hidden>
 
-                                </select>
-
-                            </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="form-check">
-                                <label class="form-check-label textForm3 ml-1 mr-5" for="remotoCheck">REMOTO</label>
-                                <select id="remotoCheck" asp-for="Remoto">
-                                    REMOTO
-                                    <option value="N">N</option>
-                                    <option value="S">S</option>
-
-                                </select>
-
-                            </div>
-                        </div>
                     </div>
                 </div>
-                <div class="col-5 float-lg-right">
-                    <div class="row float-lg-right">
-                        <div class="row">
-                            <div class="form-check">
-                                <label class="form-check-label textForm3 mr-5 float-left" for="tallerCheck">TALLER</label>
-                                <select id="tallerCheck" asp-for="Taller">
-                                    TALLER
-                                    <option value="N">N</option>
-                                    <option value="S">S</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="form-check">
-                                <label class="form-check-label textForm3 ml-1 mr-1" for="telCheck">TELEFONO</label>
-                                <select id="telCheck" asp-for="Telefono">
-                                    TELEFONO
-                                    <option value="N">N</option>
-                                    <option value="S">S</option>
-                                </select>
-                            </div>
-                        </div>
+                <div class="row mt-2 ml-2">
+                    <div class="form-check">
+                        <label class="form-check-label textForm3" for="remotoCheck">REMOTO</label>
+                        @if (remoto.Equals("S"))
+                        {
+                            <input class="form-check-input ml-2 mr-2" type="checkbox" id="remotoCheck" onclick="checkTrbRealizado('#remotoCheck','#remotoCheckk',1)" checked />
+                        }
+                        else
+                        {
+                            <input class="form-check-input ml-2 mr-2" type="checkbox" id="remotoCheck" onclick="checkTrbRealizado('#remotoCheck','#remotoCheckk',2)" />
+                        }
 
+                        <input type="text" id="remotoCheckk" asp-for="Remoto" hidden>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 float-right">
+                <div class="row">
+                    <div class="form-check">
+                        <label class="form-check-label textForm3 float-left" for="tallerCheck">TALLER</label>
+                        @if (taller.Equals("S"))
+                        {
+                            <input class="form-check-input ml-2" type="checkbox" id="tallerCheck" onclick="checkTrbRealizado('#tallerCheck','#tallerCheckk',1)" checked>
+                        }
+                        else
+                        {
+                            <input class="form-check-input ml-2" type="checkbox" id="tallerCheck" onclick="checkTrbRealizado('#tallerCheck','#tallerCheckk',2)">
+                        }
+
+                        <input type="text" id="tallerCheckk" asp-for="Taller" hidden>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="form-check">
+                        <label class="form-check-label textForm3" for="telCheck">TELEFONO</label>
+                        @if (telefono.Equals("S"))
+                        {
+                            <input class="form-check-input ml-2" type="checkbox" id="telCheck" onclick="checkTrbRealizado('#telCheck','#telCheckk',1)" checked>
+                        }
+                        else
+                        {
+                            <input class="form-check-input ml-2" type="checkbox" id="telCheck" onclick="checkTrbRealizado('#telCheck','#telefonoCheck',2)">
+                        }
+                        <input type="text" id="telefonoCheck" asp-for="Telefono" hidden>
                     </div>
                 </div>
             </div>
         </div>
+        
     </div>
     <div class="row mt-3">
         <div class="form-group">
