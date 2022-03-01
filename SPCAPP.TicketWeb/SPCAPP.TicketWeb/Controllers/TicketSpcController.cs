@@ -83,9 +83,10 @@ namespace SPCAPP.TicketWeb.Controllers
             {
                 return NotFound();
             }
-
-            //obtener ticket
+        
             var ticket = _context.TicketSpc.Find(id);
+            
+           
             return PartialView("Edit",ticket);
         }
         //http post edit, el validate se encarga de limitar solicitudes en caso de uso de bot

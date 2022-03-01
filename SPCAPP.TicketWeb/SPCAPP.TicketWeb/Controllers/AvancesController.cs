@@ -33,8 +33,13 @@ namespace SPCAPP.TicketWeb.Controllers
             {
                 ViewBag.Programado = "S";
             }
-
-            return PartialView("AvancesVista");
+            var src = DateTime.Now;
+            var hm = new DateTime(src.Year, src.Month, src.Day, src.Hour, src.Minute, 0);
+            if (ticket.FechaTrabajo == null)
+            {
+                ticket.FechaTrabajo = hm;
+            }
+            return PartialView("AvancesVista",ticket);
         }
         public IActionResult AvancesVistaBlock()
         {
@@ -60,6 +65,20 @@ namespace SPCAPP.TicketWeb.Controllers
             ViewBag.Taller = ticket.Taller;
             ViewBag.Telefono = ticket.Telefono;
             ViewBag.Remoto = ticket.Remoto;
+            var src = DateTime.Now;
+            var hm = new DateTime(src.Year, src.Month, src.Day, src.Hour, src.Minute, 0);
+            if (ticket.FechaCierre == null)
+            {
+                ticket.FechaCierre = hm;
+            }
+            if (ticket.HrsInicio == null)
+            {
+                ticket.HrsInicio = hm;
+            }
+            if (ticket.HrsTermino == null)
+            {
+                ticket.HrsTermino = hm;
+            }
             return PartialView("trbRealizadoVista", ticket);
         }
         public IActionResult trbRealizadoVistaBlock(int idd)

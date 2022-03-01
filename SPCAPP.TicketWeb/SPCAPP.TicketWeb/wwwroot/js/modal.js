@@ -1,8 +1,8 @@
 ﻿/*INICIAR CON LA FECHA Y HORA ACTUALES*/
-var dt = new Date();
-var time = dt.getHours() + ":" + dt.getMinutes();
-$("#horaInicioCreate").val(time);
-var now = new Date();
+var now = new Date(Date.now());
+var formatted = now.getHours() + ":" + now.getMinutes();
+$("#horaInicioCreate").val(formatted);
+
 var day = ("0" + now.getDate()).slice(-2);
 var month = ("0" + (now.getMonth() + 1)).slice(-2);
 var today = now.getFullYear() + "-" + (month) + "-" + (day);
