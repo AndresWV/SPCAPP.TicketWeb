@@ -43,8 +43,6 @@ function trbRealizadoScript() {
     $.get("/TicketSpc/GetTicket", { idd: x }, function (ticket) {
         $.get("/Avances/areaEmpresa", { codaux: ticket.id }, function (areaEmpresas) {
             var opt = '';
-            console.log(ticket);
-           /* console.log("proc: " + ticket.fk_procede);*/
             for (var i = 0; i < areaEmpresas.length; i++) {
                 var option = document.createElement("option"); //Creas el elemento opción
                 $(option).html(areaEmpresas[i]); //Escribes en él el nombre de la provincia

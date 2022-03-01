@@ -1,6 +1,11 @@
 ﻿/*INICIAR CON LA FECHA Y HORA ACTUALES*/
 var now = new Date(Date.now());
-var formatted = now.getHours() + ":" + now.getMinutes();
+var min = now.getMinutes();
+if (now.getMinutes() < 10) {
+    min = "0"+now.getMinutes();
+}
+var formatted = now.getHours() + ":" + min;
+
 $("#horaInicioCreate").val(formatted);
 
 var day = ("0" + now.getDate()).slice(-2);
