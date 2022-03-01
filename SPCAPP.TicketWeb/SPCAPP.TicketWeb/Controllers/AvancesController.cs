@@ -77,7 +77,7 @@ namespace SPCAPP.TicketWeb.Controllers
             }
             if (ticket.HrsTermino == null)
             {
-                ticket.HrsTermino = hm;
+                ticket.HrsTermino = new DateTime(src.Year, src.Month, src.Day, src.Hour, src.Minute+15, 0); ;
             }
             return PartialView("trbRealizadoVista", ticket);
         }

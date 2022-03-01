@@ -61,7 +61,7 @@
                                     ViewData["idd"] = (int)@item.Id;
                                 }
                                 <!--Ver-->
-                                <a class="btn coloAction" onclick="crearModal(2,@item.Id,1)"><i class="fas fa-search-plus"></i></a>
+                                <a class="btn coloAction ml-5" onclick="crearModal(2,@item.Id,1)"><i class="fas fa-search-plus"></i></a>
                                 @if (item.Estado.ToString() != "TERMINADO")
                                 {
                                     <!--Editar-->
@@ -73,7 +73,7 @@
                                     <a class="btn coloAction2" disabled><i class="fas fa-edit"></i></a>
                                 }
                                 <!--Eliminar-->
-                                <a class="btn coloAction" onclick="crearModal(4,@item.Id,0)"><i class="fas fa-trash-alt"></i></a>
+                                <!--<a class="btn coloAction" onclick="crearModal(4,@item.Id,0)"><i class="fas fa-trash-alt"></i></a>-->
                             </td>
                         </tr>
                     }
