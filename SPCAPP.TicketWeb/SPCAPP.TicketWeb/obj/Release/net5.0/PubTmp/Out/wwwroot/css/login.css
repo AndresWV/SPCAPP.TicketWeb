@@ -1,0 +1,40 @@
+﻿
+.imagenLogin {
+    /* Asignamos una altura mínima */
+    min-height: 300px;
+    background-image: url("../img/img1.jpg");
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+.loginContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.formBorder {
+    border: 2px solid #ccc;
+    border-radius: 2%;
+    border-left: none;
+    padding: 4%;
+}
+
+.form {
+    height: 300px;
+}
+
+.centrarForm {
+    justify-content: center;
+}
+
+.textLogin {
+    text-align: center;
+    font-size: 14px;
+}
+
+.texInput {
+    font-size: 12px;
+}

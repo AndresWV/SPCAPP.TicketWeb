@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using SPCAPP.TicketWeb.Models;
 using System;
 using System.Collections.Generic;
@@ -14,5 +15,6 @@ namespace SPCAPP.TicketWeb.Data
 
         }
         public DbSet<TicketSpc> TicketSpc { get; set; }
+        public DbSet<RendTk> RendTk { get; set; }
     }
 }

@@ -1,9 +1,19 @@
-﻿//Metodo para controlar el autocompletado del text input CLIENTE
+﻿/*INICIAR CON LA FECHA Y HORA ACTUALES*/
+var now = new Date(Date.now());
+var formatted = now.getHours() + ":" + now.getMinutes();
+$("#horaInicioCreate").val(formatted);
+
+var day = ("0" + now.getDate()).slice(-2);
+var month = ("0" + (now.getMonth() + 1)).slice(-2);
+var today = now.getFullYear() + "-" + (month) + "-" + (day);
+$('#fechaCreate').val(today);
+
+//Metodo para controlar el autocompletado del text input CLIENTE
 $(document).ready(function () {
    
     $("#clt").autocomplete({
         source: '/TicketSpc/GetNombresClientes',
-    minlength: 4,
+    minlength: 1,
     position: { my: "left bottom", at: "left bottom" },
     delay: 300,
         open: function () {
@@ -15,8 +25,16 @@ $(document).ready(function () {
     //Cuando seleccione un elemento del menu desplegable...
     select: function (event, ui) {
         $.get("/TicketSpc/GetNombresClientesNom", { term: ui.item.value }, function (dataNom) {
-            //tomar datos en base al cliente seleccionado por el autocompletado
-            $.get("/TicketSpc/GetAlias", { term: dataNom[0].NomAux }, function (data) {
+            console.log(dataNom[0].nomAux);
+            $.get("/Avances/areaEmpresaCreate", { codaux: dataNom[0].nomAux }, function (areaEmpresas) {
+                for (var i = 0; i < areaEmpresas.length; i++) {
+                    var option = document.createElement("option"); //Creas el elemento opción
+                    $(option).html(areaEmpresas[i]); //Escribes en él el nombre de la provincia
+                    $(option).appendTo("#aTrabajo2");
+                }
+            });
+              //tomar datos en base al cliente seleccionado por el autocompletado
+            $.get("/TicketSpc/GetAlias", { term: dataNom[0].nomAux }, function (data) {
                 $(".result").html(data);
                 //cambiar código
                 $("#cod").val("" + data.codAux);
@@ -32,6 +50,7 @@ $(document).ready(function () {
                 $('#emailEm').focus();
                 //cargar contactos para el select contacto
                 $.get("/TicketSpc/GetContactos", { term: data.codAux }, function (data2) {
+                    
                     for (var i = 0; i < data2.length; i++) {
                         var option = document.createElement("option"); //Creas el elemento opción
                         $(option).html(data2[i].nomCon); //Escribes en él el nombre de la provincia
@@ -98,20 +117,9 @@ $.get("/TicketSpc/GetTecnico", function (dataAsignados) {
         var option = document.createElement("option"); //Creas el elemento opción
         $(option).html(dataAsignados[i].tecnicoNom); //Escribes en él el nombre de la provincia
         $(option).appendTo("#asignadoo"); //Lo metes en el select con id provincias
-        $(option).appendTo("#asignadoo2"); //Lo metes en el select con id provincias
     }
 });
 
-//Traer gastos
-$.get("/TicketSpc/GetGastos", function (dataAsignados) {
-    console.log(dataAsignados[0].desGasto);
-    for (var i = 0; i < dataAsignados.length; i++) {
-        
-        var option = document.createElement("option"); //Creas el elemento opción
-        $(option).html(dataAsignados[i].desGasto); //Escribes en él el nombre de la provincia
-        $(option).appendTo("#gastosSelect"); //Lo metes en el select con id provincias
-    }
-});
 function closeModal(id) {
     $("#modalCreate").modal('hide');
 }

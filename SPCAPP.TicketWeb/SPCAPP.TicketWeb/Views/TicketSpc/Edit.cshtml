@@ -1,6 +1,7 @@
 ﻿@model SPCAPP.TicketWeb.Models.TicketSpc
 @{
     TempData["idTk"] = (int)Model.Id;
+    ViewData["editID"] = (int)Model.Id;
 }
 <div>
     <div class="modal-dialog modal-lg">
@@ -16,17 +17,17 @@
                 </div>
             </div>
 
-            <div class="modal-body">
+            <div class="modal-body" id="contentEdit">
                 <!--TABS-->
                 <div class="tab">
-                    <button id="defaultOpen" class="tablinks" onclick="openTabs(event, 'editVist')">EDITAR</button>
-                    <button class="tablinks" onclick="openTabs(event, 'avancesVist')">AVANCES</button>
-                    <button class="tablinks" onclick="openTabs(event, 'passVist')">PASSWORD</button>
-                    <button class="tablinks" onclick="openTabs(event, 'trbReaVist')">TRABAJO REALIZADO</button>
+                    <button id="defaultOpen" class="tablinks" onclick="openTabs(event, 'editVist',@TempData["idTk"],2)">EDITAR</button>
+                    <button class="tablinks" onclick="openTabs(event, 'avancesVist',@TempData["idTk"],2)">AVANCES</button>
+                    <button class="tablinks" onclick="openTabs(event, 'passVist',@TempData["idTk"],2)">PASSWORD</button>
+                    <button class="tablinks" onclick="openTabs(event, 'trbReaVist',@TempData["idTk"],2)">TRABAJO REALIZADO</button>
                 </div>
-                <form method="post" asp-action="EditTicket" asp-route-idTick=@ViewData["idd"]>
+                <form method="post" asp-action="EditTicket" asp-route-idTick=@TempData["idTk"]>
+                    <input type="text" style="display:none" id="ide" asp-for="Id" />
                     <div id="editVist" class="tabcontent">
-
                         <!--Fecha y hora-->
                         <div class="row date">
                             <div class="col-3">
@@ -40,13 +41,13 @@
                                 <!--Fecha-->
                                 <div class="col-5 hr2">
                                     <div class="md-form hrIn">
-                                        <input type="time" class="form-control clickable input-md" asp-for="Fecha" placeholder="HORA   &#xf107;">
+                                        <input type="time" id="horaEdit" class="form-control clickable input-md" asp-for="Fecha" placeholder="HORA   &#xf107;">
                                     </div>
                                 </div>
                                 <!--Hora-->
                                 <div class="col-7">
                                     <div class="form-group fecha">
-                                        <input type="date" class="form-control clickable input-md" asp-for="Fecha" placeholder="FECHA  &#xf133;">
+                                        <input type="date" id="fechaEdit" class="form-control clickable input-md" asp-for="Fecha" placeholder="FECHA  &#xf133;">
                                     </div>
                                 </div>
                             </div>
@@ -61,8 +62,9 @@
                                     </div>
                                 </div>
                                 <div class="col-6">
-                                    <select class="form-select" asp-for="Estado" aria-label="Default select example">
+                                    <select class="form-select" id="estadoEdit" asp-for="Estado" aria-label="Default select example">
                                         <option value="PENDIENTE">PENDIENTE</option>
+                                        <option value="TERMINADO">TERMINADO</option>
                                     </select>
                                 </div>
                             </div>
@@ -75,7 +77,7 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="form-outline">
-                                        <input type="text" id="ali" class="form-control" readonly />
+                                        <input type="text" id="aliEdit" class="form-control" readonly />
                                         <label class="form-label" id="aliLabel">ALIAS</label>
                                     </div>
                                 </div>
@@ -88,10 +90,8 @@
                                     </div>
                                 </div>
                                 <div class="col-6">
-                                   
-                                    <select id="contEdit" class="form-select"  asp-for="Contacto" aria-label="Default select example">
-                                        <option selected>CONTACTO</option>
-                                        CONTACTO
+
+                                    <select id="contEdit" class="form-select" asp-for="Contacto" aria-label="Default select example">
                                     </select>
                                 </div>
                             </div>
@@ -117,7 +117,7 @@
                                     </div>
                                 </div>
                                 <div class="col-7">
-                                    <select class="form-select" asp-for="Modo" id="medioo" aria-label="Default select example">
+                                    <select class="form-select" asp-for="Modo" id="mediooEdit" aria-label="Default select example">
                                     </select>
                                 </div>
                             </div>
@@ -126,8 +126,8 @@
                         <div class="row m-3 form1">
                             <div class="row mt-2">
                                 <div class="col-6">
-                                    <select class="form-select" asp-for="Grupo" id="atrabj" aria-label="Default select example">
-                                        <option value="SOLUTIONS">SOLUTIONS</option>
+                                    <select class="form-select" asp-for="Fk_procede" id="aTrabajo" aria-label="Default select example">
+                                        <option value="SOLUTIONS">AREA EMPRESA</option>
                                     </select>
                                 </div>
                                 <div class="col-6">
@@ -141,32 +141,37 @@
                                         ASIGNADO
                                     </select>
                                 </div>
+                                <div class="col-6">
+                                    <select class="form-select" asp-for="Grupo" id="atrabj" aria-label="Default select example">
+                                        <option value="SOLUTIONS">SOLUTIONS</option>
+                                    </select>
+                                </div>
                             </div>
                             <div class="row mt-2">
                                 <div class="md-form">
-                                    <textarea asp-for="Requerimiento" class="md-textarea form-control textareaStyle" rows="3"></textarea>
+                                    <textarea asp-for="Requerimiento" id="textAreaEdit" class="md-textarea form-control textareaStyle" rows="3"></textarea>
                                     <label asp-for="Requerimiento">Resumen del ticket</label>
                                 </div>
                             </div>
                         </div>
-                        <!--Form parte 3-->
-                        <!--Button para desplegar-->
 
+                        <!--Form parte 3-->
                     </div>
                     <div id="avancesVist" class="tabcontent"></div>
                     <div id="passVist" class="tabcontent"></div>
                     <div id="trbReaVist" class="tabcontent"></div>
+                    <div class="row w-100">
+                        <div class="col text-center">
+                            <input type="submit" class="btn btn-lg buttCreate" value="Editar Ticket" id="btnEdit" style="background: white;" />
+                        </div>
+                    </div>
                 </form>
 
 
             </div>
 
             <div class="modal-footer modalColor">
-                <div class="row w-100">
-                    <div class="col text-center">
-                        <input type="submit" class="btn btn-lg buttCreate" value="Editar Ticket" style="background: white;" />
-                    </div>
-                </div>
+                
             </div>
         </div>
     </div>

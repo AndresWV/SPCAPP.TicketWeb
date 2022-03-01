@@ -46,14 +46,21 @@ namespace SPCAPP.TicketWeb.Controllers
             {
                 var newFecha = new DateTime();
                 newFecha = ticket.Fecha.Value;
-                newFecha =      newFecha.AddSeconds(ticket.HrsInicio.Value.TimeOfDay.Seconds).AddMinutes(ticket.HrsInicio.Value.TimeOfDay.Minutes).AddHours(ticket.HrsInicio.Value.TimeOfDay.Hours);
-                ticket.Id= _context.TicketSpc.Count() == 0 ? 1 : _context.TicketSpc.Max(x => x.Id) + 1;
+                newFecha = newFecha.AddSeconds(ticket.HrsInicio.Value.TimeOfDay.Seconds).AddMinutes(ticket.HrsInicio.Value.TimeOfDay.Minutes).AddHours(ticket.HrsInicio.Value.TimeOfDay.Hours);
+                ticket.Id = _context.TicketSpc.Count() == 0 ? 1 : _context.TicketSpc.Max(x => x.Id) + 1;
                 ticket.Fecha = newFecha;
                 ticket.HrsInicio = null;
-                ticket.UserCreaTk = "MIGUEL";
+                ticket.UserCreaTk = ticket.Tecnico;
+                ticket.TerminadoPor = ticket.Tecnico; 
                 ticket.CerradoId = 0;
+                ticket.Realizado = "N";
+                ticket.Remoto = "N";
+                ticket.Taller = "N";
+                ticket.Visita = "N";
+                ticket.Tw = "N";
+                ticket.Telefono = "N";
+
                 ticket.Passwords = "";
-                ticket.Fk_procede = "";
                 ticket.Realizado = "N";
                 ticket.Programado = "N";
                 _context.TicketSpc.Add(ticket);
@@ -70,19 +77,16 @@ namespace SPCAPP.TicketWeb.Controllers
         //http get edit
         public IActionResult Edit(int? id)
         {
+            TempData["idTkEdit"] = id;
             //validar que la id
             if (id == null || id == 0)
             {
                 return NotFound();
             }
-
-            //obtener ticket
+        
             var ticket = _context.TicketSpc.Find(id);
-            //verificar que el ticket existe
-            if (ticket == null)
-            {
-                return NotFound();
-            }
+            
+           
             return PartialView("Edit",ticket);
         }
         //http post edit, el validate se encarga de limitar solicitudes en caso de uso de bot
@@ -93,9 +97,14 @@ namespace SPCAPP.TicketWeb.Controllers
             //valida que cumpla con todo las restricciones de la tabla ticket establecidas por las Data
             if (ModelState.IsValid)
             {
-                ticket.Id = (int)TempData["idTk"]; 
+                ticket.Id = idTick;
                 _context.TicketSpc.Update(ticket);
-                
+
+
+                ticket.Ot = null;
+
+                var x = ticket;
+
                 _context.SaveChanges();
                 //Mensaje para cuandos se cree el ticket
                 TempData["mensaje"] = "El ticket se ha actualizado correctamente";
@@ -158,6 +167,7 @@ namespace SPCAPP.TicketWeb.Controllers
             }
             return PartialView("View", ticket);
         }
+
         /*********************************************DATOS PARA PRECARGAR CON AUTOCOMPLETADO**************************************************************************/
         public IActionResult GetNombresClientes(string term)
         {
@@ -197,7 +207,7 @@ namespace SPCAPP.TicketWeb.Controllers
         //Traer todos los tecnicos
         public IActionResult GetTecnico()
         {
-            var contactoData = bd.Tecnicos;
+            var contactoData = bd.Tecnicos.Where(x=>x.Activo.Equals("S"));
             return Json(contactoData);
         }
         //Traer todos los gastos
@@ -224,9 +234,13 @@ namespace SPCAPP.TicketWeb.Controllers
             var areas = bd.TkGrupos;
             return Json(areas);
         }
-        public TicketSpc GetTicket()
+        public TicketSpc GetTicket(int idd)
         {
             var id = TempData["idTk"];
+            if(id==null || id=="0")
+            {
+                id = idd;
+            }
             var ticket = bd.TicketSpcs.Where(x => x.Id.Equals(id)).FirstOrDefault();
             return ticket;
         }
