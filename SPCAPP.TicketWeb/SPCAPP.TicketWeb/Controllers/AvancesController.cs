@@ -97,7 +97,17 @@ namespace SPCAPP.TicketWeb.Controllers
             var lista = bd.RendTks.Where(x => x.Tk == idd);
             return PartialView("TablaGastos", lista);
         }
+        public IActionResult areaEmpresa(int codaux)
+        {
+            var ticket = bd.TicketSpcs.Where(y => y.Id == codaux).FirstOrDefault();
+            var data = bd.TkAreas.Where(x => x.CodAux == ticket.CodAux).Select(x => x.CodArea).ToList();
+            return Json(data);
+        }
+        public IActionResult areaEmpresaCreate(string codaux)
+        {
+            var data = bd.TkAreas.Where(x => x.NomAux == codaux).Select(x => x.CodArea).ToList();
+            return Json(data);
+        }
 
-        
     }
 }

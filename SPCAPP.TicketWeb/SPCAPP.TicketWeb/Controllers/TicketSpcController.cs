@@ -50,7 +50,8 @@ namespace SPCAPP.TicketWeb.Controllers
                 ticket.Id = _context.TicketSpc.Count() == 0 ? 1 : _context.TicketSpc.Max(x => x.Id) + 1;
                 ticket.Fecha = newFecha;
                 ticket.HrsInicio = null;
-                ticket.UserCreaTk = "MIGUEL";
+                ticket.UserCreaTk = ticket.Tecnico;
+                ticket.TerminadoPor = ticket.Tecnico; 
                 ticket.CerradoId = 0;
                 ticket.Realizado = "N";
                 ticket.Remoto = "N";
@@ -60,7 +61,6 @@ namespace SPCAPP.TicketWeb.Controllers
                 ticket.Telefono = "N";
 
                 ticket.Passwords = "";
-                ticket.Fk_procede = "";
                 ticket.Realizado = "N";
                 ticket.Programado = "N";
                 _context.TicketSpc.Add(ticket);

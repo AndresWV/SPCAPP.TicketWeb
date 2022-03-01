@@ -1,8 +1,6 @@
 ﻿
 
 $.get("/TicketSpc/GetTicket", function (ticket) {
-    
-
     /*Con esto dejo setiado la opcion del contacto seleccionado*/
     $.get("/TicketSpc/GetNombresClientesNom", { term: ticket.empresa }, function (dataMedios) {
         $("#aliEdit").val(dataMedios[0].nomAux);
@@ -19,7 +17,9 @@ $.get("/TicketSpc/GetTicket", function (ticket) {
             } 
             $("#contEdit").val(opt[0].label);
         });
+        
     });
+
     $.get("/TicketSpc/GetMContacto", function (mcontactosLista) {
         var opt = '';
         for (var i = 0; i < mcontactosLista.length; i++) {
@@ -57,6 +57,7 @@ $.get("/TicketSpc/GetTicket", function (ticket) {
         }
         $("#asignadoo").val(opt[0].label);
     });
+
 });
 /*FUNCION PARA CONTROLAR CUANDO SE CHECKEA LOS CAMPOS DE LA VISTA AVANCES*/
 function checkAvances(op) {

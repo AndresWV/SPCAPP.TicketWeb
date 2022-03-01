@@ -30,14 +30,14 @@
                                 <!--Fecha-->
                                 <div class="col-5 hr2">
                                     <div class="md-form hrIn">
-                                        <input type="time" class="form-control clickable input-md" id="horaInicioCreate" placeholder="HORA   &#xf107;">
+                                        <input type="time" class="form-control clickable input-md" id="horaInicioCreate" asp-for="HrsInicio" placeholder="HORA   &#xf107;">
                                         <input type="time" id="horaInCreateSave" hidden />
                                     </div>
                                 </div>
                                 <!--Hora-->
                                 <div class="col-7">
                                     <div class="form-group fecha">
-                                        <input type="datetime"  class="form-control clickable input-md" id="fechaCreate" placeholder="FECHA  &#xf133;">
+                                        <input type="date"  class="form-control clickable input-md" id="fechaCreate" asp-for="Fecha" placeholder="FECHA  &#xf133;">
                                         <input type="date" id="dateCreate" hidden />
                                     </div>
                                 </div>
@@ -132,6 +132,11 @@
                                 <div class="col-6">
                                     <select class="form-select" id="asignadoo" asp-for="Tecnico" aria-label="Default select example">
                                         ASIGNADO
+                                    </select>
+                                </div>
+                                <div class="col-6">
+                                    <select class="form-select" asp-for="Fk_procede" id="aTrabajo2" aria-label="Default select example">
+                                        <option value="SOLUTIONS">AREA EMPRESA</option>
                                     </select>
                                 </div>
                             </div>

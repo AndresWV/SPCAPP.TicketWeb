@@ -8,7 +8,6 @@ var month = ("0" + (now.getMonth() + 1)).slice(-2);
 var today = now.getFullYear() + "-" + (month) + "-" + (day);
 $('#fechaCreate').val(today);
 
-
 //Metodo para controlar el autocompletado del text input CLIENTE
 $(document).ready(function () {
    
@@ -26,7 +25,15 @@ $(document).ready(function () {
     //Cuando seleccione un elemento del menu desplegable...
     select: function (event, ui) {
         $.get("/TicketSpc/GetNombresClientesNom", { term: ui.item.value }, function (dataNom) {
-            //tomar datos en base al cliente seleccionado por el autocompletado
+            console.log(dataNom[0].nomAux);
+            $.get("/Avances/areaEmpresaCreate", { codaux: dataNom[0].nomAux }, function (areaEmpresas) {
+                for (var i = 0; i < areaEmpresas.length; i++) {
+                    var option = document.createElement("option"); //Creas el elemento opción
+                    $(option).html(areaEmpresas[i]); //Escribes en él el nombre de la provincia
+                    $(option).appendTo("#aTrabajo2");
+                }
+            });
+              //tomar datos en base al cliente seleccionado por el autocompletado
             $.get("/TicketSpc/GetAlias", { term: dataNom[0].nomAux }, function (data) {
                 $(".result").html(data);
                 //cambiar código
