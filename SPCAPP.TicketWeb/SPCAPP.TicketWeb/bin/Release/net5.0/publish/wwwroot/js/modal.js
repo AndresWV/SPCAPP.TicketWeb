@@ -1,4 +1,19 @@
-﻿//Metodo para controlar el autocompletado del text input CLIENTE
+﻿/*INICIAR CON LA FECHA Y HORA ACTUALES*/
+var now = new Date(Date.now());
+var min = now.getMinutes();
+if (now.getMinutes() < 10) {
+    min = "0"+now.getMinutes();
+}
+var formatted = now.getHours() + ":" + min;
+
+$("#horaInicioCreate").val(formatted);
+
+var day = ("0" + now.getDate()).slice(-2);
+var month = ("0" + (now.getMonth() + 1)).slice(-2);
+var today = now.getFullYear() + "-" + (month) + "-" + (day);
+$('#fechaCreate').val(today);
+
+//Metodo para controlar el autocompletado del text input CLIENTE
 $(document).ready(function () {
    
     $("#clt").autocomplete({
@@ -15,7 +30,15 @@ $(document).ready(function () {
     //Cuando seleccione un elemento del menu desplegable...
     select: function (event, ui) {
         $.get("/TicketSpc/GetNombresClientesNom", { term: ui.item.value }, function (dataNom) {
-            //tomar datos en base al cliente seleccionado por el autocompletado
+            console.log(dataNom[0].nomAux);
+            $.get("/Avances/areaEmpresaCreate", { codaux: dataNom[0].nomAux }, function (areaEmpresas) {
+                for (var i = 0; i < areaEmpresas.length; i++) {
+                    var option = document.createElement("option"); //Creas el elemento opción
+                    $(option).html(areaEmpresas[i]); //Escribes en él el nombre de la provincia
+                    $(option).appendTo("#aTrabajo2");
+                }
+            });
+              //tomar datos en base al cliente seleccionado por el autocompletado
             $.get("/TicketSpc/GetAlias", { term: dataNom[0].nomAux }, function (data) {
                 $(".result").html(data);
                 //cambiar código

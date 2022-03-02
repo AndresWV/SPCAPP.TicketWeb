@@ -1,8 +1,6 @@
 ﻿
 
 $.get("/TicketSpc/GetTicket", function (ticket) {
-    
-
     /*Con esto dejo setiado la opcion del contacto seleccionado*/
     $.get("/TicketSpc/GetNombresClientesNom", { term: ticket.empresa }, function (dataMedios) {
         $("#aliEdit").val(dataMedios[0].nomAux);
@@ -19,7 +17,9 @@ $.get("/TicketSpc/GetTicket", function (ticket) {
             } 
             $("#contEdit").val(opt[0].label);
         });
+        
     });
+
     $.get("/TicketSpc/GetMContacto", function (mcontactosLista) {
         var opt = '';
         for (var i = 0; i < mcontactosLista.length; i++) {
@@ -58,8 +58,41 @@ $.get("/TicketSpc/GetTicket", function (ticket) {
         $("#asignadoo").val(opt[0].label);
     });
 
-
 });
+/*FUNCION PARA CONTROLAR CUANDO SE CHECKEA LOS CAMPOS DE LA VISTA AVANCES*/
+function checkAvances(op) {
+    if ($("#trjProgramadoSele").val()) {
+        $("#programadoCheck").val("S");
+    } if(op==1){
+        $("#programadoCheck").val("N");
+    }
+}
+function checkTrbRealizado(idCampo, idGuardado, op) {
+    let checks = ["#visitaCheck", "#remotoCheck", "#tallerCheck", "#telCheck"];
+    if ($(idGuardado).val() == "S") {
+        for (var i = 0; i < checks.length; i++) {
+            $(checks[i]).attr("disabled", false);
+        }
+        $(idGuardado).val("N")
+    } else {
+        if ($(idCampo).val()) {
+            if (op == 1) {
+                $(idGuardado).val("N");
+            }
+            else {
+                $(idGuardado).val("S");
+                if (idCampo == "#visitaCheck" || idCampo == "#remotoCheck" || idCampo == "#tallerCheck" || idCampo == "#telCheck") {
+                    for (var i = 0; i < checks.length; i++) {
+                        if (checks[i] != idCampo) {
+                            $(checks[i]).attr("disabled", true);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 function gastosAdd() {
     $("#gastosVista").load("/Avances/gastos");
     $("#gastosVista").show();

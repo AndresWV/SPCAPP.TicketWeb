@@ -1,4 +1,45 @@
-﻿document.getElementById("defaultOpen").click();
+﻿
+$(document).ready(function () {
+    console.log(getParameter('tipoFiltro'));
+    if (getParameter('tipoFiltro') != null) {
+        $("#filtroTabla").val(getParameter('tipoFiltro'));
+    } else {
+        $("#filtroTabla").val('4');   
+    }
+});
+
+function getParameter(p) {
+    var url = window.location.search.substring(1);
+    var varUrl = url.split('&');
+    for (var i = 0; i < varUrl.length; i++) {
+        var parameter = varUrl[i].split('=');
+        if (parameter[0] == p) {
+            return parameter[1];
+        }
+    }
+}
+function filtrosTabla(filtroTabla) {
+    /*TICKETS PENDIENTES*/
+    if ($("#filtroTabla").val() == "1") {
+        window.location.replace("/TicketSpc/Index/?tipoFiltro=1");
+        //$.get("/TicketSpc/Index", { tipoFiltro: 1 });
+    }
+    /*TICKETS NULOS*/
+    else if ($("#filtroTabla").val() == "2") {
+        window.location.replace("/TicketSpc/Index/?tipoFiltro=2");
+       // $.get("/TicketSpc/Index", { tipoFiltro: 2 });
+    }
+    /*TICKETS TERMINADOS*/
+    else if ($("#filtroTabla").val() == "3") {
+        window.location.replace("/TicketSpc/Index/?tipoFiltro=3");
+       // $.get("/TicketSpc/Index", { tipoFiltro: 3 });
+    }
+    /*TODOS LOS TICKETS*/
+    else if ($("#filtroTabla").val() == "4") {
+        window.location.replace("/TicketSpc/Index/?tipoFiltro=4");
+        // $.get("/TicketSpc/Index", { tipoFiltro: 3 });
+    }
+}
 function addGasto() {
     var gasto = $("#gastosSelect").val();
     var cantidad = $("#cantidad").val();
@@ -43,8 +84,6 @@ function trbRealizadoScript() {
     $.get("/TicketSpc/GetTicket", { idd: x }, function (ticket) {
         $.get("/Avances/areaEmpresa", { codaux: ticket.id }, function (areaEmpresas) {
             var opt = '';
-            console.log(ticket);
-           /* console.log("proc: " + ticket.fk_procede);*/
             for (var i = 0; i < areaEmpresas.length; i++) {
                 var option = document.createElement("option"); //Creas el elemento opción
                 $(option).html(areaEmpresas[i]); //Escribes en él el nombre de la provincia

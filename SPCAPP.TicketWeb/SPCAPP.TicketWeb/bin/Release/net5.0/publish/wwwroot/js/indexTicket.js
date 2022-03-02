@@ -9,7 +9,7 @@ function addGasto() {
 function openTabs(evt, cityName, id, op) {
     $("#trbReaVist").load("/Avances/trbRealizadoVista", { idd: id });
     $("#trbReaVist2").load("/Avances/trbRealizadoVistaBlock", { idd: id });
-    
+   
     $("#passVist").load("/Avances/passwordVista", { idd: id });
     $("#passVist2").load("/Avances/passwordVistaBlock");
     /*$("#gastosVista").load("/Avances/gasto");*/
@@ -41,6 +41,18 @@ function openTabs(evt, cityName, id, op) {
 function trbRealizadoScript() {
     var x = $("#ide").val()
     $.get("/TicketSpc/GetTicket", { idd: x }, function (ticket) {
+        $.get("/Avances/areaEmpresa", { codaux: ticket.id }, function (areaEmpresas) {
+            var opt = '';
+            for (var i = 0; i < areaEmpresas.length; i++) {
+                var option = document.createElement("option"); //Creas el elemento opción
+                $(option).html(areaEmpresas[i]); //Escribes en él el nombre de la provincia
+                $(option).appendTo("#aTrabajo");
+                if (areaEmpresas[i] == ticket.fk_procede) {
+                    opt = $(option).html(areaEmpresas[i]);
+                }
+            }
+            $("#aTrabajo").val(opt[0].label);
+        });
         $.get("/TicketSpc/GetNombresClientesNom", { term: ticket.empresa }, function (data) {
             $("#aliEdit").val(data[0].nomAux)
             $("#aliEdit").focus();
