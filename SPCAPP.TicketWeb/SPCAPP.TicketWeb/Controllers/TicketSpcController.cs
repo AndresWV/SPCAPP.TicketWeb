@@ -76,7 +76,10 @@ namespace SPCAPP.TicketWeb.Controllers
             }
             
         }
-
+        public IActionResult ImprimirTicket()
+        {
+            return View("ImprimirTicket");
+        }
         //http get create
         public IActionResult Create()
         {

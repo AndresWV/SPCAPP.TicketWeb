@@ -252,8 +252,6 @@ function crearModal(buttonOption, idd, blockInput) {
     }
     //Eliminar ticket
     else {
-        $("#modalCreate").load("/TicketSpc/Delete", { id: idd }, function () {
-            cargarScript(4);
-        });
+        window.open('/TicketSpc/ImprimirTicket');  
     }
 }

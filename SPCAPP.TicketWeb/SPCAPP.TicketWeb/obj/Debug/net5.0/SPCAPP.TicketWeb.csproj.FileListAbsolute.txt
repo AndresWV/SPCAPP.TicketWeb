@@ -449,3 +449,4 @@ C:\Users\andre\Desktop\C#\SPCAPP_TicketWeb\SPCAPP.TicketWeb\SPCAPP.TicketWeb\obj
 C:\Users\andre\Desktop\C#\SPCAPP_TicketWeb\SPCAPP.TicketWeb\SPCAPP.TicketWeb\obj\Debug\net5.0\Razor\Views\Avances\passwordVistaBlock.cshtml.g.cs
 C:\Users\andre\Desktop\C#\SPCAPP_TicketWeb\SPCAPP.TicketWeb\SPCAPP.TicketWeb\obj\Debug\net5.0\Razor\Views\Avances\trbRealizadoVistaBlock.cshtml.g.cs
 C:\Users\andre\Desktop\C#\SPCAPP_TicketWeb\SPCAPP.TicketWeb\SPCAPP.TicketWeb\obj\Debug\net5.0\Razor\Views\Avances\gastosBlock.cshtml.g.cs
+C:\Users\andre\Desktop\C#\SPCAPP_TicketWeb\SPCAPP.TicketWeb\SPCAPP.TicketWeb\obj\Debug\net5.0\Razor\Views\TicketSpc\ImprimirTicket.cshtml.g.cs
