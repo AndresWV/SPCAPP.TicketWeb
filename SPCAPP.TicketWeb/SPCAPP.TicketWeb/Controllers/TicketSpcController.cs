@@ -22,13 +22,59 @@ namespace SPCAPP.TicketWeb.Controllers
 
         }
         //http get index
-        public IActionResult Index()
+        public IActionResult Index(int tipoFiltro)
         {
-            var ultimoTicket = _context.TicketSpc.Count();
-            var primerTicket = ultimoTicket - 200;
-            IEnumerable<TicketSpc> listaTicket = _context.TicketSpc.Skip(Math.Max(0,primerTicket));
-           
-            return View(listaTicket);
+            if (tipoFiltro == null)
+            {
+                tipoFiltro = 4;
+            }
+            List<TicketSpc> listaTicket2Aux;
+            List<TicketSpc> listaTicket2;
+                        /*PENDIENTES*/
+            if (tipoFiltro == 1)
+            {
+                listaTicket2Aux = new List<TicketSpc>();
+                listaTicket2 =  _context.TicketSpc.Where(x=>x.Estado == "PENDIENTE").ToList();
+                for (int i=listaTicket2.Count(); i > (listaTicket2.Count() - 200); i--)
+                {
+                    listaTicket2Aux.Add(listaTicket2.ElementAtOrDefault(i));
+                }
+                IEnumerable<TicketSpc> listaTicket =  listaTicket2Aux;
+                return View("Index",listaTicket);
+            }
+            /*NULOS*/
+            else if(tipoFiltro == 2)
+            {
+                listaTicket2Aux = new List<TicketSpc>();
+                listaTicket2 = (List<TicketSpc>)_context.TicketSpc.Where(x => x.Estado == "NULO").ToList();
+                for (int i = listaTicket2.Count(); i > (listaTicket2.Count() - 200); i--)
+                {
+                    listaTicket2Aux.Add(listaTicket2.ElementAtOrDefault(i));
+                }
+                IEnumerable<TicketSpc> listaTicket = listaTicket2Aux;
+                return View("Index",listaTicket);
+            }
+            /*TERMINADOS*/
+            else if (tipoFiltro == 3)
+            {
+                listaTicket2Aux = new List<TicketSpc>();
+                listaTicket2 = (List<TicketSpc>)_context.TicketSpc.Where(x => x.Estado == "TERMINADO").ToList();
+                for (int i = listaTicket2.Count(); i > (listaTicket2.Count() - 200); i--)
+                {
+                    listaTicket2Aux.Add(listaTicket2.ElementAtOrDefault(i));
+                }
+                IEnumerable<TicketSpc>  listaTicket = listaTicket2Aux;
+                return View("Index",listaTicket);
+            }
+            /*TODOS*/
+            else
+            {
+                var ultimoTicket = _context.TicketSpc.Count();
+                var primerTicket = ultimoTicket - 200;
+                IEnumerable<TicketSpc> listaTicket = _context.TicketSpc.Skip(Math.Max(0, primerTicket));
+                return View(listaTicket);
+            }
+            
         }
 
         //http get create

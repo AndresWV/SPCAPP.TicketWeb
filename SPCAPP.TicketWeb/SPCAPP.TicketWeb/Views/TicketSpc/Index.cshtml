@@ -15,20 +15,27 @@
             </button>
         </div>
     }
-    <div class="row mb-4">
-        <div class="col-sm-7" style="margin-left:5%">
-            <h3 class="text-right">TICKET GENERADOS</h3>
-        </div>
-        <div class="col-sm-4">
-
-            <a class="btn float-lg-right colorB" onclick="crearModal(1,0,0)">Crear Ticket</a>
-        </div>
+<div class="row mb-4">
+    <div class="float-left col-3">
+        <select class="form-select" id="filtroTabla" aria-label="Default select example" onchange="filtrosTabla()">
+            <option value="4">TODOS</option>
+            <option value="1">PENDIENTES</option>
+            <option value="2">NULOS</option>
+            <option value="3">TERMINADOS</option>
+        </select>
     </div>
+    <div class="col-sm-4" style="margin-left:5%">
+        <h3 class="text-right">TICKET GENERADOS</h3>
+    </div>
+    <div class="col-sm-4">
+
+        <a class="btn float-lg-right colorB" onclick="crearModal(1,0,0)">Crear Ticket</a>
+    </div>
+</div>
 
 
 
     <div class="row">
-
         @if (Model.Count() > 0)
         {
             <table id="dtBasicExample" class="table table-bordered table-hover w-100" style="display:none">
@@ -45,8 +52,11 @@
                     </tr>
                 </thead>
                 <tbody>
+                    
                     @foreach (var item in Model)
                     {
+                        if (item != null)
+                        {
                         <tr class="w-100">
                             <td>@item.Id</td>
                             <td>@item.Fecha</td>
@@ -76,7 +86,8 @@
                                 <!--<a class="btn coloAction" onclick="crearModal(4,@item.Id,0)"><i class="fas fa-trash-alt"></i></a>-->
                             </td>
                         </tr>
-                    }
+                                        }
+                                    }
                 </tbody>
             </table>
         }
