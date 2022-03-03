@@ -252,6 +252,6 @@ function crearModal(buttonOption, idd, blockInput) {
     //Eliminar ticket
     else {
         console.log(idd);
-        window.open("/TicketSpc/ImprimirTicket?idd=idd");
+        window.open("/TicketSpc/ImprimirTicket?idd="+idd); 
     }
 }

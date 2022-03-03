@@ -78,7 +78,7 @@ namespace SPCAPP.TicketWeb.Controllers
         }
         public IActionResult ImprimirTicket(int idd)
         {
-            var ticket = _context.TicketSpc.Where(X => X.Id == idd);
+            var ticket = _context.TicketSpc.Where(X => X.Id == idd).FirstOrDefault();
             return View("ImprimirTicket",ticket);
         }
         //http get create
