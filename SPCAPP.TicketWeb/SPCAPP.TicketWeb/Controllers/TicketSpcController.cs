@@ -108,7 +108,7 @@ namespace SPCAPP.TicketWeb.Controllers
                 ticket.Visita = "N";
                 ticket.Tw = "N";
                 ticket.Telefono = "N";
-
+                ticket.Requerimiento = ticket.Requerimiento.ToUpper();
                 ticket.Passwords = "";
                 ticket.Realizado = "N";
                 ticket.Programado = "N";
@@ -152,8 +152,23 @@ namespace SPCAPP.TicketWeb.Controllers
 
                 ticket.Ot = null;
 
-                var x = ticket;
 
+                if (ticket.Requerimiento != null)
+                {
+                    ticket.Requerimiento = ticket.Requerimiento.ToUpper();
+                }
+                if (ticket.Passwords != null)
+                {
+                    ticket.Passwords = ticket.Passwords.ToUpper();
+                }
+                if (ticket.Avance != null)
+                {
+                    ticket.Avance = ticket.Avance.ToUpper();
+                }
+                if (ticket.Trabajo != null)
+                {
+                    ticket.Trabajo = ticket.Trabajo.ToUpper();
+                }
                 _context.SaveChanges();
                 //Mensaje para cuandos se cree el ticket
                 TempData["mensaje"] = "El ticket se ha actualizado correctamente";

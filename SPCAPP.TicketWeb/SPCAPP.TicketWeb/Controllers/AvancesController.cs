@@ -39,6 +39,10 @@ namespace SPCAPP.TicketWeb.Controllers
             {
                 ticket.FechaTrabajo = hm;
             }
+            if (ticket.Avance != null)
+            {
+                ticket.Avance = ticket.Avance.ToUpper();
+            }
             return PartialView("AvancesVista",ticket);
         }
         public IActionResult AvancesVistaBlock()

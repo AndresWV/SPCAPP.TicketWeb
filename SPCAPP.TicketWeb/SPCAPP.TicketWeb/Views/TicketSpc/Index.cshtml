@@ -67,11 +67,9 @@
                             <td class="text-uppercase">@item.Tecnico</td>
 
                             <td>
-                                @{
-                                    ViewData["idd"] = (int)@item.Id;
-                                }
+                               
                                 <!--Ver-->
-                                <a class="btn coloAction ml-5" onclick="crearModal(2,@item.Id,1)"><i class="fas fa-search-plus"></i></a>
+                                <a class="btn coloAction ml-3" onclick="crearModal(2,@item.Id,1)"><i class="fas fa-search-plus"></i></a>
                                 @if (item.Estado.ToString() != "TERMINADO")
                                 {
                                     <!--Editar-->
