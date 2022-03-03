@@ -49,7 +49,7 @@ function addGasto() {
 function openTabs(evt, cityName, id, op) {
     $("#trbReaVist").load("/Avances/trbRealizadoVista", { idd: id });
     $("#trbReaVist2").load("/Avances/trbRealizadoVistaBlock", { idd: id });
-   
+    $("#nOrden").focus();
     $("#passVist").load("/Avances/passwordVista", { idd: id });
     $("#passVist2").load("/Avances/passwordVistaBlock");
     /*$("#gastosVista").load("/Avances/gasto");*/
@@ -251,6 +251,7 @@ function crearModal(buttonOption, idd, blockInput) {
     }
     //Eliminar ticket
     else {
-        window.open('/TicketSpc/ImprimirTicket');  
+        console.log(idd);
+        window.open("/TicketSpc/ImprimirTicket?idd=idd");
     }
 }

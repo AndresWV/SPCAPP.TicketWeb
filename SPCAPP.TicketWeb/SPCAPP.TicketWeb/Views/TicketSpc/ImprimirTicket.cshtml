@@ -1,7 +1,4 @@
-﻿@{
-  //  Layout = "";
- }
-
+﻿@model SPCAPP.TicketWeb.Models.TicketSpc 
 <div class="container ">
     <!--CABECERA-->
     <div class="row w-100">
@@ -18,7 +15,7 @@
     <!--IDENTIFICAR CLIENTE-->
     <div class="row mt-3">
         <div class="row w-100">
-            <h6><b>ORDEN DE TRABAJO N° </b></h6>
+            <h6><b>ORDEN DE TRABAJO N° @Model.Id</b></h6>
         </div>
         <div class="row mt-2 w-100">
             <h6><b>IDENTIFICACIÓN DEL CLIENTE</b></h6>
@@ -27,7 +24,7 @@
             <table class="table table-bordered table-hover w-100">
                 <tbody>
                     <tr>
-                        <td><b>EMPRESA:</b></td>
+                        <td><b>EMPRESA: @Model.Empresa</b></td>
                         <td><b></b></td>
                         <td><b>RUT:</b></td>
                         <td><b></b></td>
@@ -35,19 +32,19 @@
                     <tr>
                         <td><b>DIRECCION:</b></td>
                         <td><b></b></td>
-                        <td><b>TELEFONO:</b></td>
+                        <td><b>TELEFONO: @Model.Telefono</b></td>
                         <td><b></b></td>
                     </tr>
                     <tr>
-                        <td><b>CONTACTO:</b></td>
+                        <td><b>CONTACTO: @Model.Contacto</b></td>
                         <td><b></b></td>
-                        <td><b>FECHA:</b></td>
+                        <td><b>FECHA: @Model.FechaCierre</b></td>
                         <td><b></b></td>
                     </tr>
                     <tr>
-                        <td><b>HORA INICIO:</b></td>
+                        <td><b>HORA INICIO: @Model.HrsInicio</b></td>
                         <td><b></b></td>
-                        <td><b>HORA TERMINO:</b></td>
+                        <td><b>HORA TERMINO:@Model.HrsTermino</b></td>
                         <td><b></b></td>
                     </tr>
                 </tbody>

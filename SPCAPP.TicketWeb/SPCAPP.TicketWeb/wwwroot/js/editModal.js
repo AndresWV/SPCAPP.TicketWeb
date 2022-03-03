@@ -1,7 +1,10 @@
-﻿if ($("#ide").val()!=null) {
+﻿
+if ($("#ide").val() != null) {
     
     $.get("/TicketSpc/GetTicket", { idd: $("#ide").val() }, function (ticket) {
         console.log(ticket);
+        $("#nOrden").val(ticket.id);
+        $("#nOrden").focus();
         $.get("/TicketSpc/GetContactos", { term: ticket.codAux }, function (empresaD) {
             var opt = '';   
             for (var i = 0; i < empresaD.length; i++) {

@@ -76,9 +76,10 @@ namespace SPCAPP.TicketWeb.Controllers
             }
             
         }
-        public IActionResult ImprimirTicket()
+        public IActionResult ImprimirTicket(int idd)
         {
-            return View("ImprimirTicket");
+            var ticket = _context.TicketSpc.Where(X => X.Id == idd);
+            return View("ImprimirTicket",ticket);
         }
         //http get create
         public IActionResult Create()
