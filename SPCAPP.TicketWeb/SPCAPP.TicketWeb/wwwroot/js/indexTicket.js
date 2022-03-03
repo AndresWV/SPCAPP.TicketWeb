@@ -1,6 +1,5 @@
 ﻿
 $(document).ready(function () {
-    console.log(getParameter('tipoFiltro'));
     if (getParameter('tipoFiltro') != null) {
         $("#filtroTabla").val(getParameter('tipoFiltro'));
     } else {

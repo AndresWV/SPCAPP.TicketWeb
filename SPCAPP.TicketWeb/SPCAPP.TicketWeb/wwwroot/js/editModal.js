@@ -1,12 +1,9 @@
-﻿
-
-$.get("/TicketSpc/GetTicket", function (ticket) {
-    /*Con esto dejo setiado la opcion del contacto seleccionado*/
-    $.get("/TicketSpc/GetNombresClientesNom", { term: ticket.empresa }, function (dataMedios) {
-        $("#aliEdit").val(dataMedios[0].nomAux);
-        $("#aliEdit").focus();
-        $.get("/TicketSpc/GetContactos", { term: dataMedios[0].codAux }, function (empresaD) {
-            var opt = '';
+﻿if ($("#ide").val()!=null) {
+    
+    $.get("/TicketSpc/GetTicket", { idd: $("#ide").val() }, function (ticket) {
+        console.log(ticket);
+        $.get("/TicketSpc/GetContactos", { term: ticket.codAux }, function (empresaD) {
+            var opt = '';   
             for (var i = 0; i < empresaD.length; i++) {
                 var option = document.createElement("option"); //Creas el elemento opción
                 $(option).html(empresaD[i].nomCon); //Escribes en él el nombre de la provincia
@@ -14,9 +11,18 @@ $.get("/TicketSpc/GetTicket", function (ticket) {
                 if (empresaD[i].nomCon == ticket.contacto) {
                     opt = $(option).html(empresaD[i].nomCon);
                 }
-            } 
+            }
             $("#contEdit").val(opt[0].label);
         });
+    });
+}
+
+$.get("/TicketSpc/GetTicket", function (ticket) {
+    /*Con esto dejo setiado la opcion del contacto seleccionado*/
+    $.get("/TicketSpc/GetNombresClientesNom", { term: ticket.empresa }, function (dataMedios) {
+        $("#aliEdit").val(dataMedios[0].nomAux);
+        $("#aliEdit").focus();
+       
         
     });
 
